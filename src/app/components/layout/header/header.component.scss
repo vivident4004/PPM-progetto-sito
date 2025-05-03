@@ -3,7 +3,7 @@
 // Variabili (mantieni quelle definite prima o adattale)
 $lefigaro-blue: #163860;
 $lefigaro-blue-hover: #1f66ba;
-$lefigaro-yellow: #f8b400; // Verifica colore esatto
+$lefigaro-yellow: #ecb62f; // Updated to specified color
 $border-color: #e0e0e0;
 $light-gray-bg: #f8f8f8;
 $text-color: #333;
@@ -95,6 +95,10 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
     display: flex;
     align-items: center;
     gap: 0.8rem; // Spazio ridotto
+
+    app-menu-button {
+      //display: none; // Nascondi il pulsante menu per default (sarà mostrato solo su mobile)
+    }
 
     .icon-button {
       background: none;
@@ -376,6 +380,163 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   }
 }
 
+// --- Mobile Menu ---
+.mobile-menu {
+  position: fixed;
+  top: 45px; // Altezza della top-nav
+  left: 0;
+  width: 320px;
+  bottom: 0;
+  background-color: $text-color-white;
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 45px;
+    left: 320px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .mobile-menu-container {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .mobile-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .mobile-subscribe-button {
+      background-color: $lefigaro-yellow;
+      color: $lefigaro-blue;
+      padding: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+      display: block;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      height: 52px;
+      margin: 4px;
+
+      span {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: normal;
+        opacity: 0.9;
+        margin-top: 2px;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .mobile-search-button {
+      background-color: $lefigaro-blue;
+      color: $text-color-white;
+      padding: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      height: 44px;
+      margin: 4px;
+
+      .search-icon {
+        margin-right: 8px;
+      }
+
+      &:hover {
+        background-color: $lefigaro-blue-hover;
+      }
+    }
+  }
+
+  // Mobile app section
+  .fh-mobileapp__container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: space-between;
+    margin: 0 24px 24px;
+
+    .fh-mobileapp__text {
+      h3 {
+        font-weight: 600;
+        font-size: 15px;
+        color: $lefigaro-blue;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: $text-color;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  .mobile-menu-section {
+    margin-bottom: 1.5rem;
+    border-color: #d3e7ff;
+    border-top: 1px solid;
+    flex-basis: 100%;
+    list-style: none;
+    min-width: 100%;
+    padding-bottom: 12px;
+    padding-top: 12px;
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $lefigaro-blue;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid $border-color;
+    }
+
+    .mobile-menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        a {
+          display: block;
+          padding: 0.5rem 0;
+          color: $text-color;
+          text-decoration: none;
+          font-size: 0.9rem;
+
+          &:hover {
+            color: $lefigaro-blue-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
 // --- Responsività (da adattare ulteriormente) ---
 @media (max-width: 1024px) { // Tablet
   .container { padding: 0 0.8rem; }
@@ -387,8 +548,9 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
 @media (max-width: 768px) { // Mobile
   // Nascondi/mostra elementi come prima, ma verifica gli stili compatti
   .header-top-nav {
-    // .mobile-menu-toggle { display: block; }
-    .top-nav-logo, .main-nav-list, .login-link { display: none; }
+    .main-nav-list, .login-link {
+      display: none;
+    }
   }
   .header-middle {
     .header-journal-cover, .header-subscribe { display: none; }
@@ -396,7 +558,6 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
     .header-logo.logo-center .main-logo-text { font-size: 1.5rem; }
   }
   .header-rubrics { display: none; }
-  // .mobile-menu { display: block; /* o gestito da *ngIf */ }
 }
 
 .stile-rubrica {

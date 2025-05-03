@@ -3,12 +3,13 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common"; // Necessario per *ngIf, [ngClass], ecc. in componenti standalone
 import { MatButtonModule } from "@angular/material/button"; // Se usi Angular Material per i bottoni
 import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {MenuButtonComponent} from "../../menu-button/menu-button.component";
 
 @Component({
   selector: "app-header",
   standalone: true,
   // Importa CommonModule e altri moduli necessari qui
-  imports: [CommonModule, MatButtonModule, MatIcon],
+  imports: [CommonModule, MatButtonModule, MatIcon, MatIconModule, MenuButtonComponent],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
 })

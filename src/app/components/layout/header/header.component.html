@@ -1,10 +1,13 @@
 <!-- src/app/components/layout/header/header.component.html -->
 <header class="lefigaro-header">
   <!-- 1. Barra Superiore -->
-  <nav class="header-top-nav" aria-label="Navigation principale">
+  <nav class="header-top-nav">
     <div class="container top-nav-container">
-      <!-- Logo Sinistra (semplificato) -->
-      <a href="/" class="top-nav-logo">Le Figaro</a>
+      <!-- Menu Button (replacing logo) -->
+      <app-menu-button
+        (toggleMenu)="toggleMobileMenu()"
+        [isOpen]="isMobileMenuOpen"
+      ></app-menu-button>
 
       <!-- Navigazione Principale (Centrale) -->
       <ul class="main-nav-list">
@@ -59,7 +62,6 @@
           <!-- <span class="material-icons">search</span> -->
           <!-- <span class="search-label">Rechercher</span> -->
           <!-- Label nascosta per compattezza -->
-
         </button>
         <svg width="16px" height="16px" class="fh-svg-user svg-square" aria-hidden="true"><use xlink:href="#fh-user"></use></svg>
         <a href="#" class="login-link">Se connecter</a>
@@ -241,7 +243,107 @@
     </div>
   </nav>
 
-  <!-- Menu Mobile (struttura base, attivato da hamburger) -->
-  <!-- <div class="mobile-menu" *ngIf="isMobileMenuOpen"> ... </div> -->
-  <!-- Il bottone hamburger andrebbe nella top-bar, visibile solo su mobile -->
+  <!-- Menu Mobile (attivato dal menu button) -->
+  <div *ngIf="isMobileMenuOpen" class="mobile-menu">
+    <div class="mobile-menu-container">
+      <!-- Pulsanti in cima al menu -->
+      <div class="mobile-menu-buttons">
+        <a class="mobile-subscribe-button" href="#">
+          Abonnez-vous
+          <span>0,99€ le premier mois</span>
+        </a>
+        <a class="mobile-search-button" href="#">
+          <svg class="search-icon" height="15" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  fill="currentColor"/>
+          </svg>
+          Rechercher
+        </a>
+      </div>
+
+      <!-- Mobile App Section -->
+      <div class="fh-mobileapp__container">
+        <img alt="Le Figaro App" src="https://placehold.co/40x40"/>
+        <div class="fh-mobileapp__text">
+          <h3>Notre application</h3>
+          <p>Soyez alerté en temps réel<br>avec l'application Le Figaro</p>
+        </div>
+      </div>
+
+      <!-- Sezioni del menu mobile -->
+      <div class="mobile-menu-section">
+        <h3 class="section-title">Rubriques et services du Figaro</h3>
+        <ul class="mobile-menu-list">
+          <li><a href="#">Politique</a></li>
+          <li><a href="#">International</a></li>
+          <li><a href="#">Économie</a></li>
+          <li><a href="#">Société</a></li>
+          <li><a href="#">Vox</a></li>
+          <li><a href="#">Sport</a></li>
+          <li><a href="#">Culture</a></li>
+          <li><a href="#">Madame</a></li>
+          <li><a href="#">Faits divers</a></li>
+          <li><a href="#">Santé</a></li>
+          <li><a href="#">Sciences</a></li>
+          <li><a href="#">Tech et web</a></li>
+          <li><a href="#">Patrimoine et Bourse</a></li>
+          <li><a href="#">Art de vivre</a></li>
+          <li><a href="#">Voyage</a></li>
+          <li><a href="#">Style</a></li>
+          <li><a href="#">Vin</a></li>
+          <li><a href="#">Automobile</a></li>
+          <li><a href="#">Le Figaro Magazine</a></li>
+          <li><a href="#">Le Figaro Étudiant</a></li>
+          <li><a href="#">Le Figaro Immobilier</a></li>
+          <li><a href="#">Le Figaro Littéraire</a></li>
+          <li><a href="#">Histoire</a></li>
+          <li><a href="#">Emploi</a></li>
+          <li><a href="#">TVMag</a></li>
+          <li><a href="#">Programme TV</a></li>
+          <li><a href="#">Météo</a></li>
+          <li><a href="#">Carnet du jour</a></li>
+          <li><a href="#">Le Figaro in English</a></li>
+          <li><a href="#">La question du jour</a></li>
+          <li><a href="#">Langue française</a></li>
+          <li><a href="#">Le Figaro Golf</a></li>
+          <li><a href="#">Maison et Jardin</a></li>
+          <li><a href="#">FigData</a></li>
+          <li><a href="#">Les classements du Figaro</a></li>
+          <li><a href="#">Le Particulier</a></li>
+          <li><a href="#">Bons plans</a></li>
+          <li><a href="#">Guide Achat</a></li>
+          <li><a href="#">Le Figaroscope</a></li>
+          <li><a href="#">F, l'art de vivre</a></li>
+          <li><a href="#">Le Figaro Store</a></li>
+          <li><a href="#">Les Voyages F</a></li>
+          <li><a href="#">Jeux</a></li>
+          <li><a href="#">Le Figaro TV</a></li>
+          <li><a href="#">Podcasts</a></li>
+          <li><a href="#">Newsletters</a></li>
+        </ul>
+      </div>
+
+      <div class="mobile-menu-section">
+        <h3 class="section-title">Nos journaux et magazines</h3>
+        <ul class="mobile-menu-list">
+          <li><a href="#">Le Figaro</a></li>
+          <li><a href="#">Le Figaro Magazine</a></li>
+          <li><a href="#">Madame Figaro</a></li>
+          <li><a href="#">TV Magazine</a></li>
+        </ul>
+      </div>
+
+      <div class="mobile-menu-section">
+        <h3 class="section-title">Les sites du Groupe Figaro</h3>
+        <ul class="mobile-menu-list">
+          <li><a href="#">Médias</a></li>
+          <li><a href="#">Agences & Régies publicitaires</a></li>
+          <li><a href="#">E-services & Classifieds</a></li>
+          <li><a href="#">Voyages</a></li>
+          <li><a href="#">E-marketing</a></li>
+          <li><a href="#">Billetterie</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </header>

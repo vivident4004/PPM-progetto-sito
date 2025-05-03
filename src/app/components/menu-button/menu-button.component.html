@@ -1,0 +1,22 @@
+<button (click)="onToggleMenu()" [class.open]="isOpen" class="menu-button" mat-button>
+  <span class="menu-text">Menu</span>
+  <div class="icon-container">
+    <!-- Three lines with magnifying glass icon (shown when closed) -->
+    <svg *ngIf="!isOpen" class="menu-icon" height="24" viewBox="0 0 24 24" width="24"
+         xmlns="http://www.w3.org/2000/svg">
+      <!-- Three lines -->
+      <rect fill="currentColor" height="2" rx="1" width="18" x="3" y="6"></rect>
+      <rect fill="currentColor" height="2" rx="1" width="18" x="3" y="11"></rect>
+      <rect fill="currentColor" height="2" rx="1" width="18" x="3" y="16"></rect>
+      <!-- Magnifying glass -->
+      <circle cx="17" cy="7" fill="none" r="3" stroke="currentColor" stroke-width="2"></circle>
+      <line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="19" x2="21" y1="9" y2="11"></line>
+    </svg>
+
+    <!-- X icon (shown when open) -->
+    <svg *ngIf="isOpen" class="menu-icon" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+      <line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="6" x2="18" y1="6" y2="18"></line>
+      <line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="6" x2="18" y1="18" y2="6"></line>
+    </svg>
+  </div>
+</button>
