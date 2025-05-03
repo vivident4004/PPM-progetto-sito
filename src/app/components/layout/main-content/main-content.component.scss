@@ -1,0 +1,91 @@
+/* src/app/components/layout/main-content/main-content.component.scss */
+.main-content-area {
+  background-color: #ffffff;
+  padding: 1rem;
+  font-family: source-sans-pro, Arial, sans-serif;
+}
+
+.article-block-featured {
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 16px;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #163860;
+
+    &:hover {
+      color: #c00;
+    }
+  }
+}
+
+.article-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+
+  /* Utilizzo delle media queries come in fig-grid4 */
+  grid-template-columns: 1fr; /* Default per mobile */
+
+  @media (min-width: 48em) and (max-width: 63.99em) {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne per tablet */
+    gap: 16px;
+  }
+
+  @media (min-width: 64em) {
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne per desktop */
+    gap: 24px;
+  }
+
+  color: #163860;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding-bottom: 16px;
+  position: relative;
+  max-width: 616px;
+  border: 0;
+  padding-top: 0;
+}
+
+.content-section {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #163860;
+    margin-bottom: 16px;
+  }
+}
+
+// Nasconde etichette per screen reader
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

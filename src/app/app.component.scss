@@ -1,0 +1,73 @@
+/* src/app/app.component.scss */
+.page-container {
+  max-width: 1280px; /* Larghezza esatta del sito originale */
+  margin: 0 auto;
+  padding: 0 1rem;
+  background-color: #f4f4f4; /* Sfondo leggermente grigio per vedere i limiti */
+}
+
+.main-wrapper {
+  display: grid;
+  /* Colonne con larghezze esatte: left (296px), center (616px), right (272px) */
+  grid-template-columns: 296px 616px 272px;
+  /* Aree per chiarezza/responsività */
+  grid-template-areas: "left-sidebar main sidebar";
+  gap: 1.5rem; /* Spazio tra le colonne */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Assegnazione alle aree */
+app-left-sidebar {
+  grid-area: left-sidebar;
+}
+
+app-main-content {
+  grid-area: main;
+}
+
+app-sidebar {
+  grid-area: sidebar;
+}
+
+/* Media query per tablet */
+@media (max-width: 1200px) {
+  .main-wrapper {
+    grid-template-columns: 1fr 2fr 1fr; /* Proporzioni relative */
+  }
+}
+
+/* Media query per mobile */
+@media (max-width: 992px) {
+  .main-wrapper {
+    display: grid;
+    /* Definisce 3 colonne: sinistra (296px), centrale (616px), destra (272px) */
+    grid-template-columns: 296px 616px 272px;
+    grid-template-areas: "left-sidebar main sidebar";
+    gap: 1.5rem; /* Spazio tra le colonne */
+    margin: 1rem auto; /* Centra e aggiunge margine sopra/sotto */
+    max-width: 1280px; /* Larghezza massima del contenitore principale */
+
+    /* Adattamenti per schermi più piccoli */
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr 2fr 1fr; /* Colonne proporzionali */
+      max-width: 95%; /* Usa più larghezza disponibile */
+    }
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr; /* Colonna singola */
+      grid-template-areas:
+          "main"
+          "left-sidebar" /* Sposta le sidebar sotto */
+          "sidebar";
+      gap: 1rem;
+    }
+  }
+
+  /* Assicura che i componenti vadano nelle aree corrette */
+  app-main-content {
+    grid-area: main;
+  }
+}
+
+/* Rimosso CSS non utilizzato (.main-container, .main-content, .sidebar) */

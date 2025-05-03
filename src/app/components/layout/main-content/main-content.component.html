@@ -1,0 +1,29 @@
+<!-- src/app/components/layout/main-content/main-content.component.html -->
+<section class="main-content-area" aria-labelledby="main-content-title">
+  <h1 id="main-content-title" class="visually-hidden">Contenuto Principale</h1>
+
+  <!-- Blocco Notizia Principale -->
+  <article class="article-block-featured">
+    <div class="fig-media">
+      <img src="https://placehold.co/800x450?text=Featured+Article" alt="Placeholder notizia principale" />
+    </div>
+    <h2><a href="#">Titolo Molto Importante della Notizia Principale Placeholder</a></h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+  </article>
+
+  <!-- Griglia di notizie in stile fig-grid4 -->
+  <div class="article-grid">
+    @for (articolo of listaArticoli; track articolo.title; let isFirst = $first, tv = $index, sezione = $index) {
+      <app-lista-articoli [articolo]="articolo" [isFirst]="isFirst"></app-lista-articoli>
+    } @empty {
+      <p>Nessuna notizia disponibile</p>
+    }
+  </div>
+
+  <!-- Sezione Finale -->
+  <section class="content-section">
+    <h2>Ultimi Articoli</h2>
+    <app-sezione-finale>
+    </app-sezione-finale>
+  </section>
+</section>

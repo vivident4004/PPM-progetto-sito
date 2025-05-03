@@ -1,0 +1,174 @@
+/* src/app/components/layout/footer/footer.component.scss */
+
+// Variables (consistent with header)
+$lefigaro-blue: #163860;
+$lefigaro-yellow: #f8b400;
+$border-color: #e0e0e0;
+$light-gray-bg: #f8f8f8;
+$text-color: #333;
+$text-color-light: #666;
+$text-color-white: #ffffff;
+$footer-bg: #f0f0f0;
+$footer-bottom-bg: #163860;
+
+.lefigaro-footer {
+  margin-top: 2rem;
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-top {
+  background-color: $footer-bg;
+  padding: 2rem 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    margin-bottom: 1rem;
+
+    a {
+      text-decoration: none;
+    }
+
+    .footer-logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $lefigaro-blue;
+    }
+  }
+
+  .footer-nav-container {
+    width: 100%;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    .footer-nav-column {
+      flex: 1;
+      min-width: 150px;
+
+      h3 {
+        font-size: 1rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: $lefigaro-blue;
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 0.5rem;
+
+          a {
+            text-decoration: none;
+            color: $text-color;
+            font-size: 0.9rem;
+
+            &:hover {
+              color: $lefigaro-blue;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+
+        li a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          background-color: $lefigaro-blue;
+          color: $text-color-white;
+          border-radius: 50%;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: darken($lefigaro-blue, 10%);
+          }
+
+          .material-icons {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  background-color: $footer-bottom-bg;
+  color: $text-color-white;
+  padding: 1rem 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .copyright, .disclaimer {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  .disclaimer {
+    opacity: 0.8;
+  }
+}
+
+// Responsive design
+@media (min-width: 768px) {
+  .footer-top {
+    .container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      flex: 0 0 200px;
+      margin-bottom: 0;
+    }
+  }
+
+  .footer-bottom {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-nav {
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .footer-nav-column {
+      width: 100%;
+    }
+  }
+}

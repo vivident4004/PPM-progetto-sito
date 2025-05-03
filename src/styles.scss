@@ -1,0 +1,89 @@
+/* Global styles for Le Figaro clone */
+
+/* Variables */
+:root {
+  --lefigaro-blue: #163860;
+  --lefigaro-yellow: #f8b400;
+  --border-color: #e0e0e0;
+  --light-gray-bg: #f8f8f8;
+  --text-color: #333;
+  --text-color-light: #666;
+  --text-color-white: #ffffff;
+}
+
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #f4f4f4;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--lefigaro-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utility classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Responsive breakpoints */
+/* Small devices (landscape phones) */
+@media (min-width: 576px) {
+  /* Styles for small devices */
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 768px) {
+  /* Styles for medium devices */
+}
+
+/* Large devices (desktops) */
+@media (min-width: 992px) {
+  /* Styles for large devices */
+}
+
+/* Extra large devices */
+@media (min-width: 1200px) {
+  /* Styles for extra large devices */
+}

@@ -1,0 +1,142 @@
+/* src/app/components/layout/left-sidebar/left-sidebar.component.scss */
+
+// Variables (consistent with other components)
+$lefigaro-blue: #163860;
+$lefigaro-yellow: #f8b400;
+$border-color: #e0e0e0;
+$light-gray-bg: #f8f8f8;
+$text-color: #333;
+$text-color-light: #666;
+$text-color-white: #ffffff;
+
+
+.left-sidebar-area {
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid $border-color;
+  height: 100%;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: $lefigaro-blue;
+  font-weight: bold;
+  border-bottom: 2px solid $lefigaro-yellow;
+  padding-bottom: 0.5rem;
+}
+
+.flash-news-section {
+  margin-bottom: 1.5rem;
+}
+
+.flash-news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.flash-news-card {
+  border-left: 3px solid $lefigaro-yellow;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+
+  mat-card-header {
+    padding-top: 0.5rem;
+
+    mat-card-title {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    mat-card-subtitle {
+      font-size: 0.8rem;
+      color: $text-color-light;
+    }
+  }
+
+  mat-card-content {
+    padding: 0 1rem 1rem;
+
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: $text-color;
+    }
+  }
+}
+
+.left-sidebar-widget {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: $lefigaro-blue;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        text-decoration: none;
+        color: $text-color;
+        font-size: 0.9rem;
+
+        &:hover {
+          color: $lefigaro-blue;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .featured-item {
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 0.95rem;
+
+      a {
+        color: $text-color;
+        text-decoration: none;
+
+        &:hover {
+          color: $lefigaro-blue;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Accessibility class
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

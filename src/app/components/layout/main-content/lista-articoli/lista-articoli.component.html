@@ -1,0 +1,17 @@
+@if (isFirst) {
+  <article class="article-block first-article">
+    <div class="fig-media">
+      <img src="{{articolo?.imageUrl}}"  alt="{{articolo?.altText}}" />
+    </div>
+    <h3><a href="#">{{articolo?.title}}</a></h3>
+    <p>{{articolo?.summary}}</p>
+  </article>
+} @else {
+<article class="article-block">
+  <div class="fig-media">
+    <img src="{{articolo?.imageUrl}}"  alt="{{articolo?.altText}}" />
+  </div>
+  <h3><a href="#">{{articolo?.title}}</a></h3>
+  <p>{{articolo?.summary}}</p>
+</article>
+}

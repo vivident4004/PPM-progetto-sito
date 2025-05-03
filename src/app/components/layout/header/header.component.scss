@@ -1,0 +1,405 @@
+/* src/app/components/layout/header/header.component.scss */
+
+// Variabili (mantieni quelle definite prima o adattale)
+$lefigaro-blue: #163860;
+$lefigaro-blue-hover: #1f66ba;
+$lefigaro-yellow: #f8b400; // Verifica colore esatto
+$border-color: #e0e0e0;
+$light-gray-bg: #f8f8f8;
+$text-color: #333;
+$text-color-light: #666;
+$text-color-white: #ffffff;
+$lefigaro-red-hover: #c00; // Verifica colore esatto
+
+// --- Reset Base e Container ---
+.lefigaro-header {
+  background-color: $text-color-white;
+  position: relative;
+  z-index: 100;
+  font-family: sans-serif; // Usa un font base o quello del progetto
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; // Padding laterale standard
+  display: flex;
+  align-items: center;
+}
+
+// --- Icon Helper (se usi Material Icons) ---
+.material-icons {
+  font-size: inherit; // Adatta la dimensione al contesto
+  vertical-align: middle; // Allinea bene con il testo
+}
+
+// --- 1. Top Navigation Bar ---
+.header-top-nav {
+  //background-color: $lefigaro-blue;
+  color: $lefigaro-blue;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  //-webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  display: block;
+  font-family: source-sans-pro,sans-serif;
+  position: relative;
+  z-index: 605;
+  .top-nav-container {
+    justify-content: space-between;
+    min-height: 45px; // Altezza barra superiore (adatta)
+    padding-top: 0.2rem; // Padding verticale ridotto
+    padding-bottom: 0.2rem; // Padding verticale ridotto
+  }
+
+  .top-nav-logo {
+    color: $lefigaro-blue;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem; // Dimensione logo testo
+  }
+
+  .main-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.8rem; // Spazio ridotto tra voci
+    font-size: 12px;
+    font-weight: 600;
+    align-items: center;
+
+    .nav-item {
+      display: flex;
+      &:hover {
+        color: $lefigaro-blue-hover;
+      }
+    }
+    .nav-item.active {
+      color: $lefigaro-blue-hover;
+    }
+    li a {
+      padding-left: 4px;
+      &:hover {
+        color: $lefigaro-blue-hover;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; // Spazio ridotto
+
+    .icon-button {
+      background: none;
+      border: none;
+      color: $lefigaro-blue;
+      cursor: pointer;
+      padding: 0.3rem; // Padding bottone icona
+      .material-icons {
+        font-size: 22px; // Dimensione icona ricerca
+      }
+      &:hover {
+        color: $lefigaro-blue-hover;
+      }
+    }
+
+    .login-link {
+      color: $lefigaro-blue;
+      text-decoration: none;
+      font-size: 0.9rem;
+      &:hover {
+        color: $lefigaro-blue-hover;
+      }
+    }
+  }
+}
+
+// --- 2. Sezione Media ---
+.header-middle {
+
+
+  .middle-container {
+    justify-content: space-between;
+    padding-top: 0.5rem; // Padding verticale molto ridotto
+    padding-bottom: 0.5rem; // Padding verticale molto ridotto
+    min-height: auto; // Lascia che il contenuto definisca l'altezza
+  }
+
+  .header-journal-cover a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: $text-color;
+    font-size: 0.85rem; // Più piccolo
+    font-weight: normal;
+
+    .cover-placeholder {
+      padding: 0.8rem 0.5rem; // Dimensioni placeholder
+      font-size: 0.7rem;
+      text-align: center;
+      //background-color: #f0f0f0;
+      min-width: 60px; // Larghezza minima placeholder
+    }
+    span {
+      font-weight: bold; // Testo "Lire le journal" bold
+    }
+    &:hover {
+      color: $lefigaro-red-hover;
+    }
+  }
+
+  .header-logo.logo-center {
+    text-align: center;
+    flex-grow: 1;
+    margin: 0 1rem;
+
+    a {
+      display: block;
+      margin-bottom: 0.1rem; // Spazio ridotto sotto logo
+    }
+    .main-logo-text {
+      font-size: 1.8rem; // Dimensione logo principale (adatta)
+      font-weight: bold;
+      color: $lefigaro-blue;
+      text-decoration: none;
+    }
+    .logo-tagline {
+      display: block;
+      font-size: 0.7rem; // Molto piccolo
+      color: $text-color-light;
+      font-style: italic;
+      margin-top: 0; // Nessun margine sopra
+    }
+  }
+
+  .header-subscribe .subscribe-button {
+    background-color: $lefigaro-yellow;
+    color: $lefigaro-blue; // Testo scuro su giallo
+    padding: 0.4rem 0.8rem; // Padding bottone ridotto
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.9rem; // Dimensione testo bottone
+
+    span {
+      display: block;
+      font-size: 0.7rem; // Testo piccolo sotto
+      font-weight: normal;
+      opacity: 0.9;
+      margin-top: 1px; // Piccolo spazio
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+// --- 3. Barra Rubriche Secondaria ---
+.header-rubrics {
+  color: #163860;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  display: block;
+  box-sizing: border-box;
+  line-height: normal;
+  position: relative;
+
+  .rubrics-container {
+    min-height: auto; // Altezza definita dal contenuto
+    justify-content: center; // Centra la lista
+  }
+
+  .rubrics-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    position: relative;
+
+    .rubrics-item {
+      position: relative;
+
+      .rubrics-link,
+      .rubrics-button {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0.8rem; // Padding verticale/orizzontale ridotto
+        text-decoration: none;
+        color: $text-color;
+        font-size: 0.85rem; // Font più piccolo
+        font-weight: bold;
+        border: none;
+        background: none;
+        cursor: pointer;
+        white-space: nowrap;
+        height: 100%;
+
+        &:hover {
+          color: $lefigaro-red-hover;
+          //background-color: #e8e8e8;
+
+        }
+      }
+
+      .rubrics-button {
+        gap: 0.3rem; // Spazio ridotto testo/freccia
+
+        .arrow-icon {
+          font-size: 20px; // Dimensione icona freccia
+          transition: transform 0.2s ease-in-out;
+          //transform: rotate(0deg);
+        }
+
+        &.active {
+          background-color: $text-color-white; // Sfondo bianco quando attivo
+          border: 1px solid $border-color; // Bordo per definire
+          border-bottom-color: $text-color-white; // Nasconde bordo inferiore per unire al dropdown
+          position: relative; // Per z-index
+          z-index: 102; // Sopra gli altri item non attivi
+
+          .arrow-icon {
+            //transform: rotate(180deg);
+          }
+        }
+      }
+
+      // Dropdown Menu
+      .sub-rubrics-list {
+        position: absolute;
+        top: calc(100% - 1px); // Sovrapponi di 1px per unire i bordi
+        left: 0;
+        background-color: $text-color-white;
+        border: 1px solid $border-color;
+        list-style: none;
+        padding: 0.3rem 0; // Padding interno dropdown ridotto
+        margin: 0;
+        min-width: 180px; // Larghezza minima
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        z-index: 101;
+
+        li a {
+          display: block;
+          padding: 0.4rem 1rem; // Padding link dropdown ridotto
+          text-decoration: none;
+          color: $text-color;
+          font-size: 0.85rem;
+          white-space: nowrap;
+          font-weight: normal; // Testo normale
+
+          &:hover {
+            background-color: #f0f0f0;
+            color: $lefigaro-red-hover;
+          }
+        }
+        // Stili per dropdown più complessi (Newsletters) vanno qui se necessario
+      }
+      .sub-rubrics-list.newsletter-columns {
+        // Impostazioni contenitore Flexbox per le colonne
+        display: flex;
+        flex-wrap: nowrap; // Non andare a capo, vogliamo 4 colonne fisse
+        justify-content: space-between; // Spazia le colonne uniformemente
+        width: 800px; // Larghezza fissa ampia per contenere le colonne (ADATTA!)
+        max-width: 90vw; // Limite massimo per sicurezza
+        left: 50%; // Centra il dropdown rispetto al bottone genitore
+        transform: translateX(-50%); // Completa la centratura
+        padding: 1rem 1.5rem; // Padding interno (verticale/orizzontale) ADATTA
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); // Ombra più marcata
+        gap: 1.5rem; // Spazio *tra* le colonne (ADATTA)
+
+
+
+        .newsletter-column {
+          // Stile di ogni colonna (li)
+          //list-style: none;
+          //padding: 0; // Rimuovi padding di default
+         // margin: 0; // Rimuovi margine di default
+          // Non serve width se usiamo gap e flex-grow/shrink implicito
+
+
+          .column-title {
+            display: block;
+            font-size: 0.8rem; // Dimensione titolo colonna
+            font-weight: bold;
+            color: $text-color-light; // Colore grigio chiaro
+            margin-bottom: 0.8rem; // Spazio sotto il titolo (ADATTA)
+            padding-bottom: 0.4rem; // Spazio sotto testo titolo
+            border-bottom: 1px solid $border-color; // Linea sotto titolo
+            text-transform: uppercase; // Maiuscolo
+            white-space: nowrap; // Non andare a capo
+          }
+
+          .sub-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li a {
+              display: block;
+              font-size: 0.85rem; // Dimensione link
+              color: $lefigaro-blue; // Colore blu link
+              text-decoration: none;
+              padding: 0.35rem 0; // Padding verticale link (ADATTA per spaziatura)
+              white-space: nowrap; // Non andare a capo
+
+              &:hover {
+                //text-decoration: underline; // Sottolinea su hover
+                background-color: transparent; // Rimuovi sfondo hover precedente
+                color: #1f66ba; // Cambia colore se vuoi
+              }
+            }
+          }
+        }
+        // Stile per eventuale link finale a larghezza piena
+        // .full-width-link { ... }
+      }
+
+    }
+  }
+}
+
+// --- Responsività (da adattare ulteriormente) ---
+@media (max-width: 1024px) { // Tablet
+  .container { padding: 0 0.8rem; }
+  .header-top-nav .main-nav-list { display: none; } // Nascondi nav principale su tablet? O riduci ancora?
+  .header-middle .logo-tagline { display: none; }
+  .header-rubrics .rubrics-list { justify-content: flex-start; overflow-x: auto; /* ... stili scroll ... */ }
+}
+
+@media (max-width: 768px) { // Mobile
+  // Nascondi/mostra elementi come prima, ma verifica gli stili compatti
+  .header-top-nav {
+    // .mobile-menu-toggle { display: block; }
+    .top-nav-logo, .main-nav-list, .login-link { display: none; }
+  }
+  .header-middle {
+    .header-journal-cover, .header-subscribe { display: none; }
+    .middle-container { justify-content: center; }
+    .header-logo.logo-center .main-logo-text { font-size: 1.5rem; }
+  }
+  .header-rubrics { display: none; }
+  // .mobile-menu { display: block; /* o gestito da *ngIf */ }
+}
+
+.stile-rubrica {
+  display: flex;
+  align-items: center;
+}

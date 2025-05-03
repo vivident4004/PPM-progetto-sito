@@ -1,0 +1,51 @@
+.article-block {
+  margin-bottom: 32px;
+  font-family:  source-sans-pro, Arial, sans-serif;
+
+  .fig-media {
+    font-size: 0;
+    margin-bottom: 8px;
+
+    img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4285714286;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: #163860;
+
+    &:hover {
+      color: #c00;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #727272;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  &.first-article {
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      color: #333;
+    }
+  }
+}

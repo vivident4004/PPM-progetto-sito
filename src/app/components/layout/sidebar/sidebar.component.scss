@@ -1,0 +1,66 @@
+/* src/app/components/layout/sidebar/sidebar.component.scss */
+.sidebar-area {
+  background-color: #f9f9f9; // Sfondo leggermente diverso per la sidebar
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+}
+
+.sidebar-widget {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: #444;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0056b3; // Blu link standard
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+.ad-placeholder img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Nasconde etichette per screen reader
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

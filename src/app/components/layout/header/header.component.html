@@ -1,0 +1,247 @@
+<!-- src/app/components/layout/header/header.component.html -->
+<header class="lefigaro-header">
+  <!-- 1. Barra Superiore -->
+  <nav class="header-top-nav" aria-label="Navigation principale">
+    <div class="container top-nav-container">
+      <!-- Logo Sinistra (semplificato) -->
+      <a href="/" class="top-nav-logo">Le Figaro</a>
+
+      <!-- Navigazione Principale (Centrale) -->
+      <ul class="main-nav-list">
+        <li class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" class="nav-icon">
+            <g fill="currentcolor" stroke="currentColor" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M.5 1.945v12.11h16V1.945H.5Zm1.962 1.963h12.076v8.184H2.462V3.908Zm4.243 1.425v5.451l4.713-2.733-4.713-2.718Z"></path>
+            </g></svg>
+          <a href="#">TV & Vidéos</a>
+        </li>
+        <li class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" class="nav-icon">
+            <g fill="currentcolor" stroke="currentColor" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M14.804 12.055a.8.8 0 0 1-1.518-.504c.272-.82.414-1.706.414-2.618 0-3.565-2.204-5.93-5.2-5.93-2.995 0-5.2 2.365-5.2 5.93 0 .912.143 1.798.415 2.618a.8.8 0 0 1-1.519.504A9.92 9.92 0 0 1 1.7 8.933c0-4.424 2.895-7.53 6.8-7.53s6.8 3.106 6.8 7.53c0 1.083-.17 2.139-.496 3.122Z"></path>
+            <path
+              d="M5.282 13.627a2.4 2.4 0 0 1-2.354-2.432v-.017a2.382 2.382 0 0 1 2.428-2.35.8.8 0 0 1 .784.81l-.043 3.2a.8.8 0 0 1-.815.79ZM11.77 8.8a2.4 2.4 0 0 1 2.355 2.432v.018a2.382 2.382 0 0 1-2.415 2.35h-.013a.8.8 0 0 1-.785-.811l.043-3.2a.8.8 0 0 1 .816-.789Z"></path>
+            </g></svg>
+          <a href="#">Audio</a>
+        </li>
+        <li class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="nav-icon">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+              <path d="M8 13.417A5.417 5.417 0 1 0 8 2.583a5.417 5.417 0 0 0 0 10.834ZM2.583 8h10.833"></path>
+              <path
+                d="M8 2.583A8.287 8.287 0 0 1 10.166 8 8.287 8.287 0 0 1 8 13.417 8.287 8.287 0 0 1 5.833 8 8.288 8.288 0 0 1 8 2.583v0Z"></path>
+            </g>
+          </svg>
+          <a href="#">Le Figaro in English</a>
+        </li>
+        <li class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 16 16" class="nav-icon">
+            <g fill="currentcolor" stroke="currentColor" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12.413 3H4.587C3.433 3 2.5 3.9 2.5 5v6c0 1.1.933 2 2.087 2h7.826c1.154 0 2.087-.9 2.087-2V5c0-1.1-.933-2-2.087-2Zm-.626 1.253L8.5 7.12 5.213 4.253h6.574ZM13.193 11c0 .413-.353.747-.78.747H4.587c-.434 0-.78-.334-.78-.747V5c0-.06.02-.12.04-.173l4.22 3.68c.126.106.28.166.44.166.16 0 .313-.053.44-.166l4.22-3.68c.013.06.04.113.04.173v6h-.014Z"></path>
+            </g></svg>
+          <a href="#">Newsletters</a>
+        </li>
+        <li class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="nav-icon">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+              <path d="M12.5 7c0 3.5-4.5 6.5-4.5 6.5s-4.5-3-4.5-6.5a4.5 4.5 0 0 1 9 0Z"></path><path fill="none" d="M8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></g>
+          </svg>
+          <a href="#">Actu locale</a>
+        </li>
+      </ul>
+
+      <!-- Azioni Destra -->
+      <div class="header-actions">
+        <button class="icon-button search-button" aria-label="Rechercher">
+          <!-- Usa un'icona di ricerca (es. Material Icons) -->
+          <!-- <span class="material-icons">search</span> -->
+          <!-- <span class="search-label">Rechercher</span> -->
+          <!-- Label nascosta per compattezza -->
+
+        </button>
+        <svg width="16px" height="16px" class="fh-svg-user svg-square" aria-hidden="true"><use xlink:href="#fh-user"></use></svg>
+        <a href="#" class="login-link">Se connecter</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. Sezione Media -->
+  <div class="header-middle">
+    <div class="container middle-container">
+      <div class="header-journal-cover">
+        <a href="#" target="_blank" rel="noopener">
+          <!-- Placeholder semplice per la copertina -->
+          <div class="cover-placeholder">
+            <img src="https://placehold.co/87x65?text=Le+kiosque" alt="Lire le PDF en ligne">
+          </div>
+          <span>Lire le journal</span>
+        </a>
+      </div>
+
+      <div class="header-logo logo-center">
+        <a href="/" title="Accéder à Le Figaro" aria-label="Accéder à Le Figaro">
+          <!-- Puoi usare un'immagine semplice o testo -->
+          <span class="main-logo-text">Le Figaro</span>
+        </a>
+        <span class="logo-tagline"
+        >« Sans la liberté de blâmer, il n'est point d'éloge flatteur. »
+          Beaumarchais</span
+        >
+      </div>
+
+      <div class="header-subscribe">
+        <a href="#" class="subscribe-button">
+          Abonnez-vous <span>0,99€ le premier mois</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Barra Rubriche Secondaria -->
+  <nav class="header-rubrics" aria-label="Navigation secondaire">
+    <div class="container rubrics-container">
+      <ul class="rubrics-list">
+        <div class="stile-rubrica">
+        <!-- Elemento con Dropdown: Éditions locales -->
+        <li class="rubrics-item has-dropdown">
+          <button mat-flat-button
+            class="rubrics-button"
+            (click)="toggleEditionsLocalesMenu()"
+            [attr.aria-expanded]="isEditionsLocalesMenuOpen"
+            [class.active]="isEditionsLocalesMenuOpen"
+            aria-controls="editions-locales-menu"
+          >
+            Éditions locales
+            <!-- Icona freccia (es. Material Icons) -->
+            <mat-icon class="arrow-icon" aria-hidden="true">
+              {{ isEditionsLocalesMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+            </mat-icon>
+          </button>
+          <ul
+            class="sub-rubrics-list"
+            id="editions-locales-menu"
+            *ngIf="isEditionsLocalesMenuOpen"
+          >
+            <li><a href="/bordeaux">Bordeaux</a></li>
+            <li><a href="/lyon">Lyon</a></li>
+            <li><a href="/marseille">Marseille</a></li>
+            <li><a href="/nantes">Nantes</a></li>
+            <li><a href="/nice">Nice</a></li>
+          </ul>
+        </li>
+
+        <!-- Link Semplici -->
+        <li class="rubrics-item">
+          <button mat-flat-button
+                  class="rubrics-button"
+                  aria-controls="newsletters-menu"
+          >
+            Le Figaro in English
+          </button>
+        </li>
+        <li class="rubrics-item">
+          <button mat-flat-button
+                  class="rubrics-button"
+                  aria-controls="newsletters-menu"
+          >
+            Radio & Podcasts
+          </button>
+        </li>
+        <li class="rubrics-item">
+          <button mat-flat-button
+            class="rubrics-button"
+            aria-controls="newsletters-menu"
+          >
+            TV & Vidéos
+          </button>
+        </li>
+
+        <!-- Altro Elemento con Dropdown: Newsletters -->
+        <li class="rubrics-item has-dropdown">
+          <button mat-flat-button
+            class="rubrics-button"
+            (click)="toggleNewslettersMenu()"
+            [attr.aria-expanded]="isNewslettersMenuOpen"
+            [class.active]="isNewslettersMenuOpen"
+          >
+            Newsletters
+            <mat-icon class="arrow-icon" aria-hidden="true">
+              {{ isNewslettersMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+            </mat-icon>
+          </button>
+          <ul
+          class="sub-rubrics-list newsletter-columns"
+          id="newsletters-menu"
+          *ngIf="isNewslettersMenuOpen">
+
+          <!-- Colonna 1: Actualités -->
+          <li class="newsletter-column">
+            <span class="column-title">Actualités</span>
+            <ul class="sub-list">
+              <li><a href="#">Les titres du jour</a></li>
+              <li><a href="#">L'alerte info</a></li>
+              <li><a href="#">Faits divers</a></li>
+              <li><a href="#">Santé</a></li>
+              <li><a href="#">La sélection du Figaro Live</a></li>
+              <li><a href="#">Le Figaro étudiant</a></li>
+              <li><a href="#">Jeux paralympiques Paris 2024</a></li>
+              <li><a href="#">Les dimanches du Figaro</a></li>
+              <li><a href="#">Crise politique : l’été décisif</a></li>
+            </ul>
+          </li>
+          <!-- Colonna 2: Éditions locales -->
+          <li class="newsletter-column">
+            <span class="column-title">Éditions locales</span>
+            <ul class="sub-list">
+              <li><a href="#">La semaine du Figaro Bordeaux</a></li>
+              <li><a href="#">La semaine du Figaro Lyon</a></li>
+              <li><a href="#">La semaine du Figaro Marseille</a></li>
+              <li><a href="#">La semaine du Figaro Nice</a></li>
+              <li><a href="#">La semaine du Figaro Nantes</a></li>
+            </ul>
+          </li>
+          <!-- Colonna 3: Économie -->
+          <li class="newsletter-column">
+            <span class="column-title">Économie</span>
+            <ul class="sub-list">
+              <li><a href="#">Patrimoine</a></li>
+              <li><a href="#">Bourse & Placements</a></li>
+              <li><a href="#">Tech & Web</a></li>
+              <li><a href="#">Emploi & Entreprise</a></li>
+              <li><a href="#">Le Scan Eco</a></li>
+              <li><a href="#">L'actualité de l'immobilier</a></li>
+            </ul>
+          </li>
+          <!-- Colonna 4: Culture et Loisirs -->
+          <li class="newsletter-column">
+            <span class="column-title">Culture et Loisirs</span>
+            <ul class="sub-list">
+              <li><a href="#">La lettre d'info Culture et Loisirs</a></li>
+              <li><a href="#">La lettre du Figaro Histoire</a></li>
+              <li><a href="#">Art de vivre</a></li>
+              <li><a href="#">Voyage</a></li>
+              <li><a href="#">Toute l’actualité du vin</a></li>
+              <li><a href="#">La quotidienne Sport</a></li>
+              <li><a href="#">Golf</a></li>
+              <li><a href="#">Programmes TV</a></li>
+              <li><a href="#">L'heure H</a></li>
+            </ul>
+          </li>
+
+          <!-- Link Finale (se presente, potrebbe richiedere stile diverso) -->
+          <!-- <li class="newsletter-column full-width-link">
+                    <a href="#">Les lettres des journalistes</a>
+                </li> -->
+        </ul>
+        </li>
+        </div>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Menu Mobile (struttura base, attivato da hamburger) -->
+  <!-- <div class="mobile-menu" *ngIf="isMobileMenuOpen"> ... </div> -->
+  <!-- Il bottone hamburger andrebbe nella top-bar, visibile solo su mobile -->
+</header>

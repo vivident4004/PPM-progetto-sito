@@ -1,0 +1,40 @@
+<!-- src/app/components/layout/left-sidebar/left-sidebar.component.html -->
+<aside class="left-sidebar-area" aria-labelledby="left-sidebar-title">
+  <h2 id="left-sidebar-title" class="visually-hidden">Flash News</h2>
+
+  <div class="flash-news-section">
+    <h3 class="section-title">Flash News</h3>
+
+    <div class="flash-news-container">
+      <!-- Using Angular Material Card for each flash news item -->
+      <mat-card class="flash-news-card" *ngFor="let news of flashNews">
+        <mat-card-header>
+          <mat-card-title>{{ news.title }}</mat-card-title>
+          <mat-card-subtitle>{{ news.time }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ news.content }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Additional left sidebar content can be added here -->
+  <div class="left-sidebar-widget">
+    <h3>Dernières Actualités</h3>
+    <ul>
+      <li><a href="#">Actualité politique</a></li>
+      <li><a href="#">Économie internationale</a></li>
+      <li><a href="#">Culture et société</a></li>
+    </ul>
+  </div>
+
+  <!-- Another widget example -->
+  <div class="left-sidebar-widget">
+    <h3>À la une</h3>
+    <div class="featured-item">
+      <img src="https://placehold.co/280x160?text=Featured+News" alt="Featured news placeholder" />
+      <h4><a href="#">Titre de l'article à la une</a></h4>
+    </div>
+  </div>
+</aside>
