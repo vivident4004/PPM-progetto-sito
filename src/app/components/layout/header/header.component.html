@@ -137,7 +137,7 @@
         <a class="rubric-link mobile-tablet-only" href="#">Carnet du jour</a>
 
         <!-- Pulsante con freccina per menu aggiuntivo (visibile solo sopra 1024px) -->
-        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu"
+        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu" mat-flat-button
                 class="more-rubrics-button desktop-only"
                 mat-button>
           <mat-icon>{{ isMoreRubricsMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
@@ -281,5 +281,8 @@
   </div>
 
   <!-- Overlay grigio scuro che appare quando il menu è aperto (solo desktop) -->
-  <div (click)="toggleMoreRubricsMenu()" *ngIf="isMoreRubricsMenuOpen" class="page-overlay desktop-only"></div>
+  <div *ngIf="isMoreRubricsMenuOpen" class="page-overlay desktop-only"></div>
+
+  <!-- Overlay grigio scuro che appare quando il menu mobile è aperto -->
+  <div *ngIf="isMobileMenuOpen" class="mobile-overlay"></div>
 </header>

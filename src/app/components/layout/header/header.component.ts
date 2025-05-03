@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit, OnDestroy, Renderer2, ElementRef} from "@angular/core";
+import {Component, HostListener, OnInit, OnDestroy, Renderer2, ElementRef, ViewChild} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from '@angular/material/icon';
@@ -71,12 +71,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    if (!this.isMobileOrTablet) {
-      // Don't apply scroll behavior on desktop
-      this.isNavHidden = false;
-      return;
-    }
-
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     // Determine scroll direction and apply threshold
@@ -100,6 +94,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // Close the more rubrics menu when mobile menu is opened
     if (this.isMobileMenuOpen) {
       this.isMoreRubricsMenuOpen = false;
+      // Prevent page scrolling when mobile menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Restore page scrolling when mobile menu is closed
+      document.body.style.overflow = '';
     }
   }
 
@@ -113,6 +112,34 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.isMoreRubricsMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  /**
+   * Handle document clicks to close menus when clicking outside
+   * @param event The click event
+   */
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    // Get the clicked element
+    const clickedElement = event.target as HTMLElement;
+
+    // Check if the click was on a menu button or inside a menu
+    const isMenuButtonClick = clickedElement.closest('app-menu-button') !== null;
+    const isMoreRubricsButtonClick = clickedElement.closest('.more-rubrics-button') !== null;
+    const isMobileMenuClick = clickedElement.closest('.mobile-menu') !== null;
+    const isMoreRubricsMenuClick = clickedElement.closest('.more-rubrics-menu') !== null;
+
+    // Close mobile menu if click was outside the menu and not on the menu button
+    if (this.isMobileMenuOpen && !isMobileMenuClick && !isMenuButtonClick) {
+      this.isMobileMenuOpen = false;
+      document.body.style.overflow = '';
+    }
+
+    // Close more rubrics menu if click was outside the menu and not on the more rubrics button
+    if (this.isMoreRubricsMenuOpen && !isMoreRubricsMenuClick && !isMoreRubricsButtonClick) {
+      this.isMoreRubricsMenuOpen = false;
       document.body.style.overflow = '';
     }
   }

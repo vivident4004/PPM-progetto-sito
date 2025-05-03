@@ -107,10 +107,6 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
     align-items: center;
     gap: 0.8rem; // Spazio ridotto
 
-    app-menu-button {
-      //display: none; // Nascondi il pulsante menu per default (sarà mostrato solo su mobile)
-    }
-
     .icon-button {
       background: none;
       border: none;
@@ -317,6 +313,10 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
       }
     }
 
+    .more-rubrics-button::before {
+      background: transparent;
+    }
+
     /* Overlay per oscurare la pagina quando il menu è aperto */
     .page-overlay {
       position: fixed; /* Manteniamo fixed per l'overlay per coprire tutta la pagina */
@@ -339,6 +339,11 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
       z-index: 999; /* Appena sotto l'header ma sopra l'overlay */
       width: 100vw; /* Larghezza a tutta pagina */
       height: 188px;
+
+      &::before {
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
 
       .more-rubrics-grid {
         gap: 16px;
@@ -373,26 +378,29 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
 // --- Mobile Menu ---
 .mobile-menu {
   position: fixed;
-  top: 45px; // Altezza della top-nav
+  top: 173px; // Total header height for desktop
   left: 0;
   width: 320px;
   bottom: 0;
-  background-color: $text-color-white;
+  background: white;
   z-index: 1000;
   overflow-y: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  //box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
 
-  &::before {
-    content: '';
-    position: fixed;
-    top: 45px;
-    left: 320px;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
+// Mobile overlay
+.mobile-overlay {
+  position: fixed;
+  top: 173px; // Total header height for desktop
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  pointer-events: auto; // Ensures it receives click events
+}
 
+.mobile-menu {
   .mobile-menu-container {
     padding: 1rem;
     width: 100%;
@@ -546,6 +554,16 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   .lefigaro-header {
     height: 96px; // Total header height for tablet
   }
+
+  // Update mobile menu position for tablet
+  .mobile-menu {
+    top: 96px; // Total header height for tablet
+  }
+
+  // Update mobile overlay position for tablet
+  .mobile-overlay {
+    top: 96px; // Total header height for tablet
+  }
   .header-top-nav .main-nav-list {
     display: none;
   }
@@ -556,13 +574,19 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
 
     .logo-tablet {
       display: block; // Mostra logo tablet
-      // Puoi aggiungere qui max-height specifico per il tablet se necessario
-      // max-height: 48px; // Esempio
+      max-height: 40px; /* Ensure logo fits within container */
     }
 
     .logo-mobile {
       display: none; // Assicurati che il mobile sia ancora nascosto qui
     }
+
+    // Position the logo to appear in the top container
+    position: fixed;
+    top: 9px; // Adjust to align with menu and login buttons
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001; // Ensure it's above other elements
   }
 
 
@@ -575,10 +599,11 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
 
   // Modifiche per la barra delle rubriche
   .header-rubrics {
-    display: block !important; // Assicura che sia sempre visibile
+    display: block; // Assicura che sia sempre visibile
 
     .rubrics-container {
       overflow: hidden; // Contiene il contenuto che scorre
+      height: 38px; // Fixed height for rubrics in tablet view
     }
 
     .rubrics_list {
@@ -602,35 +627,32 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
     }
   }
 
-  // Show tablet logo, hide others
-  .header-logo.logo-center {
-    .logo-desktop, .logo-mobile {
-      display: none;
-    }
-
-    .logo-tablet {
-      display: block;
-      max-height: 40px; /* Ensure logo fits within container */
-      width: auto; /* Maintain aspect ratio */
-    }
-  }
-
   // Adjust heights for tablet
   .header-top-nav .top-nav-container {
-    height: 36px;
+    height: 58px; // Adjusted height for top container in tablet
   }
 
   .header-middle .middle-container {
-    height: 60px;
-  }
-
-  // Ensure total header height is 96px for tablet
-  .header-rubrics .rubrics-container {
-    height: 96px; // Adjust as needed to make total header height 96px
+    height: 0; // No additional height needed as logo is now in top container
+    padding: 0;
   }
 }
 
 @media (max-width: 768px) { // Mobile
+  .lefigaro-header {
+    height: 88px; // Total header height for mobile
+  }
+
+  // Update mobile menu position for mobile
+  .mobile-menu {
+    top: 88px; // Total header height for mobile
+  }
+
+  // Update mobile overlay position for mobile
+  .mobile-overlay {
+    top: 88px; // Total header height for mobile
+  }
+
   .header-middle .header-logo.logo-center {
     .logo-desktop, .logo-tablet {
       display: none; // Nascondi logo desktop e tablet
@@ -641,11 +663,13 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
       max-height: 33px; // Come da tua regola originale
       width: auto;
     }
-  }
 
-  // Ensure total header height is 96px for tablet
-  .header-rubrics .rubrics-container {
-    // height: 0px; // Adjust as needed to make total header height 96px
+    // Position the logo to appear in the top container
+    position: fixed;
+    top: 8px; // Slightly adjusted for mobile
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001; // Ensure it's above other elements
   }
 
   // Nascondi/mostra elementi come prima, ma verifica gli stili compatti
@@ -662,43 +686,28 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
       }
     }
   }
+
   .header-middle {
     .header-journal-cover, .header-subscribe { display: none; }
 
     .middle-container {
-      justify-content: center;
-      min-height: 43px; // Adjust for mobile
+      height: 0; // No additional height needed as logo is now in top container
+      padding: 0;
     }
   }
 
   // Manteniamo visibile la barra delle rubriche anche su mobile
   .header-rubrics {
     display: block !important;
-  }
 
-  // Show mobile logo, hide others
-  .header-logo.logo-center {
-    .logo-desktop {
-      display: block; // Visibile di default
-      max-height: 64px;
-      width: auto;
-    }
-
-    .logo-tablet, .logo-mobile {
-      display: none; // Nascosti di default
-      max-width: 100%;
-      height: auto;
+    .rubrics-container {
+      height: 38px; // Fixed height for rubrics in mobile view
     }
   }
 
   // Adjust heights for mobile
   .header-top-nav .top-nav-container {
-    min-height: 36px;
-  }
-
-  // Ensure total header height is 88px for mobile
-  .header-rubrics .rubrics-container {
-    //height: 88px; // Adjust as needed to make total header height 88px
+    height: 50px; // Adjusted height for top container in mobile
   }
 }
 
