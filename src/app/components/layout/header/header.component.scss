@@ -14,9 +14,19 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
 // --- Reset Base e Container ---
 .lefigaro-header {
   background-color: $text-color-white;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000; /* Aumentato per assicurarsi che l'header sia sopra l'overlay */
   font-family: sans-serif; // Usa un font base o quello del progetto
+  transition-duration: 0.5s; // Slightly slower with a small delay
+  height: 173px; // Total header height for desktop
+  box-sizing: border-box; /* Ensure padding and borders are included in height */
+
+  &.nav-hidden {
+    transform: translateY(-100%);
+  }
 }
 
 .container {
@@ -51,9 +61,10 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   z-index: 605;
   .top-nav-container {
     justify-content: space-between;
-    min-height: 45px; // Altezza barra superiore (adatta)
+    height: 45px; // Fixed height for top nav
     padding-top: 0.2rem; // Padding verticale ridotto
     padding-bottom: 0.2rem; // Padding verticale ridotto
+    box-sizing: border-box; /* Ensure padding and borders are included in height */
   }
 
   .top-nav-logo {
@@ -118,6 +129,8 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
       color: $lefigaro-blue;
       text-decoration: none;
       font-size: 0.9rem;
+      display: flex;
+      font-weight: 600;
       &:hover {
         color: $lefigaro-blue-hover;
       }
@@ -127,13 +140,15 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
 
 // --- 2. Sezione Media ---
 .header-middle {
-
+  background-color: $text-color-white; /* Add explicit background color */
 
   .middle-container {
     justify-content: space-between;
     padding-top: 0.5rem; // Padding verticale molto ridotto
     padding-bottom: 0.5rem; // Padding verticale molto ridotto
-    min-height: auto; // Lascia che il contenuto definisca l'altezza
+    height: 96px; // Fixed height for middle section
+    position: relative; /* Add position relative for absolute positioning of children */
+    box-sizing: border-box; /* Ensure padding and borders are included in height */
   }
 
   .header-journal-cover a {
@@ -163,12 +178,29 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   .header-logo.logo-center {
     text-align: center;
     flex-grow: 1;
-    margin: 0 1rem;
+    margin: 0 auto; /* Center the logo container */
+    position: absolute; /* Position absolutely */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
 
     a {
       display: block;
       margin-bottom: 0.1rem; // Spazio ridotto sotto logo
     }
+
+    // Logo display rules
+    .logo-desktop {
+      display: block;
+      max-height: 64px; /* Ensure logo fits within container */
+      width: auto; /* Maintain aspect ratio */
+    }
+
+    .logo-tablet, .logo-mobile {
+      display: none;
+      max-width: 100%; /* Ensure logo fits within container */
+      height: auto; /* Maintain aspect ratio */
+    }
+
     .main-logo-text {
       font-size: 1.8rem; // Dimensione logo principale (adatta)
       font-weight: bold;
@@ -216,6 +248,8 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   color: $lefigaro-blue;
   position: relative;
   display: block;
+  background-color: $text-color-white; /* Add explicit background color */
+  z-index: 600; /* Ensure it's above other elements but below the top nav */
 
   /* Aggiunge il bordo blu in fondo */
   &::after {
@@ -230,9 +264,9 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   }
 
   .rubrics-container {
-    min-height: auto;
     justify-content: center;
     height: 32px; /* Altezza fissa di 32px */
+    box-sizing: border-box; /* Ensure padding and borders are included in height */
   }
 
   .rubrics_list {
@@ -493,27 +527,179 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
   }
 }
 
+// Classi di utilità per la responsività
+.desktop-only {
+  @media (max-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.mobile-tablet-only {
+  @media (min-width: 1025px) {
+    display: none !important;
+  }
+}
+
 // --- Responsività (da adattare ulteriormente) ---
 @media (max-width: 1024px) { // Tablet
-  .container { padding: 0 0.8rem; }
-  .header-top-nav .main-nav-list { display: none; } // Nascondi nav principale su tablet? O riduci ancora?
-  .header-middle .logo-tagline { display: none; }
-  .header-rubrics .rubrics-list { justify-content: flex-start; overflow-x: auto; /* ... stili scroll ... */ }
+  //.container { padding: 0 0.8rem; }
+  .lefigaro-header {
+    height: 96px; // Total header height for tablet
+  }
+  .header-top-nav .main-nav-list {
+    display: none;
+  }
+  .header-middle .header-logo.logo-center {
+    .logo-desktop {
+      display: none; // Nascondi logo desktop
+    }
+
+    .logo-tablet {
+      display: block; // Mostra logo tablet
+      // Puoi aggiungere qui max-height specifico per il tablet se necessario
+      // max-height: 48px; // Esempio
+    }
+
+    .logo-mobile {
+      display: none; // Assicurati che il mobile sia ancora nascosto qui
+    }
+  }
+
+
+  // Hide journal cover and subscribe button below 1024px
+  .header-middle {
+    .header-journal-cover, .header-subscribe {
+      display: none;
+    }
+  }
+
+  // Modifiche per la barra delle rubriche
+  .header-rubrics {
+    display: block !important; // Assicura che sia sempre visibile
+
+    .rubrics-container {
+      overflow: hidden; // Contiene il contenuto che scorre
+    }
+
+    .rubrics_list {
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; // Migliora lo scrolling su iOS
+      scrollbar-width: none; // Nasconde la scrollbar su Firefox
+      -ms-overflow-style: none; // Nasconde la scrollbar su IE/Edge
+
+      &::-webkit-scrollbar {
+        display: none; // Nasconde la scrollbar su Chrome/Safari
+      }
+
+      // Assicura che tutti gli elementi abbiano lo stesso stile
+      .rubric-link {
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  // Show tablet logo, hide others
+  .header-logo.logo-center {
+    .logo-desktop, .logo-mobile {
+      display: none;
+    }
+
+    .logo-tablet {
+      display: block;
+      max-height: 40px; /* Ensure logo fits within container */
+      width: auto; /* Maintain aspect ratio */
+    }
+  }
+
+  // Adjust heights for tablet
+  .header-top-nav .top-nav-container {
+    height: 36px;
+  }
+
+  .header-middle .middle-container {
+    height: 60px;
+  }
+
+  // Ensure total header height is 96px for tablet
+  .header-rubrics .rubrics-container {
+    height: 96px; // Adjust as needed to make total header height 96px
+  }
 }
 
 @media (max-width: 768px) { // Mobile
+  .header-middle .header-logo.logo-center {
+    .logo-desktop, .logo-tablet {
+      display: none; // Nascondi logo desktop e tablet
+    }
+
+    .logo-mobile {
+      display: block; // Mostra logo mobile
+      max-height: 33px; // Come da tua regola originale
+      width: auto;
+    }
+  }
+
+  // Ensure total header height is 96px for tablet
+  .header-rubrics .rubrics-container {
+    // height: 0px; // Adjust as needed to make total header height 96px
+  }
+
   // Nascondi/mostra elementi come prima, ma verifica gli stili compatti
   .header-top-nav {
-    .main-nav-list, .login-link {
-      display: none;
+    .main-nav-list {
+      //display: none;
+    }
+
+    .login-link {
+      display: flex; // Keep login link visible
+
+      .login-text {
+        display: none; // Keep text hidden in mobile view too
+      }
     }
   }
   .header-middle {
     .header-journal-cover, .header-subscribe { display: none; }
-    .middle-container { justify-content: center; }
-    .header-logo.logo-center .main-logo-text { font-size: 1.5rem; }
+
+    .middle-container {
+      justify-content: center;
+      min-height: 43px; // Adjust for mobile
+    }
   }
-  .header-rubrics { display: none; }
+
+  // Manteniamo visibile la barra delle rubriche anche su mobile
+  .header-rubrics {
+    display: block !important;
+  }
+
+  // Show mobile logo, hide others
+  .header-logo.logo-center {
+    .logo-desktop {
+      display: block; // Visibile di default
+      max-height: 64px;
+      width: auto;
+    }
+
+    .logo-tablet, .logo-mobile {
+      display: none; // Nascosti di default
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  // Adjust heights for mobile
+  .header-top-nav .top-nav-container {
+    min-height: 36px;
+  }
+
+  // Ensure total header height is 88px for mobile
+  .header-rubrics .rubrics-container {
+    //height: 88px; // Adjust as needed to make total header height 88px
+  }
 }
 
 .stile-rubrica {

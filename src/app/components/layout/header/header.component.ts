@@ -1,63 +1,119 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common"; // Necessario per *ngIf, [ngClass], ecc. in componenti standalone
-import { MatButtonModule } from "@angular/material/button"; // Se usi Angular Material per i bottoni
-import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {Component, HostListener, OnInit, OnDestroy, Renderer2, ElementRef} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from '@angular/material/icon';
 import {MenuButtonComponent} from "../../menu-button/menu-button.component";
 
 @Component({
   selector: "app-header",
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIcon, MatIconModule, MenuButtonComponent],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MenuButtonComponent],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
 })
-export class HeaderComponent {
-  // Stato esistente per i menu a tendina
-  isEditionsLocalesMenuOpen: boolean = false;
-  isNewslettersMenuOpen: boolean = false;
-  isMobileMenuOpen: boolean = false;
+export class HeaderComponent implements OnInit, OnDestroy {
+  // Flags for controlling menu visibility
+  isMobileMenuOpen = false;
+  isMoreRubricsMenuOpen = false;
+  isNavHidden = false;
+  lastScrollTop = 0;
+  scrollThreshold = 10; // Minimum scroll amount to trigger header hide/show
+  isMobileOrTablet = false; // Flag to check if we're in mobile/tablet view
+  resizeObserver: ResizeObserver | null = null;
 
-  // Nuovo stato per il menu delle rubriche aggiuntive
-  isMoreRubricsMenuOpen: boolean = false;
+  constructor(private renderer: Renderer2, private el: ElementRef) {
+  }
 
-  constructor() {}
+  ngOnInit(): void {
+    this.checkScreenSize();
+    this.updateBodyPadding();
 
-  // Metodi esistenti
-  toggleEditionsLocalesMenu(): void {
-    this.isEditionsLocalesMenuOpen = !this.isEditionsLocalesMenuOpen;
-    if (this.isEditionsLocalesMenuOpen) {
-      this.isNewslettersMenuOpen = false;
-      this.isMoreRubricsMenuOpen = false; // Chiudi anche il menu delle rubriche aggiuntive
+    // Set up ResizeObserver to detect screen size changes
+    this.resizeObserver = new ResizeObserver(() => {
+      this.checkScreenSize();
+      this.updateBodyPadding();
+    });
+
+    this.resizeObserver.observe(document.body);
+  }
+
+  /**
+   * Update body padding to account for fixed header
+   */
+  updateBodyPadding(): void {
+    let headerHeight = '173px';
+
+    if (window.innerWidth <= 768) {
+      headerHeight = '88px';
+    } else if (window.innerWidth <= 1024) {
+      headerHeight = '96px';
+    }
+
+    document.body.style.paddingTop = headerHeight;
+  }
+
+  ngOnDestroy(): void {
+    // Clean up the observer when component is destroyed
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   }
 
-  toggleNewslettersMenu(): void {
-    this.isNewslettersMenuOpen = !this.isNewslettersMenuOpen;
-    if (this.isNewslettersMenuOpen) {
-      this.isEditionsLocalesMenuOpen = false;
-      this.isMoreRubricsMenuOpen = false; // Chiudi anche il menu delle rubriche aggiuntive
-    }
+  /**
+   * Check if the screen is mobile or tablet size
+   */
+  checkScreenSize(): void {
+    this.isMobileOrTablet = window.innerWidth < 1024;
   }
 
+  /**
+   * Listen for scroll events to hide/show header
+   */
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    if (!this.isMobileOrTablet) {
+      // Don't apply scroll behavior on desktop
+      this.isNavHidden = false;
+      return;
+    }
+
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Determine scroll direction and apply threshold
+    if (currentScrollTop > this.lastScrollTop + this.scrollThreshold) {
+      // Scrolling down
+      this.isNavHidden = true;
+    } else if (currentScrollTop < this.lastScrollTop - this.scrollThreshold) {
+      // Scrolling up
+      this.isNavHidden = false;
+    }
+
+    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }
+
+  /**
+   * Toggles the mobile menu state
+   */
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
-  }
 
-  // Nuovo metodo per gestire il menu delle rubriche aggiuntive
-  toggleMoreRubricsMenu(): void {
-    this.isMoreRubricsMenuOpen = !this.isMoreRubricsMenuOpen;
-    if (this.isMoreRubricsMenuOpen) {
-      this.isEditionsLocalesMenuOpen = false;
-      this.isNewslettersMenuOpen = false;
-      // Non blocchiamo lo scroll dell'intera pagina per evitare spostamenti del layout
-    } else {
-      // Non è più necessario ripristinare lo scrolling
+    // Close the more rubrics menu when mobile menu is opened
+    if (this.isMobileMenuOpen) {
+      this.isMoreRubricsMenuOpen = false;
     }
   }
 
-  closeAllMenus(): void {
-    this.isEditionsLocalesMenuOpen = false;
-    this.isNewslettersMenuOpen = false;
-    this.isMoreRubricsMenuOpen = false; // Aggiungi anche il nuovo menu
+  /**
+   * Toggles the more rubrics menu state
+   */
+  toggleMoreRubricsMenu(): void {
+    this.isMoreRubricsMenuOpen = !this.isMoreRubricsMenuOpen;
+
+    // Control page scroll based on menu state
+    if (this.isMoreRubricsMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 }

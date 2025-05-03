@@ -1,5 +1,5 @@
 <!-- src/app/components/layout/header/header.component.html -->
-<header class="lefigaro-header">
+<header [class.nav-hidden]="isNavHidden" class="lefigaro-header">
   <!-- 1. Barra Superiore -->
   <nav class="header-top-nav">
     <div class="container top-nav-container">
@@ -57,14 +57,16 @@
 
       <!-- Azioni Destra -->
       <div class="header-actions">
-        <button class="icon-button search-button" aria-label="Rechercher">
-          <!-- Usa un'icona di ricerca (es. Material Icons) -->
-          <!-- <span class="material-icons">search</span> -->
-          <!-- <span class="search-label">Rechercher</span> -->
-          <!-- Label nascosta per compattezza -->
-        </button>
-        <svg width="16px" height="16px" class="fh-svg-user svg-square" aria-hidden="true"><use xlink:href="#fh-user"></use></svg>
-        <a href="#" class="login-link">Se connecter</a>
+        <a class="login-link" href="#">
+          <svg height="16" style="margin-right: 4px" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="0.3">
+              <path
+                d="M8 1.333a3.333 3.333 0 1 0 0 6.667 3.333 3.333 0 0 0 0-6.667zM4 12.667v-1.334c0-1.84 1.493-3.333 3.333-3.333h1.334C10.507 8 12 9.493 12 11.333v1.334"/>
+            </g>
+          </svg>
+          <span class="login-text" style="font-size: 12px">Se connecter</span>
+        </a>
       </div>
     </div>
   </nav>
@@ -84,13 +86,10 @@
 
       <div class="header-logo logo-center">
         <a href="/" title="Accéder à Le Figaro" aria-label="Accéder à Le Figaro">
-          <!-- Puoi usare un'immagine semplice o testo -->
-          <span class="main-logo-text">Le Figaro</span>
+          <img alt="Le Figaro" class="logo-desktop" src="https://placehold.co/341x64?text=Le+Figaro+logo+341x64">
+          <img alt="Le Figaro" class="logo-tablet" src="https://placehold.co/231x40?text=Le+Figaro+logo+231x40">
+          <img alt="Le Figaro" class="logo-mobile" src="https://placehold.co/175x33?text=Le+Figaro+logo+175x33">
         </a>
-        <span class="logo-tagline"
-        >« Sans la liberté de blâmer, il n'est point d'éloge flatteur. »
-          Beaumarchais</span
-        >
       </div>
 
       <div class="header-subscribe">
@@ -115,14 +114,34 @@
         <a class="rubric-link" href="#">Culture</a>
         <a class="rubric-link" href="#">Madame</a>
 
-        <!-- Pulsante con freccina per menu aggiuntivo -->
-        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu" class="more-rubrics-button"
+        <!-- Rubriche aggiuntive per tablet/mobile (visibili solo sotto 1024px) -->
+        <a class="rubric-link mobile-tablet-only" href="#">Faits divers</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Santé</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Sciences</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Tech et web</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Patrimoine et Bourse</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Art de vivre</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Voyage</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Style</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Vin</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Automobile</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Le Figaro Magazine</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Le Figaro Étudiant</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Le Figaro Immobilier</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Le Figaro Littéraire</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Histoire</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Emploi</a>
+        <a class="rubric-link mobile-tablet-only" href="#">TVMag</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Programme TV</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Météo</a>
+        <a class="rubric-link mobile-tablet-only" href="#">Carnet du jour</a>
+
+        <!-- Pulsante con freccina per menu aggiuntivo (visibile solo sopra 1024px) -->
+        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu"
+                class="more-rubrics-button desktop-only"
                 mat-button>
           <mat-icon>{{ isMoreRubricsMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
         </button>
-
-        <!-- Overlay grigio scuro che appare quando il menu è aperto -->
-        <div (click)="toggleMoreRubricsMenu()" *ngIf="isMoreRubricsMenuOpen" class="page-overlay"></div>
 
         <!-- Menu aggiuntivo - si apre quando isMoreRubricsMenuOpen è true -->
         <div *ngIf="isMoreRubricsMenuOpen" class="more-rubrics-menu" id="more-rubrics-menu">
@@ -260,4 +279,7 @@
       </div>
     </div>
   </div>
+
+  <!-- Overlay grigio scuro che appare quando il menu è aperto (solo desktop) -->
+  <div (click)="toggleMoreRubricsMenu()" *ngIf="isMoreRubricsMenuOpen" class="page-overlay desktop-only"></div>
 </header>
