@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router'; // Probabilmente già presente
+//import { RouterOutlet } from '@angular/router'; // Probabilmente già presente
 
 // Importa i componenti che usi nel template
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -15,7 +15,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
   // ng s nome-servizio // servono per interfacciarmi col server,
   standalone: true, // Assicurati che sia true,  dalla 19 sono da sé (standalone)
   imports: [
-    RouterOutlet, // Mantieni questo se c'era
+    //RouterOutlet, // Mantieni questo se c'era
     // Aggiungi qui i componenti usati nel template HTML
     HeaderComponent,
     MainContentComponent,

@@ -101,147 +101,61 @@
     </div>
   </div>
 
-  <!-- 3. Barra Rubriche Secondaria -->
+  <!-- 3. Barra Rubriche Secondaria - MODIFICATA -->
   <nav class="header-rubrics" aria-label="Navigation secondaire">
     <div class="container rubrics-container">
-      <ul class="rubrics-list">
-        <div class="stile-rubrica">
-        <!-- Elemento con Dropdown: Éditions locales -->
-        <li class="rubrics-item has-dropdown">
-          <button mat-flat-button
-            class="rubrics-button"
-            (click)="toggleEditionsLocalesMenu()"
-            [attr.aria-expanded]="isEditionsLocalesMenuOpen"
-            [class.active]="isEditionsLocalesMenuOpen"
-            aria-controls="editions-locales-menu"
-          >
-            Éditions locales
-            <!-- Icona freccia (es. Material Icons) -->
-            <mat-icon class="arrow-icon" aria-hidden="true">
-              {{ isEditionsLocalesMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
-            </mat-icon>
-          </button>
-          <ul
-            class="sub-rubrics-list"
-            id="editions-locales-menu"
-            *ngIf="isEditionsLocalesMenuOpen"
-          >
-            <li><a href="/bordeaux">Bordeaux</a></li>
-            <li><a href="/lyon">Lyon</a></li>
-            <li><a href="/marseille">Marseille</a></li>
-            <li><a href="/nantes">Nantes</a></li>
-            <li><a href="/nice">Nice</a></li>
-          </ul>
-        </li>
+      <div class="rubrics_list">
+        <!-- Rubriche principali come semplice testo -->
+        <a class="rubric-link" href="#">Politique</a>
+        <a class="rubric-link" href="#">International</a>
+        <a class="rubric-link" href="#">Économie</a>
+        <a class="rubric-link" href="#">Société</a>
+        <a class="rubric-link" href="#">Vox</a>
+        <a class="rubric-link" href="#">Sport</a>
+        <a class="rubric-link" href="#">Culture</a>
+        <a class="rubric-link" href="#">Madame</a>
 
-        <!-- Link Semplici -->
-        <li class="rubrics-item">
-          <button mat-flat-button
-                  class="rubrics-button"
-                  aria-controls="newsletters-menu"
-          >
-            Le Figaro in English
-          </button>
-        </li>
-        <li class="rubrics-item">
-          <button mat-flat-button
-                  class="rubrics-button"
-                  aria-controls="newsletters-menu"
-          >
-            Radio & Podcasts
-          </button>
-        </li>
-        <li class="rubrics-item">
-          <button mat-flat-button
-            class="rubrics-button"
-            aria-controls="newsletters-menu"
-          >
-            TV & Vidéos
-          </button>
-        </li>
+        <!-- Pulsante con freccina per menu aggiuntivo -->
+        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu" class="more-rubrics-button"
+                mat-button>
+          <mat-icon>{{ isMoreRubricsMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+        </button>
 
-        <!-- Altro Elemento con Dropdown: Newsletters -->
-        <li class="rubrics-item has-dropdown">
-          <button mat-flat-button
-            class="rubrics-button"
-            (click)="toggleNewslettersMenu()"
-            [attr.aria-expanded]="isNewslettersMenuOpen"
-            [class.active]="isNewslettersMenuOpen"
-          >
-            Newsletters
-            <mat-icon class="arrow-icon" aria-hidden="true">
-              {{ isNewslettersMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
-            </mat-icon>
-          </button>
-          <ul
-          class="sub-rubrics-list newsletter-columns"
-          id="newsletters-menu"
-          *ngIf="isNewslettersMenuOpen">
+        <!-- Overlay grigio scuro che appare quando il menu è aperto -->
+        <div (click)="toggleMoreRubricsMenu()" *ngIf="isMoreRubricsMenuOpen" class="page-overlay"></div>
 
-          <!-- Colonna 1: Actualités -->
-          <li class="newsletter-column">
-            <span class="column-title">Actualités</span>
-            <ul class="sub-list">
-              <li><a href="#">Les titres du jour</a></li>
-              <li><a href="#">L'alerte info</a></li>
-              <li><a href="#">Faits divers</a></li>
-              <li><a href="#">Santé</a></li>
-              <li><a href="#">La sélection du Figaro Live</a></li>
-              <li><a href="#">Le Figaro étudiant</a></li>
-              <li><a href="#">Jeux paralympiques Paris 2024</a></li>
-              <li><a href="#">Les dimanches du Figaro</a></li>
-              <li><a href="#">Crise politique : l’été décisif</a></li>
-            </ul>
-          </li>
-          <!-- Colonna 2: Éditions locales -->
-          <li class="newsletter-column">
-            <span class="column-title">Éditions locales</span>
-            <ul class="sub-list">
-              <li><a href="#">La semaine du Figaro Bordeaux</a></li>
-              <li><a href="#">La semaine du Figaro Lyon</a></li>
-              <li><a href="#">La semaine du Figaro Marseille</a></li>
-              <li><a href="#">La semaine du Figaro Nice</a></li>
-              <li><a href="#">La semaine du Figaro Nantes</a></li>
-            </ul>
-          </li>
-          <!-- Colonna 3: Économie -->
-          <li class="newsletter-column">
-            <span class="column-title">Économie</span>
-            <ul class="sub-list">
-              <li><a href="#">Patrimoine</a></li>
-              <li><a href="#">Bourse & Placements</a></li>
-              <li><a href="#">Tech & Web</a></li>
-              <li><a href="#">Emploi & Entreprise</a></li>
-              <li><a href="#">Le Scan Eco</a></li>
-              <li><a href="#">L'actualité de l'immobilier</a></li>
-            </ul>
-          </li>
-          <!-- Colonna 4: Culture et Loisirs -->
-          <li class="newsletter-column">
-            <span class="column-title">Culture et Loisirs</span>
-            <ul class="sub-list">
-              <li><a href="#">La lettre d'info Culture et Loisirs</a></li>
-              <li><a href="#">La lettre du Figaro Histoire</a></li>
-              <li><a href="#">Art de vivre</a></li>
-              <li><a href="#">Voyage</a></li>
-              <li><a href="#">Toute l’actualité du vin</a></li>
-              <li><a href="#">La quotidienne Sport</a></li>
-              <li><a href="#">Golf</a></li>
-              <li><a href="#">Programmes TV</a></li>
-              <li><a href="#">L'heure H</a></li>
-            </ul>
-          </li>
+        <!-- Menu aggiuntivo - si apre quando isMoreRubricsMenuOpen è true -->
+        <div *ngIf="isMoreRubricsMenuOpen" class="more-rubrics-menu" id="more-rubrics-menu">
+          <div class="more-rubrics-grid">
+            <a class="additional-rubric" href="#">Faits divers</a>
+            <a class="additional-rubric" href="#">Santé</a>
+            <a class="additional-rubric" href="#">Sciences</a>
+            <a class="additional-rubric" href="#">Tech et web</a>
+            <a class="additional-rubric" href="#">Patrimoine et Bourse</a>
 
-          <!-- Link Finale (se presente, potrebbe richiedere stile diverso) -->
-          <!-- <li class="newsletter-column full-width-link">
-                    <a href="#">Les lettres des journalistes</a>
-                </li> -->
-        </ul>
-        </li>
+            <a class="additional-rubric" href="#">Art de vivre</a>
+            <a class="additional-rubric" href="#">Voyage</a>
+            <a class="additional-rubric" href="#">Style</a>
+            <a class="additional-rubric" href="#">Vin</a>
+            <a class="additional-rubric" href="#">Automobile</a>
+
+            <a class="additional-rubric" href="#">Le Figaro Magazine</a>
+            <a class="additional-rubric" href="#">Le Figaro Étudiant</a>
+            <a class="additional-rubric" href="#">Le Figaro Immobilier</a>
+            <a class="additional-rubric" href="#">Le Figaro Littéraire</a>
+            <a class="additional-rubric" href="#">Histoire</a>
+
+            <a class="additional-rubric" href="#">Emploi</a>
+            <a class="additional-rubric" href="#">TVMag</a>
+            <a class="additional-rubric" href="#">Programme TV</a>
+            <a class="additional-rubric" href="#">Météo</a>
+            <a class="additional-rubric" href="#">Carnet du jour</a>
+          </div>
         </div>
-      </ul>
+      </div>
     </div>
   </nav>
+
 
   <!-- Menu Mobile (attivato dal menu button) -->
   <div *ngIf="isMobileMenuOpen" class="mobile-menu">
