@@ -1,14 +1,17 @@
 $lefigaro-blue: #163860;
 $lefigaro-blue-hover: #1f66ba;
+@use '@angular/material' as mat;
+
 
 .menu-button {
+  //background: WHITE;
   display: flex;
   align-items: center;
   gap: 8px;
   height: 100%;
   justify-content: left;
   padding: 8px 16px;
-  background-color: transparent;
+  //background-color: WHITE;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -17,6 +20,9 @@ $lefigaro-blue-hover: #1f66ba;
   font-size: 12px;
   font-weight: 600;
   text-align: left;
+  @include mat.button-overrides((
+    filled-container-color: WHITE
+  ));
 
   &:hover {
     color: $lefigaro-blue-hover;
