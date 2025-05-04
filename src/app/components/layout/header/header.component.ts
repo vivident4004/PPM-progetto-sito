@@ -28,6 +28,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // Check screen size initially
     this.checkScreenSize();
 
+    // Update body padding initially
+    if (isPlatformBrowser(this.platformId)) {
+      this.updateBodyPadding();
+    }
+
     // Add an event listener to check screen size on resize
     if (isPlatformBrowser(this.platformId)) {
       window.addEventListener('resize', this.checkScreenSize.bind(this));
@@ -36,18 +41,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Update body padding to account for fixed header
+   * Update body padding to account for fixed header and bottom navigation
    */
   updateBodyPadding(): void {
     let headerHeight = '173px';
+    let bottomPadding = '0px';
 
     if (window.innerWidth <= 768) {
       headerHeight = '88px';
+      bottomPadding = '52px'; // Add padding for bottom navigation
     } else if (window.innerWidth <= 1024) {
       headerHeight = '96px';
+      bottomPadding = '52px'; // Add padding for bottom navigation
     }
 
     document.body.style.paddingTop = headerHeight;
+    document.body.style.paddingBottom = bottomPadding;
   }
 
   ngOnDestroy(): void {
@@ -62,11 +71,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Check if the screen is mobile or tablet size
+   * Check if the screen is mobile or tablet size and update body padding
    */
   checkScreenSize(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobileOrTablet = window.innerWidth < 1024;
+      this.updateBodyPadding(); // Update body padding when screen size changes
     } else {
       // Optional: Handle the case when not in the browser.
       // You might want to set a default value for SSR.
@@ -82,9 +92,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
-    // Determine scroll direction and apply threshold
+    // Determine a scroll direction and apply a threshold
     if (currentScrollTop > this.lastScrollTop + this.scrollThreshold) {
       // Scrolling down
       this.isNavHidden = true;

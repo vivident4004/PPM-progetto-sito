@@ -286,3 +286,65 @@
   <!-- Overlay grigio scuro che appare quando il menu mobile è aperto -->
   <div *ngIf="isMobileMenuOpen" class="mobile-overlay"></div>
 </header>
+
+<!-- Bottom Navigation Bar (visible only on mobile/tablet) -->
+<div class="bottom-nav-wrapper">
+  <nav *ngIf="isMobileOrTablet" class="header-bottom-nav">
+    <div class="container bottom-nav-container">
+      <ul class="bottom-nav-list">
+        <li class="nav-item">
+          <!-- Home icon for "À la une" -->
+          <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="0.3">
+              <path d="M8 1.333L1.333 6.667V14h4V9.333h5.334V14h4V6.667L8 1.333z"/>
+            </g>
+          </svg>
+          <a href="#">À la une</a>
+        </li>
+        <li class="nav-item">
+          <!-- Clock icon for "Le Flash" -->
+          <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="0.3">
+              <circle cx="8" cy="8" r="6.667"/>
+              <path d="M8 4.667V8l2.667 1.333"/>
+            </g>
+          </svg>
+          <a href="#">Le Flash</a>
+        </li>
+        <li class="nav-item">
+          <svg class="nav-icon" height="16" viewBox="0 0 17 16" width="17" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="0.3">
+              <path
+                d="M.5 1.945v12.11h16V1.945H.5Zm1.962 1.963h12.076v8.184H2.462V3.908Zm4.243 1.425v5.451l4.713-2.733-4.713-2.718Z"></path>
+            </g>
+          </svg>
+          <a href="#">TV & Vidéos</a>
+        </li>
+        <li class="nav-item">
+          <svg class="nav-icon" height="16" viewBox="0 0 17 16" width="17" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="0.3">
+              <path
+                d="M14.804 12.055a.8.8 0 0 1-1.518-.504c.272-.82.414-1.706.414-2.618 0-3.565-2.204-5.93-5.2-5.93-2.995 0-5.2 2.365-5.2 5.93 0 .912.143 1.798.415 2.618a.8.8 0 0 1-1.519.504A9.92 9.92 0 0 1 1.7 8.933c0-4.424 2.895-7.53 6.8-7.53s6.8 3.106 6.8 7.53c0 1.083-.17 2.139-.496 3.122Z"></path>
+              <path
+                d="M5.282 13.627a2.4 2.4 0 0 1-2.354-2.432v-.017a2.382 2.382 0 0 1 2.428-2.35.8.8 0 0 1 .784.81l-.043 3.2a.8.8 0 0 1-.815.79ZM11.77 8.8a2.4 2.4 0 0 1 2.355 2.432v.018a2.382 2.382 0 0 1-2.415 2.35h-.013a.8.8 0 0 1-.785-.811l.043-3.2a.8.8 0 0 1 .816-.789Z"></path>
+            </g>
+          </svg>
+          <a href="#">Audio</a>
+        </li>
+        <li class="nav-item">
+          <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+              <path d="M12.5 7c0 3.5-4.5 6.5-4.5 6.5s-4.5-3-4.5-6.5a4.5 4.5 0 0 1 9 0Z"></path>
+              <path d="M8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="none"></path>
+            </g>
+          </svg>
+          <a href="#">Actu locale</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
