@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Flags for controlling menu visibility
   isMobileMenuOpen = false;
   isMoreRubricsMenuOpen = false;
+  isNewslettersMenuOpen = false;
+  isActuLocalesMenuOpen = false;
   isNavHidden = false;
   lastScrollTop = 0;
   scrollThreshold = 10; // Minimum scroll amount to trigger header hide/show
@@ -129,8 +131,42 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleMoreRubricsMenu(): void {
     this.isMoreRubricsMenuOpen = !this.isMoreRubricsMenuOpen;
 
-    // Control page scroll based on menu state
+    // Close other menus when opening this one
     if (this.isMoreRubricsMenuOpen) {
+      this.isNewslettersMenuOpen = false;
+      this.isActuLocalesMenuOpen = false;
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  /**
+   * Toggles the newsletters menu state
+   */
+  toggleNewslettersMenu(): void {
+    this.isNewslettersMenuOpen = !this.isNewslettersMenuOpen;
+
+    // Close other menus when opening this one
+    if (this.isNewslettersMenuOpen) {
+      this.isMoreRubricsMenuOpen = false;
+      this.isActuLocalesMenuOpen = false;
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  /**
+   * Toggles the actu locales menu state
+   */
+  toggleActuLocalesMenu(): void {
+    this.isActuLocalesMenuOpen = !this.isActuLocalesMenuOpen;
+
+    // Close other menus when opening this one
+    if (this.isActuLocalesMenuOpen) {
+      this.isMoreRubricsMenuOpen = false;
+      this.isNewslettersMenuOpen = false;
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -149,8 +185,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // Check if the click was on a menu button or inside a menu
     const isMenuButtonClick = clickedElement.closest('app-menu-button') !== null;
     const isMoreRubricsButtonClick = clickedElement.closest('.more-rubrics-button') !== null;
+    const isNewslettersButtonClick = clickedElement.closest('.newsletters-button') !== null;
+    const isActuLocalesButtonClick = clickedElement.closest('.actu-locales-button') !== null;
     const isMobileMenuClick = clickedElement.closest('.mobile-menu') !== null;
     const isMoreRubricsMenuClick = clickedElement.closest('.more-rubrics-menu') !== null;
+    const isNewslettersMenuClick = clickedElement.closest('.newsletters-menu') !== null;
+    const isActuLocalesMenuClick = clickedElement.closest('.actu-locales-menu') !== null;
 
     // Close mobile menu if click was outside the menu and not on the menu button
     if (this.isMobileMenuOpen && !isMobileMenuClick && !isMenuButtonClick) {
@@ -161,6 +201,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // Close more rubrics menu if click was outside the menu and not on the more rubrics button
     if (this.isMoreRubricsMenuOpen && !isMoreRubricsMenuClick && !isMoreRubricsButtonClick) {
       this.isMoreRubricsMenuOpen = false;
+      document.body.style.overflow = '';
+    }
+
+    // Close newsletters menu if click was outside the menu and not on the newsletters button
+    if (this.isNewslettersMenuOpen && !isNewslettersMenuClick && !isNewslettersButtonClick) {
+      this.isNewslettersMenuOpen = false;
+      document.body.style.overflow = '';
+    }
+
+    // Close actu locales menu if click was outside the menu and not on the actu locales button
+    if (this.isActuLocalesMenuOpen && !isActuLocalesMenuClick && !isActuLocalesButtonClick) {
+      this.isActuLocalesMenuOpen = false;
       document.body.style.overflow = '';
     }
   }

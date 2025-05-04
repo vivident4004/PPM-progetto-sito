@@ -1,4 +1,5 @@
 /* src/app/components/layout/header/header.component.scss */
+@use '@angular/material' as mat;
 
 // Variabili (mantieni quelle definite prima o adattale)
 $lefigaro-blue: #163860;
@@ -88,6 +89,53 @@ $text-color-white: #ffffff;
       &:hover {
         color: $lefigaro-blue-hover;
       }
+
+      .newsletters-button, .actu-locales-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        background: transparent;
+        color: $lefigaro-blue;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font: inherit;
+        line-height: normal;
+        @include mat.button-overrides((
+          filled-container-color: WHITE, // importante per farlo sparire insieme allo sfondo
+          filled-label-text-color: $lefigaro-blue,
+        ));
+
+        &:hover {
+          color: $lefigaro-blue-hover;
+        }
+
+        &.open {
+          color: $lefigaro-blue-hover;
+        }
+
+        .nav-icon {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        span {
+          padding-left: 2px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        mat-icon {
+          font-size: 16px;
+          height: 16px;
+          width: 16px;
+          margin-left: 0;
+          padding-left: 0;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
     }
     .nav-item.active {
       color: $lefigaro-blue-hover;
@@ -126,6 +174,7 @@ $text-color-white: #ffffff;
       font-size: 0.9rem;
       display: flex;
       font-weight: 600;
+      padding: 16px;
       &:hover {
         color: $lefigaro-blue-hover;
       }
@@ -146,6 +195,10 @@ $text-color-white: #ffffff;
     box-sizing: border-box; /* Ensure padding and borders are included in height */
   }
 
+  .header-journal-cover {
+    padding-left: 16px; // Match the menu button's right padding
+  }
+
   .header-journal-cover a {
     display: flex;
     align-items: center;
@@ -154,6 +207,10 @@ $text-color-white: #ffffff;
     color: $text-color;
     font-size: 0.85rem; // Più piccolo
     font-weight: normal;
+
+    .cover-placeholder {
+      padding-top: 16px;
+    }
 
     .cover-placeholder {
       padding: 0.8rem 0.5rem; // Dimensioni placeholder
@@ -209,6 +266,10 @@ $text-color-white: #ffffff;
       font-style: italic;
       margin-top: 0; // Nessun margine sopra
     }
+  }
+
+  .header-subscribe {
+    padding-right: 16px; // Adjust this value as needed
   }
 
   .header-subscribe .subscribe-button {
@@ -316,20 +377,6 @@ $text-color-white: #ffffff;
       background: transparent;
     }
 
-    /* Overlay per oscurare la pagina quando il menu è aperto */
-    .page-overlay {
-      position: fixed; /* Manteniamo fixed per l'overlay per coprire tutta la pagina */
-      top: calc(100% + 188px); /* Posiziona l'overlay SOLO SOTTO il menu aperto */
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5); /* Overlay grigio scuro */
-      pointer-events: auto; /* Assicura che l'overlay riceva gli eventi di click */
-
-      @media (max-width: 1024px) {
-        bottom: 52px; // Account for bottom navigation bar
-      }
-    }
 
 
     .more-rubrics-menu {
@@ -382,7 +429,7 @@ $text-color-white: #ffffff;
 // --- Mobile Menu ---
 .mobile-menu {
   position: fixed;
-  top: 173px; // Total header height for desktop
+  top: 45px; // Height of header-top-nav
   left: 0;
   width: 320px;
   bottom: 0;
@@ -396,10 +443,63 @@ $text-color-white: #ffffff;
   }
 }
 
+// Page overlay - base styles
+.page-overlay {
+  position: fixed; /* Manteniamo fixed per l'overlay per coprire tutta la pagina */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay grigio scuro */
+  pointer-events: auto; /* Assicura che l'overlay riceva gli eventi di click */
+  z-index: 998; /* Ensure it's below the menus but above other content */
+}
+
+// More rubrics overlay - starts after the more-rubrics-menu
+.more-rubrics-overlay {
+  top: 361px; /* Posiziona l'overlay dopo il menu (header height 173px + menu height 188px) */
+
+  @media (max-width: 1024px) {
+    top: 284px; // Total header height for tablet (96px) + menu height (188px)
+    bottom: 52px; // Account for bottom navigation bar
+  }
+
+  @media (max-width: 768px) {
+    top: 276px; // Total header height for mobile (88px) + menu height (188px)
+  }
+}
+
+// Newsletters overlay
+.newsletters-overlay {
+  top: 521px; /* Posiziona l'overlay dopo il menu (header-top-nav height 45px + newsletters menu height 476px) */
+
+  @media (max-width: 1024px) {
+    top: 521px; // header-top-nav height (45px) + newsletters menu height (476px)
+    bottom: 52px; // Account for bottom navigation bar
+  }
+
+  @media (max-width: 768px) {
+    top: 521px; // header-top-nav height (45px) + newsletters menu height (476px)
+  }
+}
+
+// Actu locales overlay
+.actu-locales-overlay {
+  top: 180px; /* Posiziona l'overlay dopo il menu (header height 173px + actu locales menu height 144px) */
+
+  @media (max-width: 1024px) {
+    top: 240px; // Total header height for tablet (96px) + actu locales menu height (144px)
+    bottom: 52px; // Account for bottom navigation bar
+  }
+
+  @media (max-width: 768px) {
+    top: 232px; // Total header height for mobile (88px) + actu locales menu height (144px)
+  }
+}
+
 // Mobile overlay
 .mobile-overlay {
   position: fixed;
-  top: 173px; // Total header height for desktop
+  top: 45px; // Height of header-top-nav
   left: 0;
   right: 0;
   bottom: 0;
@@ -479,64 +579,123 @@ $text-color-white: #ffffff;
   }
 
   // Mobile app section
-  .fh-mobileapp__container {
-    align-items: center;
+  .mobileapp_container {
+    padding: 24px 24px 16px;
+    font: inherit;
     display: flex;
-    flex-direction: row;
-    gap: 16px;
-    justify-content: space-between;
-    margin: 0 24px 24px;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    border-top: 1px solid #d3e7ff;
 
-    .fh-mobileapp__text {
-      h3 {
-        font-weight: 600;
-        font-size: 15px;
+
+    .app_title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $lefigaro-blue;
+      //margin-left: 12px; // Same margin as the content below
+      &:before {
+        content: '';
+        top: -5px;
+        display: inline-block;
+        width: 8px;
+        height: 4px;
+        background-color: $lefigaro-blue-hover;
+        position: relative;
+      }
+    }
+
+    .app_content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+
+    //img {
+    //  width: 40px;
+    //  height: 40px;
+    //  flex-shrink: 0;
+    //}
+
+    .mobileapp_text {
+      flex-grow: 1;
+
+      h4 {
+        font-weight: 700;
+        font-size: 14px;
         color: $lefigaro-blue;
-        margin: 0 0 4px 0;
+        margin: 0 0 2px 0;
+        line-height: 1.2;
       }
 
       p {
         margin: 0;
-        font-size: 14px;
-        color: $text-color;
-        line-height: 1.4;
+        font-size: 12px;
+        color: #727272;
+        line-height: 1.2;
       }
+    }
+
+    .right-arrow {
+      color: $lefigaro-blue;
+      margin-left: auto;
+      flex-shrink: 0;
     }
   }
 
   .mobile-menu-section {
-    margin-bottom: 1.5rem;
-    border-color: #d3e7ff;
-    border-top: 1px solid;
+    //margin-bottom: 1.5rem;
+    border-top: 2px solid;
+    border-top-color: #d3e7ff;
     flex-basis: 100%;
     list-style: none;
     min-width: 100%;
     padding-bottom: 12px;
-    padding-top: 12px;
+    //padding-top: 12px;
 
     .section-title {
+      //border-color: #d3e7ff;
+      //border-top: 2px solid;
+
       font-size: 1rem;
       font-weight: bold;
       color: $lefigaro-blue;
       margin-bottom: 0.8rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid $border-color;
+      padding: 24px 24px 16px;
+      //border-bottom: 1px solid $border-color;
+      line-height: 28px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px; // Gap between the text and the dash
+      &:before {
+        content: '';
+        top: -5px;
+        display: inline-block;
+        width: 8px;
+        height: 4px;
+        background-color: $lefigaro-blue-hover;
+        position: relative;
+      }
     }
+
 
     .mobile-menu-list {
       list-style: none;
-      padding: 0;
-      margin: 0;
+      padding: 24px 24px 16px;
+      margin-bottom: 24px;
+      //border-bottom: 1px solid #d3e7ff;
 
       li {
         margin-bottom: 0.5rem;
-
         a {
           display: block;
           padding: 0.5rem 0;
-          color: $text-color;
+          //color: $text-color;
           text-decoration: none;
-          font-size: 0.9rem;
+          font: inherit;
+          font-size: 20px;
+          border-bottom: 1px solid #d3e7ff;
 
           &:hover {
             color: $lefigaro-blue-hover;
@@ -636,6 +795,149 @@ $text-color-white: #ffffff;
   }
 }
 
+// Newsletters Menu
+.newsletters-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45px; // Height of header-top-nav
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  height: 476px; // As specified in requirements
+
+  .newsletters-menu-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    .newsletters-menu-section {
+      flex: 1 0 calc(20% - 24px); // 5 columns with gap
+      min-width: 200px;
+
+      .section-title {
+        font-weight: 600;
+        color: $lefigaro-blue;
+        //margin-bottom: 16px;
+        //border-bottom: 1px solid $border-color;
+        padding-bottom: 8px;
+        text-decoration: none;
+        font-size: 20px;
+        line-height: 28px;
+        display: flex;
+        align-items: baseline;
+        gap: 8px; // Gap between the text and the dash
+        &:before {
+          content: '';
+          top: -5px;
+          display: inline-block;
+          width: 8px;
+          height: 4px;
+          background-color: $lefigaro-blue-hover;
+          position: relative;
+        }
+
+      }
+
+
+      .newsletters-menu-list {
+        list-style: none;
+        padding-left: 16px;
+        margin: 0;
+
+        li {
+          margin-bottom: 12px;
+
+          a {
+            color: $lefigaro-blue;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 22px;
+
+            &:hover {
+              color: $lefigaro-blue-hover;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    top: 45px; // Height of header-top-nav remains the same on tablet
+  }
+
+  @media (max-width: 768px) {
+    top: 45px; // Height of header-top-nav remains the same on mobile
+  }
+}
+
+// Actu Locales Menu
+.actu-locales-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45px; // Height of header-top-nav
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  height: 144px; // As specified in requirements
+
+  .actu-locales-menu-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+
+    .actu-locales-menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+
+      li {
+        a {
+          color: $lefigaro-blue;
+          text-decoration: none;
+          font-size: 20px;
+          font-weight: 600; // As specified in the requirements
+          line-height: 28px;
+          display: flex;
+          align-items: baseline;
+          gap: 8px; // Gap between the text and the dash
+
+          &:before {
+            content: '';
+            top: -5px;
+            display: inline-block;
+            width: 8px;
+            height: 4px;
+            background-color: $lefigaro-blue-hover;
+            position: relative;
+          }
+
+          &:hover {
+            color: $lefigaro-blue-hover;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    top: 45px; // Height of header-top-nav remains the same on tablet
+  }
+
+  @media (max-width: 768px) {
+    top: 45px; // Height of header-top-nav remains the same on mobile
+  }
+}
+
 // Classi di utilità per la responsività
 .desktop-only {
   @media (max-width: 1024px) {
@@ -651,7 +953,7 @@ $text-color-white: #ffffff;
 
 // --- Responsività (da adattare ulteriormente) ---
 @media (max-width: 1024px) { // Tablet
-  //.container { padding: 0 0.8rem; }
+  //.container { padding-right: 16px; padding-left: 16px }
   .lefigaro-header {
     height: 96px; // Total header height for tablet
   }
@@ -795,6 +1097,7 @@ $text-color-white: #ffffff;
 
     .login-link {
       display: flex; // Keep login link visible
+
 
       .login-text {
         display: none; // Keep text hidden in mobile view too

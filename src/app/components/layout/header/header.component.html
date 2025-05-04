@@ -40,18 +40,33 @@
           <a href="#">Le Figaro in English</a>
         </li>
         <li class="nav-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 16 16" class="nav-icon">
-            <g fill="currentcolor" stroke="currentColor" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12.413 3H4.587C3.433 3 2.5 3.9 2.5 5v6c0 1.1.933 2 2.087 2h7.826c1.154 0 2.087-.9 2.087-2V5c0-1.1-.933-2-2.087-2Zm-.626 1.253L8.5 7.12 5.213 4.253h6.574ZM13.193 11c0 .413-.353.747-.78.747H4.587c-.434 0-.78-.334-.78-.747V5c0-.06.02-.12.04-.173l4.22 3.68c.126.106.28.166.44.166.16 0 .313-.053.44-.166l4.22-3.68c.013.06.04.113.04.173v6h-.014Z"></path>
-            </g></svg>
-          <a href="#">Newsletters</a>
+          <button (click)="toggleNewslettersMenu()" [class.open]="isNewslettersMenuOpen" class="newsletters-button"
+                  mat-flat-button>
+            <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="17" xmlns="http://www.w3.org/2000/svg">
+              <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                 stroke-width="0.3">
+                <path
+                  d="M12.413 3H4.587C3.433 3 2.5 3.9 2.5 5v6c0 1.1.933 2 2.087 2h7.826c1.154 0 2.087-.9 2.087-2V5c0-1.1-.933-2-2.087-2Zm-.626 1.253L8.5 7.12 5.213 4.253h6.574ZM13.193 11c0 .413-.353.747-.78.747H4.587c-.434 0-.78-.334-.78-.747V5c0-.06.02-.12.04-.173l4.22 3.68c.126.106.28.166.44.166.16 0 .313-.053.44-.166l4.22-3.68c.013.06.04.113.04.173v6h-.014Z"></path>
+              </g>
+            </svg>
+            <span>Newsletters</span>
+            <mat-icon iconPositionEnd>{{ isNewslettersMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+            </mat-icon>
+          </button>
         </li>
         <li class="nav-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="nav-icon">
-            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
-              <path d="M12.5 7c0 3.5-4.5 6.5-4.5 6.5s-4.5-3-4.5-6.5a4.5 4.5 0 0 1 9 0Z"></path><path fill="none" d="M8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></g>
-          </svg>
-          <a href="#">Actu locale</a>
+          <button (click)="toggleActuLocalesMenu()" [class.open]="isActuLocalesMenuOpen" class="actu-locales-button"
+                  mat-flat-button>
+            <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+                <path d="M12.5 7c0 3.5-4.5 6.5-4.5 6.5s-4.5-3-4.5-6.5a4.5 4.5 0 0 1 9 0Z"></path>
+                <path d="M8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="none"></path>
+              </g>
+            </svg>
+            <span>Actu locale</span>
+            <mat-icon iconPositionEnd>{{ isActuLocalesMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+            </mat-icon>
+          </button>
         </li>
       </ul>
 
@@ -195,11 +210,21 @@
       </div>
 
       <!-- Mobile App Section -->
-      <div class="fh-mobileapp__container">
-        <img alt="Le Figaro App" src="https://placehold.co/40x40"/>
-        <div class="fh-mobileapp__text">
-          <h3>Notre application</h3>
-          <p>Soyez alerté en temps réel<br>avec l'application Le Figaro</p>
+      <div *ngIf="isMobileOrTablet" class="mobileapp_container">
+        <div class="app_title">
+          Notre application
+        </div>
+        <div class="app_content">
+          <img alt="Le Figaro App" src="https://placehold.co/40x40"/>
+          <div class="mobileapp_text">
+            <h4>Soyez alerté en temps réel</h4>
+            <p>avec l'application Le Figaro</p>
+          </div>
+          <svg class="right-arrow" fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
         </div>
       </div>
 
@@ -280,8 +305,82 @@
     </div>
   </div>
 
-  <!-- Overlay grigio scuro che appare quando il menu è aperto (solo desktop) -->
-  <div *ngIf="isMoreRubricsMenuOpen" class="page-overlay desktop-only"></div>
+  <!-- Newsletters Menu -->
+  <div *ngIf="isNewslettersMenuOpen" class="newsletters-menu">
+    <div class="newsletters-menu-container">
+      <div class="newsletters-menu-section">
+        <h3 class="section-title">Actualités</h3>
+        <ul class="newsletters-menu-list">
+          <li><a href="#">Les titres du jour</a></li>
+          <li><a href="#">L'alerte info</a></li>
+          <li><a href="#">Faits divers</a></li>
+          <li><a href="#">Santé</a></li>
+          <li><a href="#">La quotidienne Sport</a></li>
+          <li><a href="#">La sélection du Figaro Live</a></li>
+          <li><a href="#">Le Figaro Étudiant</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletters-menu-section">
+        <h3 class="section-title">Actu locale</h3>
+        <ul class="newsletters-menu-list">
+          <li><a href="#">La semaine du Figaro Bordeaux</a></li>
+          <li><a href="#">La semaine du Figaro Lyon</a></li>
+          <li><a href="#">La semaine du Figaro Marseille</a></li>
+          <li><a href="#">La semaine du Figaro Nantes</a></li>
+          <li><a href="#">La semaine du Figaro Nice</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletters-menu-section">
+        <h3 class="section-title">Économie</h3>
+        <ul class="newsletters-menu-list">
+          <li><a href="#">Patrimoine</a></li>
+          <li><a href="#">Bourse & Placements</a></li>
+          <li><a href="#">Tech & Web</a></li>
+          <li><a href="#">Emploi & Entreprises</a></li>
+          <li><a href="#">Le Scan Eco</a></li>
+          <li><a href="#">L'actualité de l'immobilier</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletters-menu-section">
+        <h3 class="section-title">Culture et Loisirs</h3>
+        <ul class="newsletters-menu-list">
+          <li><a href="#">La lettre d'info Culture et Loisirs</a></li>
+          <li><a href="#">La lettre du Figaro Histoire</a></li>
+          <li><a href="#">Art de vivre</a></li>
+          <li><a href="#">Voyage</a></li>
+          <li><a href="#">Toute l'actualité du vin</a></li>
+          <li><a href="#">Golf</a></li>
+          <li><a href="#">Programme TV</a></li>
+          <li><a href="#">L'heure H</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletters-menu-section">
+        <h3 class="section-title">Les lettres des journalistes</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actu Locales Menu -->
+  <div *ngIf="isActuLocalesMenuOpen" class="actu-locales-menu">
+    <div class="actu-locales-menu-container">
+      <ul class="actu-locales-menu-list">
+        <li><a href="#">Bordeaux</a></li>
+        <li><a href="#">Lyon</a></li>
+        <li><a href="#">Marseille</a></li>
+        <li><a href="#">Nantes</a></li>
+        <li><a href="#">Nice</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Overlay grigio scuro che appare quando il menu è aperto -->
+  <div *ngIf="isMoreRubricsMenuOpen" class="page-overlay more-rubrics-overlay"></div>
+  <div *ngIf="isNewslettersMenuOpen" class="page-overlay newsletters-overlay"></div>
+  <div *ngIf="isActuLocalesMenuOpen" class="page-overlay actu-locales-overlay"></div>
 
   <!-- Overlay grigio scuro che appare quando il menu mobile è aperto -->
   <div *ngIf="isMobileMenuOpen" class="mobile-overlay"></div>
@@ -304,11 +403,14 @@
         </li>
         <li class="nav-item">
           <!-- Clock icon for "Le Flash" -->
-          <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <svg aria-hidden="true" class="nav-icon" height="16" viewBox="0 0 24 24" width="16"
+               xmlns="http://www.w3.org/2000/svg">
             <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                stroke-width="0.3">
-              <circle cx="8" cy="8" r="6.667"/>
-              <path d="M8 4.667V8l2.667 1.333"/>
+              <path
+                d="M12 12.9a.8.8 0 100-1.7.8.8 0 000 1.7zM12 2a10 10 0 110 20 10 10 0 010-20zm0 11.8c1 0 1.8-.8 1.8-1.8 0-.8-.5-1.5-1.3-1.7V5.8a.5.5 0 00-.5-.4.5.5 0 00-.5.4v4.5a1.8 1.8 0 00-1.3 1.3H7a.5.5 0 00-.4.4c0 .3.2.5.4.5h3.3a2 2 0 001.8 1.3z"
+                stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"/>
             </g>
           </svg>
           <a href="#">Le Flash</a>
@@ -324,7 +426,7 @@
           <a href="#">TV & Vidéos</a>
         </li>
         <li class="nav-item">
-          <svg class="nav-icon" height="16" viewBox="0 0 17 16" width="17" xmlns="http://www.w3.org/2000/svg">
+          <svg class="nav-icon" height="21" viewBox="0 0 17 16" width="20" xmlns="http://www.w3.org/2000/svg">
             <g fill="currentcolor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                stroke-width="0.3">
               <path
@@ -336,7 +438,7 @@
           <a href="#">Audio</a>
         </li>
         <li class="nav-item">
-          <svg class="nav-icon" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <svg class="nav-icon" height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
               <path d="M12.5 7c0 3.5-4.5 6.5-4.5 6.5s-4.5-3-4.5-6.5a4.5 4.5 0 0 1 9 0Z"></path>
               <path d="M8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="none"></path>
