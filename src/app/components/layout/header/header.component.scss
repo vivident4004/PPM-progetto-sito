@@ -9,7 +9,6 @@ $light-gray-bg: #f8f8f8;
 $text-color: #333;
 $text-color-light: #666;
 $text-color-white: #ffffff;
-$lefigaro-red-hover: #c00; // Verifica colore esatto
 
 // --- Reset Base e Container ---
 .lefigaro-header {
@@ -167,7 +166,7 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
       font-weight: bold; // Testo "Lire le journal" bold
     }
     &:hover {
-      color: $lefigaro-red-hover;
+      color: $lefigaro-blue-hover;
     }
   }
 
@@ -366,7 +365,8 @@ $lefigaro-red-hover: #c00; // Verifica colore esatto
           flex: 0 0 calc(20% - 16px); /* 5 elementi per riga con gap */
 
           &:hover {
-            text-decoration: underline;
+            text-decoration: none;
+            color: $lefigaro-blue-hover;
           }
         }
       }

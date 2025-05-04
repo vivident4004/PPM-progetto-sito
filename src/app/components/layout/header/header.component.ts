@@ -1,5 +1,5 @@
-import {Component, HostListener, OnInit, OnDestroy, Renderer2, ElementRef, ViewChild} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {Component, HostListener, OnInit, OnDestroy, Inject, PLATFORM_ID} from "@angular/core";
+import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from '@angular/material/icon';
 import {MenuButtonComponent} from "../../menu-button/menu-button.component";
@@ -21,21 +21,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMobileOrTablet = false; // Flag to check if we're in mobile/tablet view
   resizeObserver: ResizeObserver | null = null;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   ngOnInit(): void {
+    // Check screen size initially
     this.checkScreenSize();
-    this.updateBodyPadding();
 
-    // Set up ResizeObserver to detect screen size changes
-    this.resizeObserver = new ResizeObserver(() => {
-      this.checkScreenSize();
-      this.updateBodyPadding();
-    });
-
-    this.resizeObserver.observe(document.body);
+    // Add an event listener to check screen size on resize
+    if (isPlatformBrowser(this.platformId)) {
+      window.addEventListener('resize', this.checkScreenSize.bind(this));
+    }
   }
+
 
   /**
    * Update body padding to account for fixed header
@@ -57,13 +55,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
+    // Remove the event listener when the component is destroyed
+    if (isPlatformBrowser(this.platformId)) {
+      window.removeEventListener('resize', this.checkScreenSize.bind(this));
+    }
   }
 
   /**
    * Check if the screen is mobile or tablet size
    */
   checkScreenSize(): void {
-    this.isMobileOrTablet = window.innerWidth < 1024;
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobileOrTablet = window.innerWidth < 1024;
+    } else {
+      // Optional: Handle the case when not in the browser.
+      // You might want to set a default value for SSR.
+      // For example, you could set it to false or true depending on
+      // how you want the initial render to appear on the server.
+      // If you don't set it here, isMobileOrTablet will retain its initial value (false).
+      // this.isMobileOrTablet = false;
+    }
   }
 
   /**

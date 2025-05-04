@@ -1,29 +1,28 @@
+@use '@angular/material' as mat;
 $lefigaro-blue: #163860;
 $lefigaro-blue-hover: #1f66ba;
-@use '@angular/material' as mat;
-
 
 .menu-button {
   //background: WHITE;
+  //background-color: WHITE;
+  //color: $lefigaro-blue;
   display: flex;
   align-items: center;
   gap: 8px;
   height: 100%;
   justify-content: left;
   padding: 8px 16px;
-  //background-color: WHITE;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 100px;
-  color: $lefigaro-blue;
   font-size: 12px;
   font-weight: 600;
   text-align: left;
   @include mat.button-overrides((
-    filled-container-color: WHITE
+    filled-container-color: WHITE, // importante per farlo sparire insieme allo sfondo
+    filled-label-text-color: $lefigaro-blue,
   ));
-
   &:hover {
     color: $lefigaro-blue-hover;
   }
@@ -36,6 +35,7 @@ $lefigaro-blue-hover: #1f66ba;
 
 
 .icon-container {
+  // Questo container ora contiene solo l'icona
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -48,7 +48,7 @@ $lefigaro-blue-hover: #1f66ba;
 }
 
 .menu-text {
-  margin-right: 12px;
+  //margin-right: 12px;
   font-weight: 500;
 }
 

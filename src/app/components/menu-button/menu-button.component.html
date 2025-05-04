@@ -1,4 +1,5 @@
-<button (click)="onToggleMenu()" [class.open]="isOpen" class="menu-button" mat-flat-button>
+<button (click)="onToggleMenu()" [class.open]="isOpen" aria-label="Toggle Menu" class="menu-button" mat-flat-button
+        type="button">
 
   <div class="icon-container">
     <!-- Three lines with magnifying glass icon (shown when closed) -->
@@ -14,7 +15,6 @@
 
     </svg>
 
-
     <!-- X icon (shown when open) -->
     <svg *ngIf="isOpen" class="menu-icon" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -22,7 +22,6 @@
         fill="currentcolor" stroke="currentColor"
         stroke-width="0.3"></path>
     </svg>
-
     <span class="menu-text">Menu</span>
   </div>
 </button>
