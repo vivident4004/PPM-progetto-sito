@@ -1,0 +1,485 @@
+:host {
+  display: block; // Assicura che il componente occupi spazio
+}
+
+// --- Contenitore Principale Articolo ---
+.fig-ranking-profile-container {
+  position: relative;
+  background-color: #fff;
+  // Rimuoviamo il bordo di debug generale
+  // border: 1px solid #eee;
+  padding: 0; // Rimuoviamo padding generale, gestito per tipo
+  margin-bottom: 16px; // Spazio tra gli articoli nella lista
+
+  // Stile specifico per articoli nella sezione blu mobile
+  .figaro-selection-mobile-list & { // Se questo post è dentro la lista mobile
+    // Reset e Layout Base
+    display: flex;
+    gap: 15px;
+    background-color: transparent !important; // Forza sfondo trasparente
+    border: none; // Rimuovi eventuali bordi precedenti
+    padding: 16px 0; // Padding solo verticale
+    margin-bottom: 0; // Nessun margine inferiore tra i post
+    max-width: 100%; // Occupa tutta la larghezza disponibile nel contenitore blu
+
+    // Separatore tra gli articoli
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: none; // L'ultimo non ha bordo sotto
+    }
+
+    &:first-child {
+      border-top: none; // Il primo non ha bordo sopra
+    }
+
+    .fig-ranking-profile-link {
+      flex-grow: 1; // Il testo occupa lo spazio rimanente
+    }
+
+    figure { // Stile immagine in modalità mobile
+      flex-shrink: 0;
+      width: 104px; // Larghezza fissa immagine mobile
+      margin: 0;
+      order: 1; // Metti l'immagine a destra
+    }
+
+    .fig-ranking-profile-headline {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .fig-ranking-profile-standfirst {
+      font-size: 0.9rem;
+      color: #333;
+      line-height: 1.3;
+    }
+
+    .fig-rdv-article__slug { // Slug sopra il titolo in mobile
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #555;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+// --- Elementi Comuni ---
+.fig-ranking-profile-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; // Assicura che il link occupi spazio
+}
+
+.fig-ranking-profile-headline {
+  font-size: 1.1rem; // Dimensione base titolo
+  font-weight: 700; // Bold
+  color: #163860;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  padding: 0 10px; // Padding laterale per testo
+}
+
+.fig-ranking-profile-standfirst {
+  font-size: 0.95rem; // Leggermente più grande
+  color: #333; // Più scuro
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  padding: 0 10px; // Padding laterale per testo
+}
+
+.fig-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background-color: #eee; // Sfondo per placeholder
+}
+
+figure {
+  margin: 0 0 10px 0;
+  padding: 0;
+  line-height: 0; // Evita spazi extra sotto l'immagine
+}
+
+// --- Stili Specifici per Tipo ---
+
+// Highlight (Center Column)
+.fig-ranking-profile-highlight {
+  padding: 10px; // Padding per highlight
+  border: 1px solid #eee; // Bordo per highlight
+
+  .fig-ranking-profile-headline-highlight {
+    font-size: 1.5rem;
+    padding: 0; // Rimuovi padding specifico titolo
+  }
+
+  .fig-ranking-profile-standfirst-highlight {
+    padding: 0; // Rimuovi padding specifico standfirst
+  }
+
+  .fig-ranking-profile-main-media-video {
+    position: relative;
+    margin-bottom: 10px;
+
+    .fig-ranking-profile-main-media-video__svg {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      padding: 4px;
+      font-size: 36px;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .fig-ranking-profile-extra {
+    padding: 0; // Rimuovi padding specifico extra
+  }
+
+  .fig-ranking-profile-extra__published {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 5px;
+    display: block;
+  }
+}
+
+@media (min-width: 1024px), (max-width: 1279.98px) {
+  .fig-ranking-profile-container .fig-ranking-profile-container-big-picture {
+    max-width: 212px;
+    max-height: 376px;
+  }
+}
+
+// Big Picture (Center Column)
+.fig-ranking-profile-big-picture {
+  padding-bottom: 10px; // Spazio sotto
+  border-bottom: 1px solid #eee; // Separatore
+  .fig-ranking-profile-headline {
+    padding: 10px 10px 0 10px; // Padding sopra e laterale
+  }
+
+  .fig-ranking-profile-standfirst {
+    padding: 0 10px 10px 10px; // Padding sotto e laterale
+  }
+
+  figure {
+    margin-bottom: 0; // Nessun margine sotto l'immagine
+  }
+}
+
+// Small Picture (Center Column)
+.fig-ranking-profile-small-picture {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #eee; // Separatore
+
+  .fig-ranking-profile-link {
+    flex-grow: 1; // Il testo occupa lo spazio
+  }
+
+  .fig-ranking-profile-media-small-picture {
+    flex-shrink: 0;
+    width: 120px; // Larghezza fissa immagine
+    margin: 0;
+    order: 1; // Immagine a destra
+  }
+
+  .fig-ranking-profile-headline {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    padding: 0; // Rimuovi padding specifico
+  }
+
+  .fig-ranking-profile-standfirst {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    padding: 0; // Rimuovi padding specifico
+  }
+}
+
+// Magazine Article (Left Column)
+.fig-ranking-profile-magazine-article {
+  // Il testo è gestito da .fig-ranking-profile-headline, .fig-ranking-profile-standfirst
+  // L'immagine è gestita da figure > img
+  .fig-ranking-profile-headline-magazine-article {
+    font-size: 1rem;
+    font-weight: 500; // Normale/Medio
+    padding: 0; // Rimuovi padding specifico
+    margin-bottom: 5px;
+
+    span { // Lo span aggiunto nel TS
+      display: block;
+    }
+  }
+
+  .fig-ranking-profile-media-magazine-article {
+    margin-top: 8px;
+  }
+
+  .fig-ranking-profile-standfirst { // Standfirst opzionale per magazine
+    padding: 0;
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+}
+
+// Zone Left (Left Column)
+.fig-ranking-profile-zone-left {
+  display: flex; // Testo e immagine affiancati
+  gap: 10px;
+  align-items: flex-start; // Allinea in alto
+
+  .fig-ranking-profile-link {
+    flex-grow: 1;
+  }
+
+  .fig-ranking-profile-headline {
+    font-size: 0.95rem; // Leggermente più piccolo
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fig-ranking-profile-media-zone-left {
+    flex-shrink: 0;
+    width: 104px; // Larghezza immagine sinistra
+    margin: 0;
+    order: 1; // Immagine a destra
+  }
+}
+
+
+// Premium Marker
+.fig-premium-mark::before {
+  color: #cc8400; // Colore oro/arancio
+  font-size: 0.8em;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.fig-premium-mark-inline {
+  color: #cc8400;
+  font-size: 0.8em;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+
+// Flash News Item (Right Column)
+.fig-flash-w__item {
+  display: flex;
+  align-items: baseline;
+  padding: 8px 5px 8px 0; // Padding leggero
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+
+  &:last-child {
+    border-bottom: none; // The last item doesn't have a border
+    padding-bottom: 16px; // Add extra padding at the bottom for better visual appearance with the fade
+  }
+
+  .fig-flash-w__hour {
+    flex-shrink: 0;
+    width: 45px;
+    color: #e60004;
+    font-weight: bold;
+    font-size: 0.85rem; // Leggermente più piccolo
+  }
+
+  .fig-flash-w__data {
+    color: #163860;
+    text-decoration: none;
+    line-height: 1.3;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.radio-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.radio-player__control {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  border: 0px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.radio-card-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.radio-thumbnail {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  flex-shrink: 0; /* Evita che si restringa */
+}
+
+.radio-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .radio-title {
+    color: #707070;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 0 0 2px 0;
+    text-transform: uppercase;
+  }
+
+  .radio-program {
+    color: #163860;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+/* Stile generale per la card radio */
+.radio-card {
+  border: 1px solid #e0e0e0; /* Bordo grigio chiaro */
+  border-radius: 8px; /* Angoli arrotondati */
+  padding: 12px; /* Padding interno */
+  background-color: #ffffff; /* Sfondo bianco */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Ombra leggera */
+  max-width: 248px; /* Larghezza massima come altri elementi sinistra */
+}
+
+.radio-logo {
+  height: 25px;
+  width: auto;
+}
+
+.fig-mobile-selection-item {
+  // Layout Base Flex
+  display: flex;
+  gap: 15px;
+  background-color: transparent !important; // Sfondo trasparente obbligatorio
+  border: none; // Nessun bordo esterno
+  padding: 16px 0; // Padding verticale
+  margin: 0; // Nessun margine esterno
+  max-width: 100%;
+
+  // Separatore inferiore (tranne per l'ultimo)
+  border-bottom: 1px solid #ccc;
+
+  &:last-child { // Se è l'ultimo elemento con questa classe nella lista genitore
+    border-bottom: none;
+  }
+
+  // Potrebbe servire un bordo superiore per il primo se non c'è padding sopra nella lista
+  // &:first-child { border-top: 1px solid #ccc; } // Da valutare
+
+  // Contenitore Testo (Link)
+  .fig-ranking-profile-link {
+    flex-grow: 1; // Occupa spazio rimanente
+    order: 0; // Testo a sinistra
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Stile Slug
+  .fig-rdv-article__slug {
+    display: block; // Rendi visibile
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    order: 0;
+  }
+
+  // Stile Titolo
+  .fig-ranking-profile-headline {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    padding: 0;
+    order: 1;
+    color: #163860; // Assicura colore corretto
+    // Sovrascrivi eventuali stili specifici di altri tipi
+    &.fig-ranking-profile-headline-magazine-article {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+  }
+
+  // Stile Standfirst
+  .fig-ranking-profile-standfirst {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.3;
+    margin: 0;
+    padding: 0;
+    order: 2;
+    // Rimuovi il bold dello slug se presente
+    strong {
+      display: none;
+    }
+  }
+
+  // Stile Immagine
+  figure {
+    flex-shrink: 0;
+    width: 104px; // Larghezza fissa
+    margin: 0;
+    order: 1; // Immagine a destra
+    line-height: 0;
+
+    // Sovrascrivi classi specifiche se necessario
+    &.fig-ranking-profile-media-small-picture,
+    &.fig-ranking-profile-media-zone-left,
+    &.fig-ranking-profile-media-magazine-article {
+      width: 104px;
+      margin: 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto; // Altezza automatica basata sulla larghezza e proporzioni originali (o forzata dal dato imageHeight)
+      display: block;
+      background-color: #eee; // Placeholder
+    }
+  }
+
+  // Nascondi elementi non voluti
+  .fig-ranking-profile-extra,
+  .fig-ranking-profile-main-media-video {
+    display: none;
+  }
+
+  // Nascondi premium marker se necessario
+  .fig-premium-mark::before,
+  .fig-premium-mark-inline {
+    display: none; // Nascondi lucchetto premium in questa vista
+  }
+}

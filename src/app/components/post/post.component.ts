@@ -1,22 +1,24 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-// Interfaccia opzionale per definire la struttura dei dati del post
-export interface PostData {
-  title: string;
-  summary?: string;
-  imageUrl?: string;
-  category?: string;
-  date?: Date;
-}
+import {Article} from '../../article.model';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {MatIconModule} from '@angular/material/icon'; // Per l'icona video e premium
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './post.component.html',
-  styleUrl: './post.component.scss'
+  styleUrl: './post.component.scss',
 })
 export class PostComponent {
-  @Input() postData: PostData | null = null; // Riceve i dati del post
+  // Riceve i dati dell'articolo dal componente padre (lista-articoli)
+  @Input() article!: Article;
+
+  // Helper per generare URL placeholder
+  getPlaceholderUrl(width: number | undefined, height: number | undefined): string {
+    // Gestisci il caso in cui width/height siano undefined fornendo valori di default
+    const w = width ?? 100; // Usa 100 se width è undefined
+    const h = height ?? 100; // Usa 100 se height è undefined
+    return `https://placehold.co/${w}x${h}`;
+  }
 }

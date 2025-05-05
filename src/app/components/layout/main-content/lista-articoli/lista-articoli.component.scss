@@ -1,51 +1,25 @@
-.article-block {
-  margin-bottom: 32px;
-  font-family:  source-sans-pro, Arial, sans-serif;
+:host {
+  display: block;
+}
 
-  .fig-media {
-    font-size: 0;
-    margin-bottom: 8px;
+// Stile per il titolo delle liste nella colonna sinistra
+.fig-list-articles__title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
 
-    img {
-      width: 100%;
-      display: block;
-      height: auto;
-    }
-  }
+// Classe per la lista flash news (colonna destra)
+.fig-flash-w__list {
+  // Stili specifici se necessari, altrimenti gestiti da post.component.scss
+}
 
-  h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 1.4285714286;
-  }
-
-  a {
-    display: block;
-    text-decoration: none;
-    color: #163860;
-
-    &:hover {
-      color: #c00;
-    }
-  }
-
-  p {
-    margin-top: 0;
-    margin-bottom: 8px;
-    color: #727272;
-    font-size: 0.875rem;
-    line-height: 1.4;
-  }
-
-  &.first-article {
-    h3 {
-      font-size: 1.25rem;
-    }
-
-    p {
-      color: #333;
-    }
-  }
+// Aggiungi altre classi se necessario (es. per la sezione blu mobile)
+.figaro-selection-mobile-list {
+  padding: 15px;
+  background-color: #d3e7ff; // Sfondo blu per la sezione mobile
 }

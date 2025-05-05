@@ -3,13 +3,13 @@
   max-width: 1280px; /* Larghezza esatta del sito originale */
   margin: 0 auto;
   padding: 0 1rem;
-  background-color: #f4f4f4; /* Sfondo leggermente grigio per vedere i limiti */
+  background-color: #fff;
 }
 
 .main-wrapper {
   display: grid;
   /* Colonne con larghezze esatte: left (296px), center (616px), right (272px) */
-  grid-template-columns: 296px 616px 272px;
+  //grid-template-columns: 296px 616px 272px;
   /* Aree per chiarezza/responsività */
   grid-template-areas: "left-sidebar main sidebar";
   gap: 1.5rem; /* Spazio tra le colonne */
@@ -31,43 +31,49 @@ app-sidebar {
 }
 
 /* Media query per tablet */
-@media (max-width: 1200px) {
+@media (max-width: 1279.98px) {
   .main-wrapper {
-    grid-template-columns: 1fr 2fr 1fr; /* Proporzioni relative */
+    /* Mantiene 3 colonne ma con proporzioni diverse o larghezze fisse come definito
+       in main-content.component.scss per questo range (1024-1280) */
+    /* Non è strettamente necessario definire le colonne qui se main-content
+       gestisce già le larghezze interne per questo breakpoint */
+    max-width: 1024px; /* Adatta la larghezza massima del wrapper */
+    padding: 0 10px; /* Riduci padding wrapper */
+    gap: 20px; /* Riduci gap wrapper */
   }
 }
 
-/* Media query per mobile */
-@media (max-width: 992px) {
-  .main-wrapper {
-    display: grid;
-    /* Definisce 3 colonne: sinistra (296px), centrale (616px), destra (272px) */
-    grid-template-columns: 296px 616px 272px;
-    grid-template-areas: "left-sidebar main sidebar";
-    gap: 1.5rem; /* Spazio tra le colonne */
-    margin: 1rem auto; /* Centra e aggiunge margine sopra/sotto */
-    max-width: 1280px; /* Larghezza massima del contenitore principale */
+/* Media query per mobile (< 1024px) */
+@media (max-width: 1023.98px) {
 
-    /* Adattamenti per schermi più piccoli */
-    @media (max-width: 1200px) {
-      grid-template-columns: 1fr 2fr 1fr; /* Colonne proporzionali */
-      max-width: 95%; /* Usa più larghezza disponibile */
-    }
-
-    @media (max-width: 992px) {
-      grid-template-columns: 1fr; /* Colonna singola */
-      grid-template-areas:
-          "main"
-          "left-sidebar" /* Sposta le sidebar sotto */
-          "sidebar";
-      gap: 1rem;
-    }
+  .page-container {
+    padding: 0; // Rimuovi padding laterale dal contenitore più esterno su mobile
+    max-width: 768px;
   }
 
-  /* Assicura che i componenti vadano nelle aree corrette */
+  .main-wrapper {
+    display: block; // Cambia il wrapper a display block, non più grid
+    max-width: none; // Nessun limite di larghezza per il wrapper
+    width: 100%;
+    margin-top: 0; // Rimuovi margini extra se non necessari
+    margin-bottom: 0;
+    padding: 0; // Rimuovi padding dal wrapper, sarà gestito internamente
+    gap: 0;
+  }
+
+  /* Nascondi le sidebar globali */
+  app-left-sidebar,
+  app-sidebar {
+    display: none;
+  }
+
+  /* Forza app-main-content ad occupare tutta la larghezza */
   app-main-content {
-    grid-area: main;
+    display: block; // Assicurati sia block
+    width: 100%;
+    max-width: none;
+    grid-area: auto; // Resetta l'area grid
+    padding: 0; // Rimuovi eventuali padding ereditati
+    margin: 0; // Rimuovi eventuali margini ereditati
   }
 }
-
-/* Rimosso CSS non utilizzato (.main-container, .main-content, .sidebar) */

@@ -1,1 +1,179 @@
-<p>post works!</p>
+<!-- Aggiungi *ngIf="article" per sicurezza -->
+<article
+  *ngIf="article"
+  [ngClass]="{
+    'fig-ranking-profile-highlight': article.type === 'highlight',
+    'fig-ranking-profile-big-picture': article.type === 'big-picture',
+    'fig-ranking-profile-small-picture': article.type === 'small-picture',
+    'fig-ranking-profile-magazine-article': article.type === 'magazine-article',
+    'fig-ranking-profile-zone-left': article.type === 'zone-left',
+    'fig-flash-w__item': article.type === 'flash-news',
+    'fig-radio-placeholder-item': article.type === 'radio-placeholder',
+    'fig-mobile-selection-item': article.type === 'mobile-selection-item',
+  }"
+  class="fig-ranking-profile-container"
+>
+  <!-- Contenuto specifico per Flash News -->
+  <ng-container *ngIf="article.type === 'flash-news'">
+    <time [attr.datetime]="article.time" class="fig-flash-w__hour">
+      {{ article.time | date : 'HH:mm' }}
+    </time>
+    <a [href]="article.url || '#'" class="fig-flash-w__data">
+      {{ article.title }}
+    </a>
+  </ng-container>
+
+  <!-- Contenuto specifico per Radio Placeholder -->
+  <ng-container *ngIf="article.type === 'radio-placeholder'">
+    <div class="radio-card">
+      <div class="radio-card-top">
+        <img [src]="getPlaceholderUrl(98, 25)" alt="Radio Logo" class="radio-logo">
+        <button aria-label="Play Radio" class="radio-player__control">
+          <svg
+            aria-hidden="true"
+            class="radio-player__control__svg"
+            focusable="false"
+            height="23"
+            viewBox="0 0 24 24"
+            width="23"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Cerchio di sfondo -->
+            <circle cx="12" cy="12" fill="#e0e0e0" r="11.5"/>
+            <!-- Triangolo di play -->
+            <polygon fill="#ffffff" points="9.5,7.5 17.5,12 9.5,16.5"/>
+          </svg>
+        </button>
+      </div>
+      <div class="radio-card-bottom">
+        <img [src]="getPlaceholderUrl(40, 40)" alt="Program Thumbnail" class="radio-thumbnail">
+        <div class="radio-info">
+          <p class="radio-title">EN CE MOMENT</p>
+          <p class="radio-program">{{ article.standfirst }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Contenuto per altri tipi di articoli (NON flash, NON radio) -->
+  <ng-container *ngIf="article.type !== 'flash-news' && article.type !== 'radio-placeholder'">
+    <a [href]="article.url || '#'" class="fig-ranking-profile-link">
+      <!-- slug (visibile solo via CSS nel contesto mobile) -->
+      <p *ngIf="article.slug" class="fig-rdv-article__slug">
+        {{ article.slug }}
+      </p>
+
+      <!-- Titolo -->
+      <h1
+        *ngIf="article.type === 'highlight'"
+        [class.fig-premium-mark]="article.premium"
+        class="fig-ranking-profile-headline fig-ranking-profile-headline-highlight"
+      >
+        {{ article.title }}
+      </h1>
+      <h2
+        *ngIf="article.type !== 'highlight'"
+        [class.fig-premium-mark]="article.premium"
+        [class.fig-ranking-profile-headline-magazine-article]="
+          article.type === 'magazine-article'
+        "
+        class="fig-ranking-profile-headline"
+      >
+        <span *ngIf="article.type === 'magazine-article'; else normalTitle">{{
+            article.title
+          }}</span>
+        <ng-template #normalTitle>{{ article.title }}</ng-template>
+      </h2>
+
+      <!-- Standfirst/Descrizione (spostato qui dentro il link se serve cliccabile) -->
+      <p
+        *ngIf="article.standfirst"
+        [class.fig-ranking-profile-standfirst-highlight]="
+           article.type === 'highlight'
+         "
+        class="fig-ranking-profile-standfirst"
+      >
+        <strong *ngIf="article.slug && article.type === 'magazine-article'">{{ article.slug }}: </strong>
+        {{ article.standfirst }}
+      </p>
+
+    </a>
+    <!-- Immagine e Video Icon (per highlight) -->
+    <div
+      *ngIf="article.type === 'highlight' && article.video && article.imageWidth && article.imageHeight"
+      class="fig-ranking-profile-main-media-video"
+    >
+      <mat-icon class="fig-ranking-profile-main-media-video__svg"
+      >play_circle_outline
+      </mat-icon
+      >
+      <figure class="fig-ranking-profile-media-highlight">
+        <img
+          [alt]="article.title"
+          [attr.height]="article.imageHeight"
+          [attr.width]="article.imageWidth"
+          [src]="getPlaceholderUrl(article.imageWidth, article.imageHeight)"
+          class="fig-img fig-ranking-profile-media-highlight__photo"
+        />
+      </figure>
+    </div>
+
+    <!-- Immagine (per tipi diversi da highlight con video) -->
+    <!-- MODIFICA *ngIf: controlla solo width e height -->
+    <figure
+      *ngIf="!(article.type === 'highlight' && article.video) && article.imageWidth && article.imageHeight"
+      [ngClass]="{
+        'fig-ranking-profile-media-big-picture': article.type === 'big-picture',
+        'fig-ranking-profile-media-small-picture':
+          article.type === 'small-picture',
+        'fig-ranking-profile-media-magazine-article':
+          article.type === 'magazine-article',
+        'fig-ranking-profile-media-zone-left': article.type === 'zone-left'
+      }"
+    >
+      <img
+        [alt]="article.title"
+        [attr.height]="article.imageHeight"
+        [attr.width]="article.imageWidth"
+        [ngClass]="{
+          'fig-ranking-profile-media-big-picture__photo':
+            article.type === 'big-picture',
+          'fig-ranking-profile-media-small-picture__photo':
+            article.type === 'small-picture',
+          'fig-ranking-profile-media-magazine-article__photo':
+            article.type === 'magazine-article',
+          'fig-ranking-profile-media-zone-left__media-photo':
+            article.type === 'zone-left'
+        }"
+        [src]="getPlaceholderUrl(article.imageWidth, article.imageHeight)"
+        class="fig-img"
+      />
+    </figure>
+
+    <!-- Standfirst/Descrizione -->
+    <p
+      *ngIf="article.standfirst"
+      [class.fig-ranking-profile-standfirst-highlight]="
+        article.type === 'highlight'
+      "
+      class="fig-ranking-profile-standfirst"
+    >
+      <!-- Aggiungi slug/category qui se necessario per certi tipi -->
+      <strong *ngIf="article.slug && article.type === 'magazine-article'">{{ article.slug }}: </strong>
+      {{ article.standfirst }}
+    </p>
+
+    <!-- Extra Info (Tempo per highlight) -->
+    <div *ngIf="article.type === 'highlight'" class="fig-ranking-profile-extra">
+      <time class="fig-ranking-profile-extra__published" datetime="2025-05-05T08:58:00.000Z">
+        {{ article.time }}
+      </time>
+    </div>
+
+    <!-- Slug/Category Title (per left column - gestito ora da lista-articoli) -->
+    <!-- <p *ngIf="article.slug && article.type !== 'magazine-article'" class="fig-rdv-article__slug">
+      {{ article.slug }}
+    </p> -->
+
+  </ng-container>
+</article>

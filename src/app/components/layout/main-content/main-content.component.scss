@@ -1,91 +1,509 @@
-/* src/app/components/layout/main-content/main-content.component.scss */
-.main-content-area {
-  background-color: #ffffff;
-  padding: 1rem;
-  font-family: source-sans-pro, Arial, sans-serif;
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  background-color: #fff;
+  padding-top: 32px; // Aumentato padding top come da originale
 }
 
-.article-block-featured {
-  margin-bottom: 32px;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 16px;
+.main-container {
+  display: grid;
+  max-width: 1280px; // Larghezza massima per schermi grandi
+  margin: 0 auto;
+  padding: 0 16px; // Padding laterale base
+  gap: 24px; // Gap base tra colonne
+  position: relative;
 
-  h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin-bottom: 16px;
+  // --- Layout > 1280px ---
+  @media (min-width: 1280px) {
+    grid-template-columns: 272px 616px 296px;
+    grid-template-areas: 'left center right';
   }
 
-  a {
-    text-decoration: none;
-    color: #163860;
+  // --- Layout 1024px - 1279.98px ---
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    grid-template-columns: 216px 544px 296px; // Centro flessibile
+    grid-template-areas: 'left center right';
+    max-width: 1024px; // Adatta larghezza massima
+    gap: 20px;
+    padding: 0 10px; // Riduci padding
+  }
 
-    &:hover {
-      color: #c00;
+  // --- Layout < 1024px ---
+  @media (max-width: 1023.98px) {
+    display: block; // Torna a block per semplicità se grid non ha funzionato
+    max-width: none; // Nessun limite al contenitore principale
+    width: 100%;
+    padding: 0 16px; // Padding laterale
+    box-sizing: border-box; // Assicura che il padding sia incluso nella larghezza
+
+    .left-column,
+    .right-column {
+      display: none;
+    }
+
+    .center-column {
+      // Forza la colonna centrale a comportarsi come un blocco normale
+      display: block; // Assicurati sia block
+      width: 100%; // Occupa tutta la larghezza del suo genitore (.main-container)
+      max-width: none !important; // Sovrascrivi QUALSIASI max-width ereditato
+      margin: 0; // Rimuovi eventuali margini laterali
+      padding: 0; // Rimuovi eventuali padding laterali specifici della colonna
+      box-sizing: border-box; // Coerenza nel box model
+    }
+
+    // Mostra la sezione blu speciale (rimane uguale)
+    .figaro-selection-mobile {
+      display: block !important;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+    .center-column app-lista-articoli,
+    .center-column app-post {
+      max-width: none;
+      width: 100%;
+      box-sizing: border-box;
     }
   }
 }
 
-.article-grid {
-  display: grid;
-  gap: 24px;
-  margin-top: 24px;
-
-  /* Utilizzo delle media queries come in fig-grid4 */
-  grid-template-columns: 1fr; /* Default per mobile */
-
-  @media (min-width: 48em) and (max-width: 63.99em) {
-    grid-template-columns: repeat(3, 1fr); /* 3 colonne per tablet */
-    gap: 16px;
-  }
-
-  @media (min-width: 64em) {
-    grid-template-columns: repeat(4, 1fr); /* 4 colonne per desktop */
-    gap: 24px;
-  }
-
-  color: #163860;
-  //-webkit-font-smoothing: antialiased;
-  //-webkit-text-size-adjust: 100%;
-  box-sizing: border-box;
-  font: inherit;
-  font-size: 100%;
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  padding-bottom: 16px;
-  position: relative;
-  max-width: 616px;
-  border: 0;
-  padding-top: 0;
+// Assegnazione aree
+.left-column {
+  grid-area: left;
 }
 
-.content-section {
-  margin-top: 32px;
-  padding-top: 16px;
-  border-top: 1px solid #e0e0e0;
+.center-column {
+  grid-area: center;
+}
 
-  h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
+.right-column {
+  grid-area: right;
+}
+
+.column {
+  position: relative;
+}
+
+// Linee divisorie (solo per schermi larghi)
+@media (min-width: 1024px) {
+  .left-column::after,
+  .center-column::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    // Altezza limitata - Adatta questo valore!
+    // Potrebbe essere necessario JS per calcolarla dinamicamente
+    // o impostare un'altezza fissa ragionevole.
+    height: 1500px; // Esempio: altezza fissa alta
+    max-height: 90vh; // O relativa alla viewport
+    background-color: #e0e0e0; // Grigio chiaro
+    display: block;
+  }
+  .left-column::after {
+    right: -12px; // Metà gap base
+    @media (max-width: 1279.98px) {
+      right: -10px;
+    }
+    // Metà gap ridotto
+  }
+  .center-column::after {
+    right: -12px; // Metà gap base
+    @media (max-width: 1279.98px) {
+      right: -10px;
+    }
+    // Metà gap ridotto
+  }
+
+  // Nascondi l'ultima linea
+  .right-column::after {
+    display: none;
+  }
+}
+
+
+// Stili per la sezione blu mobile (nascosta di default)
+.figaro-selection-mobile {
+  display: none; // Nascosta su schermi larghi
+  background-color: #d3e7ff;
+  padding: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px; // Aggiunto spazio sotto
+
+  .fig-rdv {
+    // Contenitore interno
+  }
+
+  .fig-rdv__title-link {
+    display: block;
+    font-weight: bold;
     color: #163860;
     margin-bottom: 16px;
+    font-size: 1.1rem;
+  }
+
+  // Stili per la lista articoli dentro la sezione blu
+  // La classe 'figaro-selection-mobile-list' viene passata a lista-articoli
+  // Gli stili specifici per gli articoli sono ora in post.component.scss
+  // usando il selettore .figaro-selection-mobile-list &
+  app-lista-articoli[listClass="figaro-selection-mobile-list"] {
+    // Eventuali stili specifici per il contenitore della lista qui
+    // es. rimuovere padding/margini se necessario
+    padding: 0;
+    margin: 0;
+  }
+
+
+  .fig-rdv__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px 16px; // Padding bottone
+    // Usa le variabili del tema Material per i colori se configurato
+    background-color: #163860; // Blu scuro Figaro
+    color: white;
+    text-transform: uppercase; // Testo maiuscolo
+    font-size: 0.9rem;
+
+    .mat-icon {
+      margin-right: 8px;
+      font-size: 20px; // Dimensione icona
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      background-color: lighten(#163860, 10%); // Leggermente più chiaro on hover
+    }
   }
 }
 
-// Nasconde etichette per screen reader
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+
+// Stili Colonna Destra (Flash News)
+.fig-vitrine {
+  // Stili base se necessari
 }
+
+.fig-vitrine__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.fig-vitrine__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e60004;
+}
+
+.fig-selector-link {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  font-size: 0.9rem;
+
+  .fig-selector-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__item--selected .fig-selector-link__link {
+    font-weight: bold;
+    border-bottom: 2px solid #e60004;
+    color: #163860; // Colore testo selezionato
+  }
+
+  &__link {
+    color: #555;
+    cursor: pointer;
+    padding-bottom: 2px;
+
+    &:hover {
+      color: #163860;
+    }
+  }
+}
+
+.fig-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+  color: #555;
+
+  &__text {
+    margin-right: 12px;
+  }
+
+  // Stili personalizzati per il toggle slider
+  ::ng-deep .mat-mdc-slide-toggle {
+    .mdc-switch {
+      // Dimensioni del toggle
+      width: 40px;
+      height: 20px;
+    }
+
+    .mdc-switch__track {
+      // Stile della traccia
+      //border-radius: 10px;
+      background-color: #ccc !important;
+    }
+
+    .mdc-switch__handle-track {
+      // Posizionamento del cursore
+      height: 20px;
+    }
+
+    .mdc-switch__handle {
+      // Stile del cursore
+      height: 16px;
+      width: 16px;
+      //border-radius: 50%;
+      background-color: white !important;
+    }
+
+    &.mat-mdc-slide-toggle-checked {
+      .mdc-switch__track {
+        // Colore della traccia quando attivo
+        //background-color: #163860 !important;
+      }
+    }
+  }
+}
+
+.fig-flash-w__list-container {
+  max-height: 376px; // Set the maximum height as requested
+  overflow-y: auto; // Enable vertical scrolling when content exceeds max-height
+  position: relative; // Needed for the fading effect positioning
+
+  // Add a fading effect at the bottom
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px; // Height of the fade effect
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    pointer-events: none; // Allow clicking through the gradient
+  }
+}
+
+.fig-vitrine__showmore {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  padding: 8px;
+  //background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #727272;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+// Stili Colonna Sinistra
+.left-column {
+  .fig-list-articles { // Contenitore per ogni categoria
+    margin-bottom: 24px; // Spazio tra le categorie
+  }
+
+  .fig-list-articles__title { // Titolo categoria (EXCLUSIF, RÉCIT...)
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.riquadro-video-container {
+  // Contenitore principale che gestisce le larghezze adattive
+  max-width: 1280px;
+  margin: 0 auto;
+
+  // Layout 1024px - 1279.98px
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    max-width: 936px;
+  }
+}
+
+// Header con titolo e link "En voir plus"
+.riquadro-video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px; // Spazio tra il titolo e il riquadro video
+}
+
+// Titolo "Les vidéos du jour"
+.riquadro-video-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #163860; // Stessi colore del bordo celestino
+  margin: 0;
+}
+
+// Link "En voir plus"
+.riquadro-video-showmore {
+  font-size: 16px;
+  color: #727272;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  // Stile per l'icona freccia
+  .riquadro-video-svg {
+    margin-left: 4px;
+  }
+}
+
+// Contenitore principale che gestisce le larghezze adattive
+.riquadro-video-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 32px;
+
+  // Stile specifico solo per questa sezione, non deve influenzare "La sélection du Figaro"
+  &:not(.figaro-selection-mobile) {
+    // Layout 1024px - 1279.98px
+    @media (min-width: 1024px) and (max-width: 1279.98px) {
+      max-width: 936px;
+    }
+  }
+}
+
+// Contenitore principale dei video (bordo celestino)
+.riquadro-video {
+  border: 12px solid #d3e7ff;
+  padding: 24px;
+  box-sizing: border-box;
+
+  // Larghezza specifica per schermi tra 1024 e 1280px
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    width: 816px; // Larghezza esatta richiesta
+    margin: 0 auto; // Centrato
+  }
+
+  // Gestione per schermi piccoli
+  @media (max-width: 767px) {
+    padding: 16px;
+  }
+}
+
+// Header con titolo e link "En voir plus" (ora DENTRO il riquadro)
+.riquadro-video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px; // Spazio tra il titolo e l'inizio dei video
+}
+
+// Titolo "Les vidéos du jour"
+.riquadro-video-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #163860; // Stesso colore del bordo celestino
+  margin: 0;
+}
+
+// Link "En voir plus"
+.riquadro-video-showmore {
+  font-size: 16px;
+  color: #727272;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  white-space: nowrap; // Evita che il testo vada a capo
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  // Stile per l'icona freccia
+  .riquadro-video-svg {
+    margin-left: 4px;
+  }
+}
+
+// Contenitore scorrevole per i video
+.riquadro-video-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap; // Impedisce il wrapping su schermi piccoli
+  gap: 24px;
+
+  // Su schermi piccoli, rendi scrollabile
+  @media (max-width: 767px) {
+    overflow-x: auto; // Abilita lo scroll orizzontale
+    -webkit-overflow-scrolling: touch; // Scroll fluido su iOS
+    scroll-snap-type: x mandatory; // Migliore esperienza di scroll
+    padding-bottom: 12px; // Spazio per lo scrollbar
+
+    // Nasconde la scrollbar ma mantiene la funzionalità
+    &::-webkit-scrollbar {
+      height: 0;
+      width: 0;
+      background: transparent;
+    }
+  }
+}
+
+// Singoli riquadri video
+.video-testo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  // Su schermi normali, larghezza calcolata
+  @media (min-width: 768px) {
+    width: calc(25% - 18px); // Larghezza con spazio equo
+  }
+
+  // Su schermi piccoli, dimensione fissa
+  @media (max-width: 767px) {
+    flex: 0 0 auto; // Non si espande, ma mantiene dimensione
+    width: 224px; // Larghezza fissa richiesta
+    scroll-snap-align: start; // Migliora l'esperienza di scroll
+  }
+
+  img {
+    width: 100%; // Immagine occupa tutta la larghezza del riquadro
+    max-width: 224px; // Larghezza massima per l'immagine
+    height: auto;
+    max-height: 126px; // Altezza massima richiesta
+    object-fit: cover; // Mantiene le proporzioni riempiendo l'area
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.3;
+    max-width: 224px; // Limita la larghezza del testo
+  }
+}
+

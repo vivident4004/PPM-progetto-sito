@@ -1,29 +1,93 @@
-<!-- src/app/components/layout/main-content/main-content.component.html -->
-<section class="main-content-area" aria-labelledby="main-content-title">
-  <h1 id="main-content-title" class="visually-hidden">Contenuto Principale</h1>
-
-  <!-- Blocco Notizia Principale -->
-  <article class="article-block-featured">
-    <div class="fig-media">
-      <img src="https://placehold.co/800x450?text=Featured+Article" alt="Placeholder notizia principale" />
+<div class="main-container">
+  <!-- Colonna Sinistra (fig-left) -->
+  <aside class="column left-column">
+    <!-- Placeholder per Radio Player -->
+    <div *ngIf="getRadioArticle() as radioArticle" class="fig-radio-root">
+      <app-post [article]="radioArticle"></app-post>
+      <!-- Qui potresti mettere un componente radio player più complesso -->
     </div>
-    <h2><a href="#">Titolo Molto Importante della Notizia Principale Placeholder</a></h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-  </article>
 
-  <!-- Griglia di notizie in stile fig-grid4 -->
-  <div class="article-grid">
-    @for (articolo of listaArticoli; track articolo.title; let isFirst = $first, tv = $index, sezione = $index) {
-      <app-lista-articoli [articolo]="articolo" [isFirst]="isFirst"></app-lista-articoli>
-    } @empty {
-      <p>Nessuna notizia disponibile</p>
-    }
+    <!-- Liste Articoli Sinistra per Categoria -->
+    <div *ngFor="let categorySlug of getLeftColumnCategories()" class="fig-list-articles">
+      <app-lista-articoli
+        [articles]="getLeftArticlesByCategory(categorySlug)"
+        [listTitle]="categorySlug"
+      ></app-lista-articoli>
+    </div>
+  </aside>
+
+  <!-- Colonna Centrale (fig-main) -->
+  <main class="column center-column">
+    <app-lista-articoli [articles]="centerColumnArticles"></app-lista-articoli>
+
+    <!-- Sezione Speciale Blu - VISIBILE SOLO SOTTO 1024px -->
+    <div class="figaro-selection-mobile">
+      <div class="fig-rdv">
+        <span class="fig-rdv__title-link">La sélection du Figaro</span>
+        <app-lista-articoli
+          [articles]="getLeftArticlesForMobile()"
+          listClass="figaro-selection-mobile-list"
+        >
+        </app-lista-articoli>
+        <button class="fig-rdv__button" color="primary" mat-flat-button>
+          <mat-icon>bookmark_border</mat-icon>
+          <!-- Sostituisci con l'icona SVG corretta se necessario -->
+          <span class="fig-rdv__button-text">RETROUVER LA SECTION</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Colonna Destra (fig-flash-w) -->
+  <aside class="column right-column">
+    <div class="fig-vitrine fig-flash-w">
+      <div class="fig-vitrine__header">
+        <div class="fig-vitrine__title">Le Flash</div>
+        <!-- Placeholder per i selettori Actu/Eco/Sport -->
+        <div class="fig-selector-container">
+          <app-flash-selector (categoryChange)="onFlashCategoryChange($event)"></app-flash-selector>
+        </div>
+      </div>
+      <!-- Placeholder per toggle alertes -->
+      <div class="fig-toggle fig-toggle--flex-end">
+        <span class="fig-toggle__text">Recevoir les alertes de la rédaction</span>
+        <mat-slide-toggle class="fig-toggle__slider" color="primary"></mat-slide-toggle>
+      </div>
+
+      <!-- Lista Flash News -->
+      <div class="fig-flash-w__list-container">
+        <app-lista-articoli
+          [articles]="getFlashArticlesByCategory()"
+          listClass="fig-flash-w__list"
+        ></app-lista-articoli>
+      </div>
+
+      <!-- Bottone Vedi Tutti i Flash -->
+      <a class="fig-vitrine__showmore" href="#"> Voir tous les flashs </a>
+    </div>
+  </aside>
+</div>
+
+<div class="riquadro-video-container">
+  <div class="riquadro-video">
+    <div class="riquadro-video-header">
+      <h2 class="riquadro-video-title">Les vidéos du jour</h2>
+      <a aria-label="En voir plus : Les vidéos du jour" class="riquadro-video-showmore" href="#"
+         title="En voir plus : Les vidéos du jour">
+        En voir plus
+        <svg aria-hidden="true" class="riquadro-video-svg" focusable="false" height="8" viewBox="0 0 24 24"
+             width="8" xmlns="http://www.w3.org/2000/svg">
+          <use href="#fig-svg__bracket"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="riquadro-video-content">
+      @for ($item of postVideoPiccoli; track $item.title) {
+        <div class="video-testo">
+          <img src="{{$item.image}}" alt="{{$item.alt}}"/>
+          <p>{{ $item.title }}</p>
+        </div>
+      }
+    </div>
   </div>
-
-  <!-- Sezione Finale -->
-  <section class="content-section">
-    <h2>Ultimi Articoli</h2>
-    <app-sezione-finale>
-    </app-sezione-finale>
-  </section>
-</section>
+</div>
