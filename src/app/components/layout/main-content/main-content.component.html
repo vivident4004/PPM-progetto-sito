@@ -10,8 +10,8 @@
     <!-- Liste Articoli Sinistra per Categoria -->
     <div *ngFor="let categorySlug of getLeftColumnCategories()" class="fig-list-articles">
       <app-lista-articoli
-        [articles]="getLeftArticlesByCategory(categorySlug)"
         [listTitle]="categorySlug"
+        [articles]="getLeftArticlesByCategory(categorySlug)"
       ></app-lista-articoli>
     </div>
   </aside>

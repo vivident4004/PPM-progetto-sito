@@ -1,6 +1,7 @@
 <!-- Aggiungi *ngIf="article" per sicurezza -->
 <article
   *ngIf="article"
+  class="fig-ranking-profile-container"
   [ngClass]="{
     'fig-ranking-profile-highlight': article.type === 'highlight',
     'fig-ranking-profile-big-picture': article.type === 'big-picture',
@@ -11,7 +12,6 @@
     'fig-radio-placeholder-item': article.type === 'radio-placeholder',
     'fig-mobile-selection-item': article.type === 'mobile-selection-item',
   }"
-  class="fig-ranking-profile-container"
 >
   <!-- Contenuto specifico per Flash News -->
   <ng-container *ngIf="article.type === 'flash-news'">
@@ -30,13 +30,13 @@
         <img [src]="getPlaceholderUrl(98, 25)" alt="Radio Logo" class="radio-logo">
         <button aria-label="Play Radio" class="radio-player__control">
           <svg
-            aria-hidden="true"
             class="radio-player__control__svg"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
             focusable="false"
             height="23"
-            viewBox="0 0 24 24"
             width="23"
-            xmlns="http://www.w3.org/2000/svg"
           >
             <!-- Cerchio di sfondo -->
             <circle cx="12" cy="12" fill="#e0e0e0" r="11.5"/>
@@ -66,18 +66,18 @@
       <!-- Titolo -->
       <h1
         *ngIf="article.type === 'highlight'"
-        [class.fig-premium-mark]="article.premium"
         class="fig-ranking-profile-headline fig-ranking-profile-headline-highlight"
+        [class.fig-premium-mark]="article.premium"
       >
         {{ article.title }}
       </h1>
       <h2
         *ngIf="article.type !== 'highlight'"
+        class="fig-ranking-profile-headline"
         [class.fig-premium-mark]="article.premium"
         [class.fig-ranking-profile-headline-magazine-article]="
           article.type === 'magazine-article'
         "
-        class="fig-ranking-profile-headline"
       >
         <span *ngIf="article.type === 'magazine-article'; else normalTitle">{{
             article.title
@@ -88,10 +88,10 @@
       <!-- Standfirst/Descrizione (spostato qui dentro il link se serve cliccabile) -->
       <p
         *ngIf="article.standfirst"
+        class="fig-ranking-profile-standfirst"
         [class.fig-ranking-profile-standfirst-highlight]="
            article.type === 'highlight'
          "
-        class="fig-ranking-profile-standfirst"
       >
         <strong *ngIf="article.slug && article.type === 'magazine-article'">{{ article.slug }}: </strong>
         {{ article.standfirst }}
@@ -109,11 +109,11 @@
       >
       <figure class="fig-ranking-profile-media-highlight">
         <img
+          [src]="getPlaceholderUrl(article.imageWidth, article.imageHeight)"
           [alt]="article.title"
+          class="fig-img fig-ranking-profile-media-highlight__photo"
           [attr.height]="article.imageHeight"
           [attr.width]="article.imageWidth"
-          [src]="getPlaceholderUrl(article.imageWidth, article.imageHeight)"
-          class="fig-img fig-ranking-profile-media-highlight__photo"
         />
       </figure>
     </div>
@@ -132,8 +132,8 @@
       }"
     >
       <img
-        [alt]="article.title"
         [attr.height]="article.imageHeight"
+        [alt]="article.title"
         [attr.width]="article.imageWidth"
         [ngClass]="{
           'fig-ranking-profile-media-big-picture__photo':
@@ -150,18 +150,7 @@
       />
     </figure>
 
-    <!-- Standfirst/Descrizione -->
-    <p
-      *ngIf="article.standfirst"
-      [class.fig-ranking-profile-standfirst-highlight]="
-        article.type === 'highlight'
-      "
-      class="fig-ranking-profile-standfirst"
-    >
-      <!-- Aggiungi slug/category qui se necessario per certi tipi -->
-      <strong *ngIf="article.slug && article.type === 'magazine-article'">{{ article.slug }}: </strong>
-      {{ article.standfirst }}
-    </p>
+    <!-- Standfirst/Descrizione rimossa per evitare duplicati -->
 
     <!-- Extra Info (Tempo per highlight) -->
     <div *ngIf="article.type === 'highlight'" class="fig-ranking-profile-extra">
@@ -170,10 +159,6 @@
       </time>
     </div>
 
-    <!-- Slug/Category Title (per left column - gestito ora da lista-articoli) -->
-    <!-- <p *ngIf="article.slug && article.type !== 'magazine-article'" class="fig-rdv-article__slug">
-      {{ article.slug }}
-    </p> -->
 
   </ng-container>
 </article>

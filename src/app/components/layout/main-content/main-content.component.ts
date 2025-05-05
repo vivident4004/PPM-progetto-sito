@@ -35,34 +35,6 @@ export class MainContentComponent implements OnInit {
   loremLongStandfirst =
     'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   loremShort = 'Consectetur adipiscing elit.';
-  flashCategories = ['Actualité', 'Économie', 'Sport'];
-  selectedFlashCategory = 'Actualité';
-  // Articoli flash per categoria
-  flashArticlesByCategory: { [key: string]: Article[] } = {
-    'Actualité': [],
-    'Économie': [],
-    'Sport': []
-  };
-  postVideoPiccoli = [{
-    image: 'https://placehold.co/186x105?text=Video+Placeholder',
-    alt: 'Video Placeholder',
-    title: 'Lorem ipsum dolor sit amet',
-  },
-    {
-      image: 'https://placehold.co/186x105?text=Video+Placeholder',
-      alt: 'Video Placeholder',
-      title: 'Lorem ipsum dolor sit amet',
-    },
-    {
-      image: 'https://placehold.co/186x105?text=Video+Placeholder',
-      alt: 'Video Placeholder',
-      title: 'Lorem ipsum dolor sit amet',
-    },
-    {
-      image: 'https://placehold.co/186x105?text=Video+Placeholder',
-      alt: 'Video Placeholder',
-      title: 'Lorem ipsum dolor sit amet',
-    }]
 
   ngOnInit(): void {
     this.loadPlaceholderData();
@@ -248,26 +220,7 @@ export class MainContentComponent implements OnInit {
     this.rightColumnArticles = allFlashArticles;
   }
 
-  getLeftArticlesForMobile(): Article[] {
-    // Esclude il tipo 'radio-placeholder' e prende i primi 2
-    //return this.leftColumnArticles
-    //  .filter((a) => a.type !== 'radio-placeholder')
-    //  .slice(0, 2);
-    const originalArticles = this.leftColumnArticles
-      .filter((a) => a.type !== 'radio-placeholder')
-      .slice(0, 2);
-
-    // Trasforma gli articoli per la vista mobile
-    return originalArticles.map(original => ({
-      ...original, // Copia tutte le proprietà originali (id, title, standfirst, slug, premium etc.)
-      type: 'mobile-selection-item', // <-- Assegna il nuovo tipo
-      imageWidth: 104, // <-- Forza la larghezza immagine desiderata
-      // Calcola altezza per ~16:9 o usa un valore fisso se preferisci
-      imageHeight: Math.round(104 * (9 / 16)), // <-- Forza l'altezza (circa 59px)
-      // Rimuovi proprietà che potrebbero interferire se non necessarie qui
-      // category: undefined, // Esempio: se non vuoi la categoria qui
-    }));
-  }
+  flashCategories = ['Actualité', 'Économie', 'Sport'];
 
   getLeftArticlesByCategory(slug: string): Article[] {
     return this.leftColumnArticles.filter(
@@ -286,6 +239,34 @@ export class MainContentComponent implements OnInit {
     return [...new Set(slugs)];
   }
 
+  selectedFlashCategory = 'Actualité';
+  // Articoli flash per categoria
+  flashArticlesByCategory: { [key: string]: Article[] } = {
+    'Actualité': [],
+    'Économie': [],
+    'Sport': []
+  };
+  postVideoPiccoli = [{
+    image: 'https://placehold.co/186x105?text=Video+Placeholder',
+    alt: 'Video Placeholder',
+    title: 'Lorem ipsum dolor sit amet',
+  },
+    {
+      image: 'https://placehold.co/186x105?text=Video+Placeholder',
+      alt: 'Video Placeholder',
+      title: 'Lorem ipsum dolor sit amet',
+    },
+    {
+      image: 'https://placehold.co/186x105?text=Video+Placeholder',
+      alt: 'Video Placeholder',
+      title: 'Lorem ipsum dolor sit amet',
+    },
+    {
+      image: 'https://placehold.co/186x105?text=Video+Placeholder',
+      alt: 'Video Placeholder',
+      title: 'Lorem ipsum dolor sit amet',
+    }]
+
   // Metodo per cambiare categoria
   onFlashCategoryChange(category: string): void {
     this.selectedFlashCategory = category;
@@ -294,5 +275,23 @@ export class MainContentComponent implements OnInit {
   // Metodo per ottenere gli articoli della categoria selezionata
   getFlashArticlesByCategory(): Article[] {
     return this.flashArticlesByCategory[this.selectedFlashCategory] || [];
+  }
+
+  getLeftArticlesForMobile(): Article[] {
+    // Esclude il tipo 'radio-placeholder' e prende i primi 2
+    //return this.leftColumnArticles
+    //  .filter((a) => a.type !== 'radio-placeholder')
+    //  .slice(0, 2);
+    const originalArticles = this.leftColumnArticles
+      .filter((a) => a.type !== 'radio-placeholder')
+      .slice(0, 2);
+
+    // Trasforma gli articoli per la vista mobile
+    return originalArticles.map(original => ({
+      ...original, // Copia tutte le proprietà originali (id, title, standfirst, slug, premium etc.)
+      type: 'mobile-selection-item', // <-- Assegna il nuovo tipo
+      imageWidth: 281,
+      imageHeight: 159,
+    }));
   }
 }
