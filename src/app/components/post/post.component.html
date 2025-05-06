@@ -87,11 +87,10 @@
 
       <!-- Standfirst/Descrizione (solo per tipi che non sono magazine-article) -->
       <p
-        *ngIf="article.standfirst && article.type !== 'magazine-article' && article.type !== 'zone-left' && article.type !== 'mobile-selection-item'"
+        *ngIf="article.standfirst && article.type !== 'magazine-article' && article.type !== 'zone-left'"
         class="fig-ranking-profile-standfirst"
-        [class.fig-ranking-profile-standfirst-highlight]="
-           article.type === 'highlight'
-         "
+        [class.fig-ranking-profile-standfirst-highlight]="article.type === 'highlight'"
+        [class.fig-ranking-profile-standfirst-mobile-selection]="article.type === 'mobile-selection-item'"
       >
         <strong *ngIf="article.slug">{{ article.slug }}: </strong>
         {{ article.standfirst }}
@@ -128,7 +127,8 @@
           article.type === 'small-picture',
         'fig-ranking-profile-media-magazine-article':
           article.type === 'magazine-article',
-        'fig-ranking-profile-media-zone-left': article.type === 'zone-left'
+        'fig-ranking-profile-media-zone-left': article.type === 'zone-left',
+        'fig-ranking-profile-media-mobile-selection': article.type === 'mobile-selection-item'
       }"
     >
       <img
@@ -143,7 +143,9 @@
           'fig-ranking-profile-media-magazine-article__photo':
             article.type === 'magazine-article',
           'fig-ranking-profile-media-zone-left__media-photo':
-            article.type === 'zone-left'
+            article.type === 'zone-left',
+          'fig-ranking-profile-media-mobile-selection__photo':
+            article.type === 'mobile-selection-item'
         }"
         [src]="getPlaceholderUrl(article.imageWidth, article.imageHeight)"
         class="fig-img"
