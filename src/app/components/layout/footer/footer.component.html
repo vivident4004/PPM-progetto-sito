@@ -1,9 +1,7 @@
-<!-- Pre-Footer (Sezione Bianca) -->
-<section class="pre-footer">
+<section aria-label="Services supplémentaires" class="pre-footer">
   <div class="pre-footer-content">
-    <h2 class="pre-footer-title">Plus de services</h2>
-    <div class="pre-footer-lists">
-      <!-- Itera sui dati delle colonne -->
+    <h2 class="pre-footer-title" id="services-title">Plus de services</h2>
+    <div aria-labelledby="services-title" class="pre-footer-lists" role="navigation">
       <div *ngFor="let column of preFooterColumns" class="pre-footer-column">
         <h3 class="pre-footer-subtitle">{{ column.title }}</h3>
         <ul class="pre-footer-list">
@@ -16,44 +14,36 @@
   </div>
 </section>
 
-<!-- Footer Principale (Sezione Blu) -->
-<footer class="main-footer">
+<footer class="main-footer" role="contentinfo">
   <div class="main-footer-content">
-    <!-- Colonna 1: Liens Utiles -->
     <div class="main-footer-col">
-      <h3 class="main-footer-title">Nos liens utiles</h3>
-      <ul class="main-footer-list">
+      <h3 class="main-footer-title" id="liens-utiles">Nos liens utiles</h3>
+      <ul aria-labelledby="liens-utiles" class="main-footer-list" role="listbox">
         <li *ngFor="let link of usefulLinks">
           <a class="main-footer-link" href="#">
-            <!-- Semplice > invece di SVG complesso -->
-            <span class="link-arrow">&gt;</span> {{ link }}
+            <span aria-hidden="true" class="link-arrow">&gt;</span> {{ link }}
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- Colonna 2: Kiosque (Placeholder Semplificato) -->
     <div class="main-footer-col">
-      <h3 class="main-footer-title">Le Kiosque</h3>
-      <!-- Questo div è il flex container -->
-      <div class="kiosk-placeholder">
-        <!-- Flex Item 1: Immagine -->
-        <div class="kiosk-image-placeholder">Placeholder 124x185</div>
-        <!-- Flex Item 2: Nuovo Div per Testo e Bottone -->
+      <h3 class="main-footer-title" id="kiosque-title">Le Kiosque</h3>
+      <div aria-labelledby="kiosque-title" class="kiosk-placeholder">
+        <div aria-label="Couverture du journal Le Figaro" class="kiosk-image-placeholder" role="img">Le kiosque</div>
         <div class="kiosk-text-button-wrapper">
           <p>Le Figaro</p>
-          <button class="kiosk-button">Lire ce numéro</button>
+          <button aria-label="Lire ce numéro du Figaro" class="kiosk-button">Lire ce numéro</button>
         </div>
       </div>
     </div>
 
-    <!-- Colonna 3: Abonnement -->
     <div class="main-footer-col">
-      <h3 class="main-footer-title">Abonnement</h3>
-      <ul class="main-footer-list">
+      <h3 class="main-footer-title" id="abonnement-title">Abonnement</h3>
+      <ul aria-labelledby="abonnement-title" class="main-footer-list" role="listbox">
         <li>
           <a class="main-footer-link" href="#">
-            <span class="link-arrow-sub">→</span> Découvrez toutes les offres
+            <span aria-hidden="true" class="link-arrow-sub">→</span> Découvrez toutes les offres
           </a>
           <p class="subscription-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -61,51 +51,50 @@
         </li>
         <li *ngFor="let link of subscriptionLinks">
           <a class="main-footer-link" href="#">
-            <span class="link-arrow-sub">→</span> {{ link }}
+            <span aria-hidden="true" class="link-arrow-sub">→</span> {{ link }}
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- Colonna 4: Apps & Social -->
     <div class="main-footer-col">
-      <h3 class="main-footer-title">Applications mobiles</h3>
-      <ul class="main-footer-list">
+      <h3 class="main-footer-title" id="apps-title">Applications mobiles</h3>
+      <ul aria-labelledby="apps-title" class="main-footer-list" role="listbox">
         <li *ngFor="let link of appLinks">
           <a class="main-footer-link" href="#">
-            <span class="app-icon-placeholder">📱</span> {{ link }}
+            <span aria-hidden="true" class="app-icon-placeholder">📱</span> {{ link }}
           </a>
         </li>
       </ul>
 
-      <h3 class="main-footer-title">Nos newsletters</h3>
-      <a class="main-footer-link newsletter-link" href="#">
-        <span class="newsletter-icon-placeholder">✉️</span> Inscrivez-vous
+      <h3 class="main-footer-title" id="newsletter-title">Nos newsletters</h3>
+      <a aria-labelledby="newsletter-title" class="main-footer-link newsletter-link" href="#">
+        <span aria-hidden="true" class="newsletter-icon-placeholder">✉️</span> Inscrivez-vous
       </a>
 
-      <h3 class="main-footer-title">Suivez-nous sur :</h3>
-      <div class="social-icons">
-        <a aria-label="Facebook" href="#">F</a>
-        <a aria-label="LinkedIn" href="#">in</a>
-        <a aria-label="X" href="#">X</a>
-        <a aria-label="Instagram" href="#">O</a>
-        <a aria-label="TikTok" href="#">T</a>
+      <h3 class="main-footer-title" id="social-title">Suivez-nous sur :</h3>
+      <div aria-labelledby="social-title" class="social-icons" role="navigation">
+        <a aria-label="Suivez-nous sur Facebook" href="#">F</a>
+        <a aria-label="Suivez-nous sur LinkedIn" href="#">in</a>
+        <a aria-label="Suivez-nous sur X (Twitter)" href="#">X</a>
+        <a aria-label="Suivez-nous sur Instagram" href="#">O</a>
+        <a aria-label="Suivez-nous sur TikTok" href="#">T</a>
       </div>
     </div>
   </div>
 
-  <!-- Riga Inferiore (Mandatory Links) -->
-  <div class="main-footer-bottom">
+  <div aria-label="Liens légaux et informations" class="main-footer-bottom" role="navigation">
     <ul>
       <li *ngFor="let link of bottomLinks">
-        <a href="#">{{ link }}</a>
+        <a [attr.aria-label]="link" href="#">{{ link }}</a>
       </li>
     </ul>
   </div>
   <div class="footer-bottom">
     <div class="container">
-      <p class="copyright">© Le Figaro 2025 - Tous droits réservés</p>
-      <p class="disclaimer">Ce site est un exercice académique et n'est pas affilié au journal Le Figaro.</p>
+      <p class="copyright" role="contentinfo">© Le Figaro 2025 - Tous droits réservés</p>
+      <p class="disclaimer" role="note">Ce site est un exercice académique et n'est pas affilié au journal Le
+        Figaro.</p>
     </div>
   </div>
 </footer>

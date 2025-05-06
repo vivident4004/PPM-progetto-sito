@@ -272,21 +272,13 @@
     }
   }
 
-  // Gestione specifica per "Nos liens utiles" per simulare 2 colonne
   .main-footer-col:first-child { // Seleziona la prima colonna (Liens Utiles)
     .main-footer-list {
-      columns: 2; // Prova a dividere in 2 colonne
-      column-gap: 15px; // Spazio tra le colonne simulate
-      // Stili alternativi se 'columns' non funziona bene:
-      // display: flex;
-      // flex-wrap: wrap;
-      // li {
-      //   width: calc(50% - 8px); // Due colonne con piccolo gap
-      // }
+      columns: 2;
+      column-gap: 15px;
     }
   }
   .main-footer-col:nth-child(2) {
-    // Nascondi il titolo H3 originale su mobile
     > h3.main-footer-title {
       display: none;
     }
@@ -295,36 +287,32 @@
   // Modifica specifica per il Kiosque su mobile
   .kiosk-placeholder {
     display: flex;
-    align-items: flex-start; // Allinea in alto
+    align-items: flex-start;
     gap: 15px;
     text-align: left;
   }
 
-  // Stile per l'immagine (invariato)
   .kiosk-image-placeholder {
     flex-shrink: 0;
     width: 124px;
     height: 185px;
-    /* ... altri stili ... */
   }
 
-  // Stile per il wrapper testo/bottone
   .kiosk-text-button-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    position: relative; // Necessario per posizionare il ::before
-    padding-top: 0; // Rimuovi eventuale padding-top precedente
+    position: relative;
+    padding-top: 0;
 
-    // NUOVO: Aggiungi il titolo "Le Kiosque" usando ::before
     &::before {
-      content: "Le Kiosque"; // Testo del titolo
+      content: "Le Kiosque";
       display: block;
-      font-size: 0.9rem; // Stessa dimensione del titolo originale
-      font-weight: 700; // Stesso peso del titolo originale
-      color: inherit; // Eredita colore bianco
-      margin-bottom: 15px; // Spazio sotto il titolo (prima di "Le Figaro")
-      order: -1; // Assicura che appaia prima degli altri elementi flex
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: inherit;
+      margin-bottom: 15px;
+      order: -1;
     }
 
     // Stile per il paragrafo "Le Figaro"
@@ -334,28 +322,26 @@
       font-weight: normal;
       font-size: 0.9rem;
       line-height: 1.3;
-      order: 0; // Ordine dopo il ::before
+      order: 0;
     }
 
     // Stile per il bottone
     > .kiosk-button {
       margin-top: 0;
-      order: 1; // Ordine dopo il paragrafo
+      order: 1;
       width: fit-content;
-      /* ... altri stili bottone ... */
     }
   }
 
-  // Assicurati che il titolo H3 sia sopra il kiosk-placeholder
-  .main-footer-col:nth-child(2) { // Seleziona la seconda colonna (Kiosque)
-    .main-footer-title { // Il titolo "Le Kiosque"
-      margin-bottom: 15px; // Spazio sotto il titolo generale
+  .main-footer-col:nth-child(2) {
+    .main-footer-title {
+      margin-bottom: 15px;
     }
   }
 
   // Adatta la riga inferiore
   .main-footer-bottom {
-    padding: 15px 16px; // Padding laterale ridotto
+    padding: 15px 16px;
 
     ul {
       justify-content: flex-start; // Allinea a sinistra su mobile

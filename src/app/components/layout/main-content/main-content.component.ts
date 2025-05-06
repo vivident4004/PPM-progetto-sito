@@ -48,7 +48,6 @@ export class MainContentComponent implements OnInit {
         imageHeight: 347,
         title: `Highlight: ${this.loremTitle}`,
         standfirst: this.loremStandfirst,
-        time: 'Publié il y a 10 min',
         video: true,
         premium: false,
       },
