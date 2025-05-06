@@ -465,19 +465,7 @@ figure {
   }
 
   @media (max-width: 1279.98px) {
-    figure {
-      width: 191px;
-      height: 107px;
-
-      &.fig-ranking-profile-media-small-picture,
-      &.fig-ranking-profile-media-zone-left,
-      &.fig-ranking-profile-media-magazine-article {
-        width: 191px;
-        height: 107px;
-      }
-    }
-
-    // Override for mobile-selection-item to maintain larger image size
+    // For mobile-selection-item, maintain 282x159px size
     figure {
       width: 282px;
       height: 159px;
@@ -488,6 +476,30 @@ figure {
       &.fig-ranking-profile-media-mobile-selection {
         width: 282px;
         height: 159px;
+      }
+    }
+  }
+
+  // Media query for screens below 768px
+  @media (max-width: 767.98px) {
+    // Change image size to 104x59px
+    figure {
+      width: 104px;
+      height: 59px;
+
+      &.fig-ranking-profile-media-small-picture,
+      &.fig-ranking-profile-media-zone-left,
+      &.fig-ranking-profile-media-magazine-article,
+      &.fig-ranking-profile-media-mobile-selection {
+        width: 104px;
+        height: 59px;
+      }
+    }
+
+    // Hide standfirst completely
+    .fig-ranking-profile-standfirst {
+      &.fig-ranking-profile-standfirst-mobile-selection {
+        display: none;
       }
     }
   }
