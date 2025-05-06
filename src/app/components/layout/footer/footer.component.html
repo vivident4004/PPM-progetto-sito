@@ -1,62 +1,102 @@
-<!-- src/app/components/layout/footer/footer.component.html -->
-<footer class="lefigaro-footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="footer-logo">
-        <a href="/" aria-label="Accéder à Le Figaro">
-          <span class="footer-logo-text">Le Figaro</span>
-        </a>
+<!-- Pre-Footer (Sezione Bianca) -->
+<section class="pre-footer">
+  <div class="pre-footer-content">
+    <h2 class="pre-footer-title">Plus de services</h2>
+    <div class="pre-footer-lists">
+      <!-- Itera sui dati delle colonne -->
+      <div *ngFor="let column of preFooterColumns" class="pre-footer-column">
+        <h3 class="pre-footer-subtitle">{{ column.title }}</h3>
+        <ul class="pre-footer-list">
+          <li *ngFor="let link of column.links">
+            <a class="pre-footer-link" href="#">{{ link }}</a>
+          </li>
+        </ul>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="footer-nav-container">
-        <nav class="footer-nav" aria-label="Navigation du pied de page">
-          <div class="footer-nav-column">
-            <h3>Le Figaro</h3>
-            <ul>
-              <li><a href="#">À propos du Figaro</a></li>
-              <li><a href="#">Mentions légales</a></li>
-              <li><a href="#">CGU / CGV</a></li>
-              <li><a href="#">Politique de confidentialité</a></li>
-              <li><a href="#">Gestion des cookies</a></li>
-            </ul>
-          </div>
+<!-- Footer Principale (Sezione Blu) -->
+<footer class="main-footer">
+  <div class="main-footer-content">
+    <!-- Colonna 1: Liens Utiles -->
+    <div class="main-footer-col">
+      <h3 class="main-footer-title">Nos liens utiles</h3>
+      <ul class="main-footer-list">
+        <li *ngFor="let link of usefulLinks">
+          <a class="main-footer-link" href="#">
+            <!-- Semplice > invece di SVG complesso -->
+            <span class="link-arrow">&gt;</span> {{ link }}
+          </a>
+        </li>
+      </ul>
+    </div>
 
-          <div class="footer-nav-column">
-            <h3>Nos services</h3>
-            <ul>
-              <li><a href="#">Le Figaro Immobilier</a></li>
-              <li><a href="#">Le Figaro Emploi</a></li>
-              <li><a href="#">Le Figaro Vin</a></li>
-              <li><a href="#">Le Figaro Santé</a></li>
-              <li><a href="#">Le Figaro Billetterie</a></li>
-            </ul>
-          </div>
+    <!-- Colonna 2: Kiosque (Placeholder Semplificato) -->
+    <div class="main-footer-col">
+      <h3 class="main-footer-title">Le Kiosque</h3>
+      <div class="kiosk-placeholder">
+        <div class="kiosk-image-placeholder">Placeholder 124x185</div>
+        <p>Le Figaro</p>
+        <button class="kiosk-button">Lire ce numéro</button>
+      </div>
+    </div>
 
-          <div class="footer-nav-column">
-            <h3>Abonnement</h3>
-            <ul>
-              <li><a href="#">Abonnez-vous</a></li>
-              <li><a href="#">Espace abonné</a></li>
-              <li><a href="#">Journal du jour</a></li>
-              <li><a href="#">Applications</a></li>
-              <li><a href="#">Newsletter</a></li>
-            </ul>
-          </div>
+    <!-- Colonna 3: Abonnement -->
+    <div class="main-footer-col">
+      <h3 class="main-footer-title">Abonnement</h3>
+      <ul class="main-footer-list">
+        <li>
+          <a class="main-footer-link" href="#">
+            <span class="link-arrow-sub">→</span> Découvrez toutes les offres
+          </a>
+          <p class="subscription-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+        </li>
+        <li *ngFor="let link of subscriptionLinks">
+          <a class="main-footer-link" href="#">
+            <span class="link-arrow-sub">→</span> {{ link }}
+          </a>
+        </li>
+      </ul>
+    </div>
 
-          <div class="footer-nav-column">
-            <h3>Suivez-nous</h3>
-            <ul class="social-links">
-              <li><a href="#" aria-label="Facebook"><span class="material-icons">facebook</span></a></li>
-              <li><a href="#" aria-label="Twitter"><span class="material-icons">twitter</span></a></li>
-              <li><a href="#" aria-label="Instagram"><span class="material-icons">instagram</span></a></li>
-              <li><a href="#" aria-label="LinkedIn"><span class="material-icons">linkedin</span></a></li>
-            </ul>
-          </div>
-        </nav>
+    <!-- Colonna 4: Apps & Social -->
+    <div class="main-footer-col">
+      <h3 class="main-footer-title">Applications mobiles</h3>
+      <ul class="main-footer-list">
+        <li *ngFor="let link of appLinks">
+          <a class="main-footer-link" href="#">
+            <span class="app-icon-placeholder">📱</span> {{ link }}
+          </a>
+        </li>
+      </ul>
+
+      <h3 class="main-footer-title">Nos newsletters</h3>
+      <a class="main-footer-link newsletter-link" href="#">
+        <span class="newsletter-icon-placeholder">✉️</span> Inscrivez-vous
+      </a>
+
+      <h3 class="main-footer-title">Suivez-nous sur :</h3>
+      <div class="social-icons">
+        <a aria-label="Facebook" href="#">F</a>
+        <a aria-label="LinkedIn" href="#">in</a>
+        <a aria-label="X" href="#">X</a>
+        <a aria-label="Instagram" href="#">O</a>
+        <a aria-label="TikTok" href="#">T</a>
       </div>
     </div>
   </div>
 
+  <!-- Riga Inferiore (Mandatory Links) -->
+  <div class="main-footer-bottom">
+    <ul>
+      <li *ngFor="let link of bottomLinks">
+        <a href="#">{{ link }}</a>
+      </li>
+    </ul>
+  </div>
   <div class="footer-bottom">
     <div class="container">
       <p class="copyright">© Le Figaro 2025 - Tous droits réservés</p>

@@ -86,38 +86,18 @@
 
 // Linee divisorie (solo per schermi larghi)
 @media (min-width: 1024px) {
-  .left-column::after,
-  .center-column::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 1px;
-    // Altezza limitata - Adatta questo valore!
-    // Potrebbe essere necessario JS per calcolarla dinamicamente
-    // o impostare un'altezza fissa ragionevole.
-    height: 1500px; // Esempio: altezza fissa alta
-    max-height: 90vh; // O relativa alla viewport
-    background-color: #e0e0e0; // Grigio chiaro
-    display: block;
-  }
-  .left-column::after {
-    right: -12px; // Metà gap base
-    @media (max-width: 1279.98px) {
-      right: -10px;
-    }
-    // Metà gap ridotto
-  }
-  .center-column::after {
-    right: -12px; // Metà gap base
-    @media (max-width: 1279.98px) {
-      right: -10px;
-    }
-    // Metà gap ridotto
+  .left-column,
+  .center-column {
+    border-right: 1px solid #ccc;
+    margin-right: 24px;
+    padding-right: 24px;
   }
 
-  // Nascondi l'ultima linea
-  .right-column::after {
-    display: none;
+  // Rimuovi il padding e margin extra per l'ultima colonna
+  .right-column {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
   }
 }
 
@@ -254,7 +234,7 @@
   }
 
   // Toggle slider styles
-  ::ng-deep .mat-mdc-slide-toggle {
+  .mat-mdc-slide-toggle {
     .mdc-switch {
       width: 40px;
       height: 20px;
@@ -375,9 +355,7 @@
 // Contenitore principale che gestisce le larghezze adattive
 .riquadro-video-container {
   max-width: 1280px;
-  margin: 0 auto;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin: 32px auto;
 
   // Stile specifico solo per questa sezione, non deve influenzare "La sélection du Figaro"
   &:not(.figaro-selection-mobile) {

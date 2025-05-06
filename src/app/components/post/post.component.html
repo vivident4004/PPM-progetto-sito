@@ -58,8 +58,8 @@
   <!-- Contenuto per altri tipi di articoli (NON flash, NON radio) -->
   <ng-container *ngIf="article.type !== 'flash-news' && article.type !== 'radio-placeholder'">
     <a [href]="article.url || '#'" class="fig-ranking-profile-link">
-      <!-- slug (visibile solo via CSS nel contesto mobile) -->
-      <p *ngIf="article.slug" class="fig-rdv-article__slug">
+      <!-- slug per zone-left (mostrato dentro l'articolo) -->
+      <p *ngIf="article.slug && article.type === 'zone-left'" class="fig-rdv-article__slug">
         {{ article.slug }}
       </p>
 
@@ -85,15 +85,15 @@
         <ng-template #normalTitle>{{ article.title }}</ng-template>
       </h2>
 
-      <!-- Standfirst/Descrizione (spostato qui dentro il link se serve cliccabile) -->
+      <!-- Standfirst/Descrizione (solo per tipi che non sono magazine-article) -->
       <p
-        *ngIf="article.standfirst"
+        *ngIf="article.standfirst && article.type !== 'magazine-article' && article.type !== 'zone-left' && article.type !== 'mobile-selection-item'"
         class="fig-ranking-profile-standfirst"
         [class.fig-ranking-profile-standfirst-highlight]="
            article.type === 'highlight'
          "
       >
-        <strong *ngIf="article.slug && article.type === 'magazine-article'">{{ article.slug }}: </strong>
+        <strong *ngIf="article.slug">{{ article.slug }}: </strong>
         {{ article.standfirst }}
       </p>
 

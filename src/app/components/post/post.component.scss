@@ -38,12 +38,11 @@
   max-width: 100%;
   height: auto;
   display: block;
-  background-color: #eee;
+  background-color: #fff;
 }
 
 figure {
   margin: 0 0 10px 0;
-  padding: 0;
   line-height: 0;
 }
 
@@ -112,10 +111,11 @@ figure {
 
   .fig-ranking-profile-standfirst {
     padding: 0 10px 10px 10px;
+    margin-top: 8px; // Aggiunto per soddisfare il requisito di 8px di margine dal testo all'immagine
   }
 
   figure {
-    margin-bottom: 0;
+    margin-bottom: 16px; // Modificato da 0 a 16px per soddisfare il requisito
   }
 }
 
@@ -125,6 +125,8 @@ figure {
   gap: 15px;
   padding: 10px;
   border-bottom: 1px solid #eee;
+  width: 376px; // Aggiunto per soddisfare il requisito di 376x240px
+  height: 240px; // Aggiunto per soddisfare il requisito di 376x240px
 
   .fig-ranking-profile-link {
     flex-grow: 1;
@@ -132,7 +134,8 @@ figure {
 
   .fig-ranking-profile-media-small-picture {
     flex-shrink: 0;
-    width: 120px;
+    width: 136px; // Modificato da 120px a 136px per soddisfare il requisito
+    height: 77px; // Aggiunto per soddisfare il requisito
     margin: 0;
     order: 1;
   }
@@ -152,11 +155,18 @@ figure {
 
 // Magazine Article (Left Column)
 .fig-ranking-profile-magazine-article {
+  box-sizing: border-box;
+  border-top: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 16px;
+  padding-right: 24px;
+
   .fig-ranking-profile-headline-magazine-article {
     font-size: 1rem;
     font-weight: 500;
     padding: 0;
-    margin-bottom: 5px;
+    margin-bottom: 16px;
 
     span {
       display: block;
@@ -164,38 +174,68 @@ figure {
   }
 
   .fig-ranking-profile-media-magazine-article {
-    margin-top: 8px;
+    margin-top: 0;
+    width: 222px;
+    height: 372px;
   }
 
   .fig-ranking-profile-standfirst {
-    padding: 0;
-    font-size: 0.85rem;
-    margin-top: 5px;
+    display: none; // Hide standfirst as per requirements
+  }
+
+  @media (max-width: 1279.98px) {
+    .fig-ranking-profile-media-magazine-article {
+      width: 191px;
+      height: 287px;
+    }
   }
 }
 
 // Zone Left (Left Column)
 .fig-ranking-profile-zone-left {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
+  box-sizing: border-box;
+  border-top: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 16px;
+  padding-right: 24px;
+  width: 247px;
+  height: 267px;
 
   .fig-ranking-profile-link {
-    flex-grow: 1;
+    display: block;
+  }
+
+  .fig-rdv-article__slug {
+    font-size: .875rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #1f66ba;
   }
 
   .fig-ranking-profile-headline {
     font-size: 0.95rem;
     font-weight: 500;
     padding: 0;
-    margin: 0;
+    margin: 0 0 16px 0;
   }
 
   .fig-ranking-profile-media-zone-left {
-    flex-shrink: 0;
-    width: 104px;
+    width: 222px;
+    height: 159px;
     margin: 0;
-    order: 1;
+    display: block;
+  }
+
+  @media (max-width: 1279.98px) {
+    width: 191px;
+    height: auto;
+
+    .fig-ranking-profile-media-zone-left {
+      width: 191px;
+      height: 107px;
+    }
   }
 }
 
@@ -319,17 +359,20 @@ figure {
 // Mobile Selection Item (Blue Section)
 .fig-mobile-selection-item {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
   background-color: transparent !important;
   border: none;
   padding: 16px 0;
+  padding-right: 24px;
   margin: 0;
   max-width: 100%;
-  flex-wrap: nowrap;
-  align-items: flex-start;
 
   // Separator between items
   border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  //padding-top: 16px;
 
   &:last-of-type {
     border-bottom: none;
@@ -337,33 +380,24 @@ figure {
 
   // Text container
   .fig-ranking-profile-link {
-    flex-grow: 1;
-    order: 0;
+    width: 100%;
     padding: 0;
     display: flex;
     flex-direction: column;
     min-width: 0;
-    max-width: calc(100% - 296px); // 281px (image) + 15px (gap)
     break-inside: avoid;
     page-break-inside: avoid;
-  }
-
-  // Media query for screens under 768px
-  @media (max-width: 767.98px) {
-    .fig-ranking-profile-link {
-      max-width: calc(100% - 119px); // 104px (image) + 15px (gap)
-    }
+    margin-bottom: 16px;
   }
 
   // Slug style
   .fig-rdv-article__slug {
     display: block;
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: #555;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1f66ba;
     text-transform: uppercase;
-    margin-bottom: 5px;
-    order: 0;
+    margin-bottom: 8px;
   }
 
   // Title style
@@ -373,7 +407,6 @@ figure {
     line-height: 1.2;
     margin-bottom: 4px;
     padding: 0;
-    order: 1;
     color: #163860;
 
     &.fig-ranking-profile-headline-magazine-article {
@@ -384,44 +417,20 @@ figure {
 
   // Description style
   .fig-ranking-profile-standfirst {
-    font-size: 0.9rem;
-    color: #333;
-    line-height: 1.3;
-    margin: 0;
-    padding: 0;
-    order: 2;
-    column-count: 1;
-    columns: unset;
-    column-gap: unset;
-    column-width: unset;
-    hyphens: none;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    strong {
-      display: none;
-    }
-
-    // Media query for screens under 768px - hide standfirst text
-    @media (max-width: 767.98px) {
-      display: none;
-    }
+    display: none; // Hide standfirst as per requirements
   }
 
   // Image style
   figure {
-    flex-shrink: 0;
-    width: 281px;
+    width: 282px;
     height: 159px;
     margin: 0;
-    order: 1;
     line-height: 0;
 
     &.fig-ranking-profile-media-small-picture,
     &.fig-ranking-profile-media-zone-left,
     &.fig-ranking-profile-media-magazine-article {
-      width: 281px;
+      width: 282px;
       height: 159px;
       margin: 0;
     }
@@ -433,17 +442,18 @@ figure {
       display: block;
       background-color: #eee;
     }
+  }
 
-    // Media query for screens under 768px - change image dimensions
-    @media (max-width: 767.98px) {
-      width: 104px;
-      height: 59px;
+  @media (max-width: 1279.98px) {
+    figure {
+      width: 191px;
+      height: 107px;
 
       &.fig-ranking-profile-media-small-picture,
       &.fig-ranking-profile-media-zone-left,
       &.fig-ranking-profile-media-magazine-article {
-        width: 104px;
-        height: 59px;
+        width: 191px;
+        height: 107px;
       }
     }
   }

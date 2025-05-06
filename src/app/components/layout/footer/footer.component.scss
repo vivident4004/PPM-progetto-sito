@@ -1,174 +1,248 @@
-/* src/app/components/layout/footer/footer.component.scss */
+/* Stili per FooterComponent */
 
-// Variables (consistent with header)
-$lefigaro-blue: #163860;
-$lefigaro-yellow: #f8b400;
-$border-color: #e0e0e0;
-$light-gray-bg: #f8f8f8;
-$text-color: #333;
-$text-color-light: #666;
-$text-color-white: #ffffff;
-$footer-bg: #f0f0f0;
-$footer-bottom-bg: #163860;
-
-.lefigaro-footer {
-  margin-top: 2rem;
-  font-family: sans-serif;
+:host {
+  display: block; // Il componente occupa spazio
+  width: 100%;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+/* --- Pre-Footer (Sezione Bianca) --- */
+.pre-footer {
+  font-family: source-sans-pro, Arial, sans-serif; // Come da stile fornito
+  padding: 24px 0; // Padding verticale
+  border-top: 1px solid #e0e0e0; // Separatore sopra
 }
 
-.footer-top {
-  background-color: $footer-bg;
-  padding: 2rem 0;
+.pre-footer-content {
+  max-width: 1000px; // Larghezza massima come da stile fornito
+  margin: 0 auto; // Centra
+  padding: 0 16px; // Padding laterale per sicurezza
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+.pre-footer-title {
+  font-size: 1.1rem; // Dimensione titolo "Plus de services"
+  color: #163860;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
 
-  .footer-logo {
-    margin-bottom: 1rem;
+.pre-footer-lists {
+  display: flex;
+  flex-wrap: wrap; // Va a capo su schermi piccoli
+  justify-content: space-between; // Spazio tra le colonne
+  gap: 20px; // Spazio tra le colonne quando vanno a capo
+}
 
-    a {
-      text-decoration: none;
-    }
+.pre-footer-column {
+  flex: 1; // Le colonne cercano di occupare spazio uguale
+  min-width: 180px; // Larghezza minima prima di andare a capo
+}
 
-    .footer-logo-text {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: $lefigaro-blue;
-    }
-  }
+.pre-footer-subtitle {
+  font-size: 0.9rem;
+  font-weight: 700; // Bold
+  color: #163860;
+  margin: 0 0 10px 0;
+}
 
-  .footer-nav-container {
-    width: 100%;
-  }
+.pre-footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .footer-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+.pre-footer-link {
+  font-size: 0.85rem;
+  color: #333; // Colore link standard
+  text-decoration: none;
+  line-height: 1.8; // Spaziatura verticale link
+  display: block; // Per spaziatura corretta
 
-    .footer-nav-column {
-      flex: 1;
-      min-width: 150px;
-
-      h3 {
-        font-size: 1rem;
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: $lefigaro-blue;
-        font-weight: bold;
-      }
-
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-
-        li {
-          margin-bottom: 0.5rem;
-
-          a {
-            text-decoration: none;
-            color: $text-color;
-            font-size: 0.9rem;
-
-            &:hover {
-              color: $lefigaro-blue;
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1rem;
-
-        li a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          background-color: $lefigaro-blue;
-          color: $text-color-white;
-          border-radius: 50%;
-          transition: background-color 0.2s;
-
-          &:hover {
-            background-color: darken($lefigaro-blue, 10%);
-          }
-
-          .material-icons {
-            font-size: 20px;
-          }
-        }
-      }
-    }
+  &:hover {
+    text-decoration: underline;
+    color: #163860;
   }
 }
 
-.footer-bottom {
-  background-color: $footer-bottom-bg;
-  color: $text-color-white;
-  padding: 1rem 0;
 
-  .container {
+/* --- Footer Principale (Sezione Blu) --- */
+.main-footer {
+  background-color: #163860; // Blu scuro Figaro
+  color: #ffffff; // Testo bianco
+  padding: 32px 0 0 0; // Padding sopra, nessun padding sotto (gestito da bottom)
+  font-size: 0.85rem; // Dimensione testo base footer
+}
+
+.main-footer-content {
+  max-width: 1280px; // Larghezza massima contenitore
+  margin: 0 auto; // Centra
+  padding: 0 32px; // Padding laterale come da stile fornito
+  display: flex;
+  flex-wrap: wrap; // Colonne vanno a capo su mobile
+  gap: 24px; // Spazio tra le colonne
+  border-bottom: 1px solid #476486; // Linea separatrice sopra la riga bottom
+  padding-bottom: 32px; // Spazio prima della riga bottom
+}
+
+.main-footer-col {
+  flex: 1; // Colonne flessibili
+  min-width: 200px; // Larghezza minima colonna
+  padding-right: 24px; // Spazio a destra
+  // Applica bordo destro tranne all'ultima colonna visibile
+  &:not(:last-of-type) {
+    // Il bordo viene applicato solo se c'è spazio per più colonne
+    @media (min-width: 768px) { // Esempio: applica bordo da tablet in su
+      border-right: 1px solid #476486;
+    }
+  }
+
+  // Rimuovi padding destro sull'ultima colonna per allineamento
+  &:last-of-type {
+    padding-right: 0;
+  }
+}
+
+.main-footer-title {
+  font-size: 0.9rem;
+  font-weight: 700; // Bold
+  margin: 0 0 15px 0;
+  text-transform: capitalize; // O rimuovi se non vuoi capitalizzazione
+}
+
+.main-footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex; // Per allineare icona/freccia e testo
+  align-items: center;
+  padding: 4px 0; // Spazio verticale tra i link
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .link-arrow, .link-arrow-sub {
+    margin-right: 8px; // Spazio dopo la freccia
+    font-weight: bold;
+  }
+
+  .link-arrow-sub {
+    color: #ecb62f; // Giallo/Oro per frecce abbonamento
+  }
+
+  .app-icon-placeholder, .newsletter-icon-placeholder {
+    margin-right: 8px;
+    font-size: 1.1em; // Icone leggermente più grandi
+  }
+}
+
+.subscription-text {
+  font-size: 0.8rem;
+  color: #cccccc; // Grigio chiaro per testo secondario
+  margin: 2px 0 10px 20px; // Margine sotto e a sinistra (dopo freccia)
+  padding-right: 10px; // Evita che vada troppo a filo col bordo
+}
+
+.kiosk-placeholder {
+  .kiosk-image-placeholder {
+    width: 124px;
+    height: 185px;
+    background-color: #ccc; // Grigio placeholder
+    color: #666;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 0.5rem;
-  }
-
-  .copyright, .disclaimer {
-    margin: 0;
+    justify-content: center;
     font-size: 0.8rem;
+    margin-bottom: 10px;
   }
 
-  .disclaimer {
-    opacity: 0.8;
-  }
-}
-
-// Responsive design
-@media (min-width: 768px) {
-  .footer-top {
-    .container {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-
-    .footer-logo {
-      flex: 0 0 200px;
-      margin-bottom: 0;
-    }
+  p {
+    margin: 0 0 10px 0;
+    font-weight: 500;
   }
 
-  .footer-bottom {
-    .container {
-      flex-direction: row;
-      justify-content: space-between;
-      text-align: left;
+  .kiosk-button {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }
 
+.social-icons {
+  display: flex;
+  gap: 15px; // Spazio tra icone social
+  margin-top: 10px;
+
+  a {
+    color: #ffffff;
+    font-size: 1.2rem; // Dimensione icone testo
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      color: #cccccc; // Cambio colore on hover
+    }
+  }
+}
+
+.newsletter-link {
+  margin-top: 10px;
+}
+
+/* Riga Inferiore (Mandatory Links) */
+.main-footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 15px 32px; // Padding verticale e orizzontale
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; // Va a capo se necessario
+    justify-content: center; // Centra i link
+    gap: 10px 20px; // Spazio verticale e orizzontale tra i link
+  }
+
+  li {
+    // Nessuno stile specifico necessario per li
+  }
+
+  a {
+    color: #cccccc; // Grigio chiaro per questi link
+    text-decoration: none;
+    font-size: 0.75rem; // Più piccoli
+    white-space: nowrap; // Evita che un singolo link vada a capo
+
+    &:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+  }
+}
+
+/* Media Query per migliorare leggibilità colonne su mobile */
 @media (max-width: 767px) {
-  .footer-nav {
-    flex-direction: column;
-    gap: 1.5rem;
-
-    .footer-nav-column {
-      width: 100%;
-    }
+  .main-footer-col {
+    min-width: calc(50% - 12px); // Circa 2 colonne su mobile
+    border-right: none; // Rimuovi bordi verticali su mobile
+    padding-right: 0;
+  }
+  .main-footer-bottom ul {
+    justify-content: flex-start; // Allinea a sinistra su mobile
   }
 }

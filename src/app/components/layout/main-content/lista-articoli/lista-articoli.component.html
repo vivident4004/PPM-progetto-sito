@@ -1,6 +1,8 @@
 <div [ngClass]="listClass || 'default-list-class'">
-  <!-- Mostra il titolo della lista se fornito (per colonna sinistra) -->
-  <p *ngIf="listTitle" class="fig-list-articles__title">{{ listTitle }}</p>
+  <!-- Mostra il titolo della lista se fornito (per colonna sinistra) e se non è un articolo di tipo zone-left o magazine-article -->
+  <p
+    *ngIf="listTitle && !(articles.length > 0 && (articles[0].type === 'zone-left' || articles[0].type === 'magazine-article'))"
+    class="fig-list-articles__title">{{ listTitle }}</p>
 
   <!-- Itera sull'array di articoli e passa ogni articolo al componente app-post -->
   <app-post
