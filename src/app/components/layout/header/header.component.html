@@ -152,7 +152,8 @@
         <a class="rubric-link mobile-tablet-only" href="#">Carnet du jour</a>
 
         <!-- Pulsante con freccina per menu aggiuntivo (visibile solo sopra 1024px) -->
-        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu" mat-flat-button
+        <button (click)="toggleMoreRubricsMenu()" aria-controls="more-rubrics-menu" aria-label="Plus de rubriques"
+                mat-flat-button
                 class="more-rubrics-button desktop-only"
                 mat-button>
           <mat-icon>{{ isMoreRubricsMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>

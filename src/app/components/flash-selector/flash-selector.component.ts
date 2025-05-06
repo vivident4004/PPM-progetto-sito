@@ -4,14 +4,14 @@ import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
-import {MatSuffix} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-flash-selector',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule],
   template: `
-    <button mat-button [matMenuTriggerFor]="menu" class="flash-selector-button">
+    <button mat-button [matMenuTriggerFor]="menu" class="flash-selector-button"
+            aria-label="Sélectionner une catégorie de flash">
       <span>{{ categories[selectedCategoryIndex] }}</span>
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
