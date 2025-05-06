@@ -8,16 +8,12 @@
 
 .main-wrapper {
   display: grid;
-  /* Colonne con larghezze esatte: left (296px), center (616px), right (272px) */
-  //grid-template-columns: 296px 616px 272px;
-  /* Aree per chiarezza/responsività */
   grid-template-areas: "left-sidebar main sidebar";
-  gap: 1.5rem; /* Spazio tra le colonne */
+  gap: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-/* Assegnazione alle aree */
 app-left-sidebar {
   grid-area: left-sidebar;
 }
@@ -47,33 +43,31 @@ app-sidebar {
 @media (max-width: 1023.98px) {
 
   .page-container {
-    padding: 0; // Rimuovi padding laterale dal contenitore più esterno su mobile
+    padding: 0;
     max-width: 768px;
   }
 
   .main-wrapper {
-    display: block; // Cambia il wrapper a display block, non più grid
-    max-width: none; // Nessun limite di larghezza per il wrapper
+    display: block;
+    max-width: none;
     width: 100%;
-    margin-top: 0; // Rimuovi margini extra se non necessari
+    margin-top: 0;
     margin-bottom: 0;
-    padding: 0; // Rimuovi padding dal wrapper, sarà gestito internamente
+    padding: 0;
     gap: 0;
   }
 
-  /* Nascondi le sidebar globali */
   app-left-sidebar,
   app-sidebar {
     display: none;
   }
 
-  /* Forza app-main-content ad occupare tutta la larghezza */
   app-main-content {
-    display: block; // Assicurati sia block
+    display: block;
     width: 100%;
     max-width: none;
-    grid-area: auto; // Resetta l'area grid
-    padding: 0; // Rimuovi eventuali padding ereditati
-    margin: 0; // Rimuovi eventuali margini ereditati
+    grid-area: auto;
+    padding: 0;
+    margin: 0;
   }
 }

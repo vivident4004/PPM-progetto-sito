@@ -222,16 +222,19 @@
 }
 
 .fig-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  width: 100%;
   justify-content: flex-end;
-  margin-bottom: 15px;
   font-size: 0.85rem;
   color: #555;
+  cursor: pointer;
+  margin-bottom: 15px;
 
-  &__text {
-    margin-right: 12px;
+  &__slider {
+    transform: scale(0.75);
   }
+
 
   // Toggle slider styles
   .mat-mdc-slide-toggle {
