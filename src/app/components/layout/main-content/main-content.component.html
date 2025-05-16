@@ -4,7 +4,6 @@
     <!-- Placeholder per Radio Player -->
     <div *ngIf="getRadioArticle() as radioArticle" class="fig-radio-root">
       <app-post [article]="radioArticle"></app-post>
-      <!-- Qui potresti mettere un componente radio player più complesso -->
     </div>
 
     <!-- Liste Articoli Sinistra per Categoria -->
@@ -31,7 +30,6 @@
         </app-lista-articoli>
         <button aria-label="Retrouver la section" class="fig-rdv__button" color="primary" mat-flat-button>
           <mat-icon>bookmark_border</mat-icon>
-          <!-- Sostituisci con l'icona SVG corretta se necessario -->
           <span class="fig-rdv__button-text">RETROUVER LA SECTION</span>
         </button>
       </div>
@@ -43,7 +41,6 @@
     <div class="fig-vitrine fig-flash-w">
       <div class="fig-vitrine__header">
         <div class="fig-vitrine__title">Le Flash</div>
-        <!-- Placeholder per i selettori Actu/Eco/Sport -->
         <div class="fig-selector-container">
           <app-flash-selector (categoryChange)="onFlashCategoryChange($event)"></app-flash-selector>
         </div>
@@ -57,7 +54,6 @@
           color="primary"
           id="alert-toggle"
           class="fig-toggle__slider"
-          title="Recevoir les alertes de la rédaction"
         ></mat-slide-toggle>
       </div>
 
@@ -89,7 +85,7 @@
       </a>
     </div>
     <div class="riquadro-video-content">
-      @for ($item of postVideoPiccoli; track $item.title) {
+      @for ($item of postVideoPiccoli; track $item.key) {
         <div class="video-testo">
           <img src="{{$item.image}}" alt="{{$item.alt}}"/>
           <p>{{ $item.title }}</p>

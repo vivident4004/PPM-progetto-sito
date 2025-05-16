@@ -20,4 +20,5 @@ export interface Article {
   time?: string; // Opzionale (es. Publié il y a 26 min o timestamp per flash)
   url?: string; // Opzionale (per i link)
   slug?: string; // Opzionale (per le categorie sinistra)
+  partner?: boolean;
 }

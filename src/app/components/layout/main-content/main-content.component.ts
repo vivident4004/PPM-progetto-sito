@@ -38,6 +38,58 @@ export class MainContentComponent implements OnInit {
     this.loadPlaceholderData();
   }
 
+  postVideoPiccoli = [{
+    key: 0,
+    image: 'https://placehold.co/186x105?text=Video+Placeholder',
+    alt: 'Video Placeholder',
+    title: 'Lorem ipsum dolor sit amet',
+  },
+    {
+      key: 1,
+      image: 'https://placehold.co/186x105?text=Video+Placeholder',
+      alt: 'Video Placeholder',
+      title: 'Lorem ipsum dolor sit amet',
+    },
+    {
+      key: 2,
+      image: 'https://placehold.co/186x105?text=Video+Placeholder',
+      alt: 'Video Placeholder',
+      title: 'Lorem ipsum dolor sit amet',
+    },
+    {
+      key: 3,
+      image: 'https://placehold.co/186x105?text=Video+Placeholder',
+      alt: 'Video Placeholder',
+      title: 'Lorem ipsum dolor sit amet',
+    }]
+
+  flashCategories = ['Actualité', 'Économie', 'Sport'];
+
+  getLeftArticlesByCategory(slug: string): Article[] {
+    return this.leftColumnArticles.filter(
+      (a) => a.slug === slug && a.type !== 'radio-placeholder'
+    );
+  }
+
+  getRadioArticle(): Article | undefined {
+    return this.leftColumnArticles.find((a) => a.type === 'radio-placeholder');
+  }
+
+  getLeftColumnCategories(): string[] {
+    const slugs = this.leftColumnArticles
+      .filter((a) => a.type !== 'radio-placeholder' && a.slug) // Escludi radio e articoli senza slug
+      .map((a) => a.slug!); // Usa ! perché abbiamo filtrato gli undefined
+    return [...new Set(slugs)];
+  }
+
+  selectedFlashCategory = 'Actualité';
+  // Articoli flash per categoria
+  flashArticlesByCategory: { [key: string]: Article[] } = {
+    'Actualité': [],
+    'Économie': [],
+    'Sport': []
+  };
+
   loadPlaceholderData(): void {
     // --- Colonna Centrale ---
     this.centerColumnArticles = [
@@ -76,6 +128,7 @@ export class MainContentComponent implements OnInit {
         imageHeight: 126,
         title: `Another Small Picture: ${this.loremTitle}`,
         standfirst: `ANALYSIS - ${this.loremShort}`,
+        video: true,
         premium: false,
       },
       {
@@ -87,7 +140,6 @@ export class MainContentComponent implements OnInit {
         standfirst: `REPORTAGE - ${this.loremStandfirst}`,
         premium: true,
       },
-      // Nuovi articoli alternati (Tipo 1 e Tipo 2)
       {
         id: 'center7',
         type: 'small-picture',
@@ -188,7 +240,6 @@ export class MainContentComponent implements OnInit {
         type: 'radio-placeholder', // Tipo specifico
         title: 'Le Figaro Radio', // Titolo fisso
         standfirst: 'EN CE MOMENT: Les Récits du Figaro', // Sottotitolo fisso
-        // Non servono dimensioni immagine qui, gestito da CSS/HTML specifico
       },
       // Articoli veri e propri
       {
@@ -297,53 +348,6 @@ export class MainContentComponent implements OnInit {
     // Assegna tutti gli articoli alla proprietà rightColumnArticles per compatibilità
     this.rightColumnArticles = allFlashArticles;
   }
-
-  flashCategories = ['Actualité', 'Économie', 'Sport'];
-
-  getLeftArticlesByCategory(slug: string): Article[] {
-    return this.leftColumnArticles.filter(
-      (a) => a.slug === slug && a.type !== 'radio-placeholder'
-    );
-  }
-
-  getRadioArticle(): Article | undefined {
-    return this.leftColumnArticles.find((a) => a.type === 'radio-placeholder');
-  }
-
-  getLeftColumnCategories(): string[] {
-    const slugs = this.leftColumnArticles
-      .filter((a) => a.type !== 'radio-placeholder' && a.slug) // Escludi radio e articoli senza slug
-      .map((a) => a.slug!); // Usa ! perché abbiamo filtrato gli undefined
-    return [...new Set(slugs)];
-  }
-
-  selectedFlashCategory = 'Actualité';
-  // Articoli flash per categoria
-  flashArticlesByCategory: { [key: string]: Article[] } = {
-    'Actualité': [],
-    'Économie': [],
-    'Sport': []
-  };
-  postVideoPiccoli = [{
-    image: 'https://placehold.co/186x105?text=Video+Placeholder',
-    alt: 'Video Placeholder',
-    title: 'Lorem ipsum dolor sit amet',
-  },
-    {
-      image: 'https://placehold.co/186x105?text=Video+Placeholder',
-      alt: 'Video Placeholder',
-      title: 'Lorem ipsum dolor sit amet',
-    },
-    {
-      image: 'https://placehold.co/186x105?text=Video+Placeholder',
-      alt: 'Video Placeholder',
-      title: 'Lorem ipsum dolor sit amet',
-    },
-    {
-      image: 'https://placehold.co/186x105?text=Video+Placeholder',
-      alt: 'Video Placeholder',
-      title: 'Lorem ipsum dolor sit amet',
-    }]
 
   // Metodo per cambiare categoria
   onFlashCategoryChange(category: string): void {

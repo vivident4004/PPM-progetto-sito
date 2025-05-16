@@ -1,4 +1,8 @@
-<!-- Aggiungi *ngIf="article" per sicurezza -->
+@if (article.video) {
+  <p>Le FIgaro TV DEVO FARE QUI L'HTML</p>
+} @else if (article.partner) {
+
+} @else {
 <article
   *ngIf="article"
   class="fig-ranking-profile-container"
@@ -164,3 +168,4 @@
 
   </ng-container>
 </article>
+}

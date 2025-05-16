@@ -5,8 +5,9 @@
     class="fig-list-articles__title">{{ listTitle }}</p>
 
   <!-- Itera sull'array di articoli e passa ogni articolo al componente app-post -->
-  <app-post
-    *ngFor="let article of articles; trackBy: trackById"
-    [article]="article"
-  ></app-post>
+  <ng-container *ngFor="let article of articles; trackBy: trackById">
+    <app-post
+      [article]="article"
+    ></app-post>
+  </ng-container>
 </div>

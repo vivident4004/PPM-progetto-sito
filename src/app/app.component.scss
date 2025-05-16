@@ -31,11 +31,9 @@ app-sidebar {
   .main-wrapper {
     /* Mantiene 3 colonne ma con proporzioni diverse o larghezze fisse come definito
        in main-content.component.scss per questo range (1024-1280) */
-    /* Non è strettamente necessario definire le colonne qui se main-content
-       gestisce già le larghezze interne per questo breakpoint */
-    max-width: 1024px; /* Adatta la larghezza massima del wrapper */
-    padding: 0 10px; /* Riduci padding wrapper */
-    gap: 20px; /* Riduci gap wrapper */
+    max-width: 1024px;
+    padding: 0 10px;
+    gap: 20px;
   }
 }
 
