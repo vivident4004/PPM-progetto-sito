@@ -184,15 +184,15 @@ $text-color-white: #ffffff;
 
 // --- 2. Sezione Media ---
 .header-middle {
-  background-color: $text-color-white; /* Add explicit background color */
+  background-color: $text-color-white;
 
   .middle-container {
     justify-content: space-between;
-    padding-top: 0.5rem; // Padding verticale molto ridotto
-    padding-bottom: 0.5rem; // Padding verticale molto ridotto
-    height: 96px; // Fixed height for middle section
-    position: relative; /* Add position relative for absolute positioning of children */
-    box-sizing: border-box; /* Ensure padding and borders are included in height */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    height: 96px;
+    position: relative;
+    box-sizing: border-box;
   }
 
   .header-journal-cover {
@@ -205,7 +205,7 @@ $text-color-white: #ffffff;
     gap: 0.5rem;
     text-decoration: none;
     color: $text-color;
-    font-size: 0.85rem; // Più piccolo
+    font-size: 0.85rem;
     font-weight: normal;
 
     .cover-placeholder {
@@ -216,11 +216,10 @@ $text-color-white: #ffffff;
       padding: 0.8rem 0.5rem; // Dimensioni placeholder
       font-size: 0.7rem;
       text-align: center;
-      //background-color: #f0f0f0;
       min-width: 60px; // Larghezza minima placeholder
     }
     span {
-      font-weight: bold; // Testo "Lire le journal" bold
+      font-weight: bold;
     }
     &:hover {
       color: $lefigaro-blue-hover;
@@ -230,10 +229,10 @@ $text-color-white: #ffffff;
   .header-logo.logo-center {
     text-align: center;
     flex-grow: 1;
-    margin: 0 auto; /* Center the logo container */
-    position: absolute; /* Position absolutely */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for exact centering */
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
     a {
       display: block;
@@ -243,25 +242,25 @@ $text-color-white: #ffffff;
     // Logo display rules
     .logo-desktop {
       display: block;
-      max-height: 64px; /* Ensure logo fits within container */
-      width: auto; /* Maintain aspect ratio */
+      max-height: 64px;
+      width: auto;
     }
 
     .logo-tablet, .logo-mobile {
       display: none;
-      max-width: 100%; /* Ensure logo fits within container */
-      height: auto; /* Maintain aspect ratio */
+      max-width: 100%;
+      height: auto;
     }
 
     .main-logo-text {
-      font-size: 1.8rem; // Dimensione logo principale (adatta)
+      font-size: 1.8rem;
       font-weight: bold;
       color: $lefigaro-blue;
       text-decoration: none;
     }
     .logo-tagline {
       display: block;
-      font-size: 0.7rem; // Molto piccolo
+      font-size: 0.7rem;
       color: $text-color-light;
       font-style: italic;
       margin-top: 0; // Nessun margine sopra
@@ -269,13 +268,13 @@ $text-color-white: #ffffff;
   }
 
   .header-subscribe {
-    padding-right: 16px; // Adjust this value as needed
+    padding-right: 16px;
   }
 
   .header-subscribe .subscribe-button {
     background-color: $lefigaro-yellow;
-    color: $lefigaro-blue; // Testo scuro su giallo
-    padding: 0.4rem 0.8rem; // Padding bottone ridotto
+    color: $lefigaro-blue;
+    padding: 0.4rem 0.8rem;
     text-decoration: none;
     font-weight: bold;
     border-radius: 3px;
@@ -284,14 +283,14 @@ $text-color-white: #ffffff;
     border: none;
     cursor: pointer;
     white-space: nowrap;
-    font-size: 0.9rem; // Dimensione testo bottone
+    font-size: 0.9rem;
 
     span {
       display: block;
-      font-size: 0.7rem; // Testo piccolo sotto
+      font-size: 0.7rem;
       font-weight: normal;
       opacity: 0.9;
-      margin-top: 1px; // Piccolo spazio
+      margin-top: 1px;
     }
     &:hover {
       opacity: 0.9;
@@ -304,8 +303,8 @@ $text-color-white: #ffffff;
   color: $lefigaro-blue;
   position: relative;
   display: block;
-  background-color: $text-color-white; /* Add explicit background color */
-  z-index: 600; /* Ensure it's above other elements but below the top nav */
+  background-color: $text-color-white;
+  z-index: 600;
 
   /* Aggiunge il bordo blu in fondo */
   &::after {
@@ -322,26 +321,26 @@ $text-color-white: #ffffff;
   .rubrics-container {
     justify-content: center;
     height: 32px; /* Altezza fissa di 32px */
-    box-sizing: border-box; /* Ensure padding and borders are included in height */
+    box-sizing: border-box;
   }
 
   .rubrics_list {
     display: flex;
-    flex-flow: row nowrap; /* Cambiato in nowrap per mantenere tutto in linea */
-    align-items: center; /* Allinea verticalmente al centro */
+    flex-flow: row nowrap;
+    align-items: center;
     gap: 16px;
-    padding: 0 24px 8px; /* Padding bottom di 8px come richiesto */
-    height: 100%; /* Occupa tutta l'altezza del contenitore */
+    padding: 0 24px 8px;
+    height: 100%;
     position: relative;
 
     .rubric-link {
       color: $lefigaro-blue;
       text-decoration: none;
       font-size: 14px;
-      line-height: 20px; /* Allinea con l'altezza del contenitore */
+      line-height: 20px;
       font-weight: 400;
-      white-space: nowrap; /* Evita che vada a capo */
-      display: inline-block; /* Mantiene la struttura in linea */
+      white-space: nowrap;
+      display: inline-block;
 
       &:hover {
         color: $lefigaro-blue-hover;
@@ -386,8 +385,8 @@ $text-color-white: #ffffff;
       top: calc(100%); /* Posiziona esattamente sotto la barra delle rubriche e la linea blu */
       background-color: white;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 999; /* Appena sotto l'header ma sopra l'overlay */
-      width: 100vw; /* Larghezza a tutta pagina */
+      z-index: 999;
+      width: 100vw;
       height: 188px;
 
       &::before {
@@ -413,7 +412,7 @@ $text-color-white: #ffffff;
           margin-bottom: 0;
           margin-top: 0;
           padding: 0;
-          flex: 0 0 calc(20% - 16px); /* 5 elementi per riga con gap */
+          flex: 0 0 calc(20% - 16px);
 
           &:hover {
             text-decoration: none;
@@ -429,7 +428,7 @@ $text-color-white: #ffffff;
 // --- Mobile Menu ---
 .mobile-menu {
   position: fixed;
-  top: 45px; // Height of header-top-nav
+  top: 45px;
   left: 0;
   width: 320px;
   bottom: 0;
@@ -449,9 +448,9 @@ $text-color-white: #ffffff;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Overlay grigio scuro */
+  background-color: rgba(0, 0, 0, 0.5);
   pointer-events: auto; /* Assicura che l'overlay riceva gli eventi di click */
-  z-index: 998; /* Ensure it's below the menus but above other content */
+  z-index: 998;
 }
 
 // More rubrics overlay - starts after the more-rubrics-menu
@@ -459,7 +458,7 @@ $text-color-white: #ffffff;
   top: 361px; /* Posiziona l'overlay dopo il menu (header height 173px + menu height 188px) */
 
   @media (max-width: 1024px) {
-    top: 284px; // Total header height for tablet (96px) + menu height (188px)
+    top: 284px;
     bottom: 52px; // Account for bottom navigation bar
   }
 
@@ -593,7 +592,6 @@ $text-color-white: #ffffff;
       font-size: 1rem;
       font-weight: bold;
       color: $lefigaro-blue;
-      //margin-left: 12px; // Same margin as the content below
       &:before {
         content: '';
         top: -5px;
@@ -712,8 +710,8 @@ $text-color-white: #ffffff;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999; // Increased z-index to ensure it's always on top
-  height: 52px; // Fixed height as specified
+  z-index: 9999;
+  height: 52px;
   pointer-events: none; // Allow clicks to pass through the wrapper to the nav
   display: none; // Hidden by default, shown in media query
   transform: none !important; // Ensure it's not affected by any transforms
@@ -737,10 +735,10 @@ $text-color-white: #ffffff;
   border-top: 1px solid #ccc;
   bottom: 0;
   left: 0;
-  position: absolute; // Changed from fixed to absolute
+  position: absolute;
   right: 0;
   z-index: 9999; // Increased z-index to ensure it's always on top
-  height: 52px; // Fixed height as specified
+  height: 52px;
   display: none; // Hidden by default, shown in media query
   font-weight: 600;
   transform: none !important; // Ensure it's not affected by any transforms
@@ -821,15 +819,13 @@ $text-color-white: #ffffff;
       .section-title {
         font-weight: 600;
         color: $lefigaro-blue;
-        //margin-bottom: 16px;
-        //border-bottom: 1px solid $border-color;
         padding-bottom: 8px;
         text-decoration: none;
         font-size: 20px;
         line-height: 28px;
         display: flex;
         align-items: baseline;
-        gap: 8px; // Gap between the text and the dash
+        gap: 8px;
         &:before {
           content: '';
           top: -5px;
@@ -867,11 +863,11 @@ $text-color-white: #ffffff;
   }
 
   @media (max-width: 1024px) {
-    top: 45px; // Height of header-top-nav remains the same on tablet
+    top: 45px;
   }
 
   @media (max-width: 768px) {
-    top: 45px; // Height of header-top-nav remains the same on mobile
+    top: 45px;
   }
 }
 
@@ -880,11 +876,11 @@ $text-color-white: #ffffff;
   position: absolute;
   left: 0;
   right: 0;
-  top: 45px; // Height of header-top-nav
+  top: 45px;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  height: 144px; // As specified in requirements
+  height: 144px;
 
   .actu-locales-menu-container {
     max-width: 1280px;
@@ -905,11 +901,11 @@ $text-color-white: #ffffff;
           color: $lefigaro-blue;
           text-decoration: none;
           font-size: 20px;
-          font-weight: 600; // As specified in the requirements
+          font-weight: 600;
           line-height: 28px;
           display: flex;
           align-items: baseline;
-          gap: 8px; // Gap between the text and the dash
+          gap: 8px;
 
           &:before {
             content: '';
@@ -930,11 +926,11 @@ $text-color-white: #ffffff;
   }
 
   @media (max-width: 1024px) {
-    top: 45px; // Height of header-top-nav remains the same on tablet
+    top: 45px;
   }
 
   @media (max-width: 768px) {
-    top: 45px; // Height of header-top-nav remains the same on mobile
+    top: 45px;
   }
 }
 
@@ -953,19 +949,16 @@ $text-color-white: #ffffff;
 
 // --- Responsività (da adattare ulteriormente) ---
 @media (max-width: 1024px) { // Tablet
-  //.container { padding-right: 16px; padding-left: 16px }
   .lefigaro-header {
-    height: 96px; // Total header height for tablet
+    height: 96px;
   }
 
-  // Update mobile menu position for tablet
   .mobile-menu {
-    top: 96px; // Total header height for tablet
+    top: 96px;
   }
 
-  // Update mobile overlay position for tablet
   .mobile-overlay {
-    top: 96px; // Total header height for tablet
+    top: 96px;
   }
 
   // Show bottom navigation bar and wrapper
@@ -991,21 +984,19 @@ $text-color-white: #ffffff;
 
     .logo-tablet {
       display: block; // Mostra logo tablet
-      max-height: 40px; /* Ensure logo fits within container */
+      max-height: 40px;
     }
 
     .logo-mobile {
-      display: none; // Assicurati che il mobile sia ancora nascosto qui
+      display: none;
     }
 
-    // Position the logo to appear in the top container
     position: fixed;
-    top: 9px; // Adjust to align with menu and login buttons
+    top: 9px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1001; // Ensure it's above other elements
+    z-index: 1001;
   }
-
 
   // Hide journal cover and subscribe button below 1024px
   .header-middle {
@@ -1019,8 +1010,8 @@ $text-color-white: #ffffff;
     display: block; // Assicura che sia sempre visibile
 
     .rubrics-container {
-      overflow: hidden; // Contiene il contenuto che scorre
-      height: 38px; // Fixed height for rubrics in tablet view
+      overflow: hidden;
+      height: 38px;
     }
 
     .rubrics_list {
@@ -1057,17 +1048,15 @@ $text-color-white: #ffffff;
 
 @media (max-width: 768px) { // Mobile
   .lefigaro-header {
-    height: 88px; // Total header height for mobile
+    height: 88px;
   }
 
-  // Update mobile menu position for mobile
   .mobile-menu {
-    top: 88px; // Total header height for mobile
+    top: 88px;
   }
 
-  // Update mobile overlay position for mobile
   .mobile-overlay {
-    top: 88px; // Total header height for mobile
+    top: 88px;
   }
 
   .header-middle .header-logo.logo-center {
@@ -1077,11 +1066,10 @@ $text-color-white: #ffffff;
 
     .logo-mobile {
       display: block; // Mostra logo mobile
-      max-height: 33px; // Come da tua regola originale
+      max-height: 33px;
       width: auto;
     }
 
-    // Position the logo to appear in the top container
     position: fixed;
     top: 8px; // Slightly adjusted for mobile
     left: 50%;
@@ -1089,18 +1077,15 @@ $text-color-white: #ffffff;
     z-index: 1001; // Ensure it's above other elements
   }
 
-  // Nascondi/mostra elementi come prima, ma verifica gli stili compatti
   .header-top-nav {
     .main-nav-list {
-      //display: none;
     }
 
     .login-link {
-      display: flex; // Keep login link visible
-
+      display: flex;
 
       .login-text {
-        display: none; // Keep text hidden in mobile view too
+        display: none;
       }
     }
   }
@@ -1119,7 +1104,7 @@ $text-color-white: #ffffff;
     display: block !important;
 
     .rubrics-container {
-      height: 38px; // Fixed height for rubrics in mobile view
+      height: 38px;
     }
   }
 

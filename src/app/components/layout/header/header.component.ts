@@ -79,13 +79,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobileOrTablet = window.innerWidth < 1024;
       this.updateBodyPadding(); // Update body padding when screen size changes
-    } else {
-      // Optional: Handle the case when not in the browser.
-      // You might want to set a default value for SSR.
-      // For example, you could set it to false or true depending on
-      // how you want the initial render to appear on the server.
-      // If you don't set it here, isMobileOrTablet will retain its initial value (false).
-      // this.isMobileOrTablet = false;
     }
   }
 
